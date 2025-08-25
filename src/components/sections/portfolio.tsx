@@ -6,7 +6,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Github } from 'lucide-react';
-import { ScrollReveal } from '../scroll-reveal';
+import { motion } from 'framer-motion';
 
 const projects = [
   {
@@ -56,18 +56,55 @@ const projects = [
   }
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5
+    }
+  },
+};
+
 export function PortfolioSection() {
   return (
     <section id="portfolio" className="bg-background">
       <div className="container">
-        <ScrollReveal>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className="text-3xl font-bold text-center mb-12 font-headline">My Portfolio</h2>
-        </ScrollReveal>
+        </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <ScrollReveal key={project.title} delay={index * 100}>
-              <Card className="h-full flex flex-col overflow-hidden group transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          {projects.map((project) => (
+            <motion.div
+              key={project.title}
+              variants={itemVariants}
+              whileHover={{ scale: 1.05, y: -8 }}
+              transition={{ type: 'spring', stiffness: 300 }}
+            >
+              <Card className="h-full flex flex-col overflow-hidden group shadow-md hover:shadow-xl transition-shadow duration-300">
                 <CardHeader className="p-0">
                   <div className="overflow-hidden">
                     <Image
@@ -104,9 +141,9 @@ export function PortfolioSection() {
                   </div>
                 </CardFooter>
               </Card>
-            </ScrollReveal>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

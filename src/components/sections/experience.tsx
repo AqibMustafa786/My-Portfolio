@@ -1,7 +1,7 @@
 "use client";
 
 import { Briefcase } from 'lucide-react';
-import { ScrollReveal } from '@/components/scroll-reveal';
+import { motion } from 'framer-motion';
 
 const experiences = [
   {
@@ -22,29 +22,45 @@ export function ExperienceSection() {
   return (
     <section id="experience" className="bg-secondary/50">
       <div className="container">
-        <ScrollReveal>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className="text-3xl font-bold text-center mb-12 font-headline">My Experience</h2>
-        </ScrollReveal>
+        </motion.div>
         
         <div className="relative max-w-2xl mx-auto">
           <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-border -translate-x-1/2"></div>
           {experiences.map((exp, index) => (
-            <ScrollReveal key={index} className="mb-12">
+            <motion.div 
+              key={index} 
+              className="mb-12"
+              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.6 }}
+            >
               <div className="relative flex items-center">
                 <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
-                  <div className="bg-card p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                  <motion.div 
+                    className="bg-card p-6 rounded-lg shadow-md"
+                    whileHover={{ scale: 1.05, shadow: "0px 10px 20px rgba(0,0,0,0.1)" }}
+                    transition={{ type: 'spring', stiffness: 300 }}
+                  >
                     <p className="text-sm text-accent-foreground/80 font-semibold">{exp.duration}</p>
                     <h3 className="text-xl font-bold font-headline mb-1">{exp.role}</h3>
                     <p className="text-md text-muted-foreground mb-3">{exp.company}</p>
                     <p className="text-sm text-muted-foreground">{exp.description}</p>
-                  </div>
+                  </motion.div>
                 </div>
                 <div className="absolute left-1/2 -translate-x-1/2 w-8 h-8 bg-accent rounded-full flex items-center justify-center ring-8 ring-background">
                   <Briefcase className="w-4 h-4 text-accent-foreground" />
                 </div>
                 <div className={`w-1/2 ${index % 2 === 0 ? 'pl-8' : 'pr-8'}`}></div>
               </div>
-            </ScrollReveal>
+            </motion.div>
           ))}
         </div>
       </div>

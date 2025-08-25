@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Send, Github, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
-import { ScrollReveal } from "../scroll-reveal";
+import { motion } from "framer-motion";
 
 const socialLinks = [
   { name: 'GitHub', icon: Github, url: 'https://github.com/aqibmustafa' },
@@ -23,15 +23,25 @@ export function ContactSection() {
   return (
     <section id="contact" className="bg-background">
       <div className="container">
-        <ScrollReveal>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className="text-3xl font-bold text-center mb-4 font-headline">Contact Me</h2>
           <p className="max-w-xl mx-auto text-center text-muted-foreground text-lg mb-12">
             Let&apos;s Build Something Great Together 🚀
           </p>
-        </ScrollReveal>
+        </motion.div>
         
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-          <ScrollReveal delay={100}>
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <div className="bg-card p-8 rounded-lg shadow-lg border">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
@@ -51,23 +61,35 @@ export function ContactSection() {
                 </Button>
               </form>
             </div>
-          </ScrollReveal>
+          </motion.div>
 
-          <ScrollReveal delay={200} className="flex flex-col justify-center items-center md:items-start text-center md:text-left">
+          <motion.div 
+            className="flex flex-col justify-center items-center md:items-start text-center md:text-left"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
             <h3 className="text-2xl font-bold font-headline mb-4">Get in Touch</h3>
             <p className="text-muted-foreground mb-6">
               I&apos;m currently available for freelance projects and full-time opportunities. Feel free to reach out via email or connect with me on social media.
             </p>
             <div className="flex items-center gap-4">
               {socialLinks.map((link) => (
-                <Button key={link.name} variant="outline" size="icon" asChild className="rounded-full w-12 h-12 transition-transform hover:scale-110 hover:bg-accent/20">
-                  <Link href={link.url} target="_blank" rel="noopener noreferrer" aria-label={link.name}>
-                    <link.icon className="h-6 w-6 text-foreground" />
-                  </Link>
-                </Button>
+                <motion.div
+                  key={link.name}
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <Button variant="outline" size="icon" asChild className="rounded-full w-12 h-12">
+                    <Link href={link.url} target="_blank" rel="noopener noreferrer" aria-label={link.name}>
+                      <link.icon className="h-6 w-6 text-foreground" />
+                    </Link>
+                  </Button>
+                </motion.div>
               ))}
             </div>
-          </ScrollReveal>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -2,7 +2,7 @@
 
 import { BrainCircuit, CodeXml, Database, Keyboard, Smartphone } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ScrollReveal } from "@/components/scroll-reveal";
+import { motion } from "framer-motion";
 
 const skills = [
   { name: "Web Development", technologies: "HTML, CSS, JS, PHP, Laravel", icon: CodeXml },
@@ -12,20 +12,52 @@ const skills = [
   { name: "Data Entry", technologies: "Automation Scripts", icon: Keyboard },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5
+    }
+  },
+};
+
 export function AboutSection() {
   return (
     <section id="about" className="bg-background">
       <div className="container">
-        <ScrollReveal>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className="text-3xl font-bold text-center mb-4 font-headline">About Me</h2>
           <p className="max-w-3xl mx-auto text-center text-muted-foreground text-lg mb-12">
             I’m a passionate Software Engineer and Computer Science graduate specializing in Web Apps, Mobile Apps, WordPress Development, and AI Projects. I enjoy building modern, user-friendly solutions that merge creativity with technology. With professional experience in international projects, internships, and freelancing, I deliver efficient digital solutions that drive real impact.
           </p>
-        </ScrollReveal>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {skills.map((skill, index) => (
-            <ScrollReveal key={skill.name} delay={index * 100}>
+            <motion.div key={skill.name} variants={itemVariants}>
               <Card className="h-full text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300 bg-card">
                 <CardHeader>
                   <div className="mx-auto bg-primary/20 text-accent p-4 rounded-full w-fit mb-4">
@@ -37,9 +69,9 @@ export function AboutSection() {
                   <p className="text-muted-foreground">{skill.technologies}</p>
                 </CardContent>
               </Card>
-            </ScrollReveal>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
