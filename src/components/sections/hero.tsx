@@ -7,14 +7,6 @@ import { motion } from 'framer-motion';
 export function HeroSection({ greeting }: { greeting: string }) {
   return (
     <section id="hero" className="relative flex flex-col items-center justify-center min-h-screen text-center">
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6, duration: 1 }}
-        className="text-lg md:text-xl text-purple-300 tracking-widest uppercase mb-4"
-      >
-        {greeting}
-      </motion.p>
       <motion.h1
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}

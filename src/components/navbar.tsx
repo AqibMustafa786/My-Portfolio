@@ -21,7 +21,6 @@ export function Navbar() {
   };
 
   const navLinks = [
-    { name: "Home", href: "#hero" },
     { name: "About Me", href: "#about" },
     { name: "Experience", href: "#experience" },
     { name: "Portfolio", href: "#portfolio" },
