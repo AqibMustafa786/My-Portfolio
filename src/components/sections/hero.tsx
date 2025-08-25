@@ -23,6 +23,7 @@ export function HeroSection({ greeting }: { greeting: string }) {
       >
         Software Engineer | Web & App Developer | AI Enthusiast
       </motion.p>
+      
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -34,6 +35,7 @@ export function HeroSection({ greeting }: { greeting: string }) {
             View Portfolio <MoveRight className="ml-2 h-5 w-5" />
           </Link>
         </Button>
+        {/* Add your CV to the public folder and uncomment the link below */}
         <Button asChild size="lg" variant="outline" className="px-6 py-3 rounded-full bg-white/10 border-white/30 text-white font-medium backdrop-blur-lg hover:scale-105 transition-transform duration-300 hover:bg-white/20 hover:text-white">
           <Link href="/aqib-mustafa-cv.pdf" download target="_blank">
             Download CV <Download className="ml-2 h-5 w-5" />
