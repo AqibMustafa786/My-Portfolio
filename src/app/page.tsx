@@ -1,7 +1,7 @@
 "use client";
 
 import { personalizedGreeting } from '@/ai/flows/personalized-greeting';
-import { Header } from '@/components/header';
+import { Navbar } from '@/components/navbar';
 import { HeroSection } from '@/components/sections/hero';
 import { AboutSection } from '@/components/sections/about';
 import { ExperienceSection } from '@/components/sections/experience';
@@ -37,7 +37,7 @@ export default function Home() {
         className="absolute bottom-1/4 right-1/4 w-[30rem] h-[30rem] bg-blue-500/15 rounded-full blur-3xl filter"
       />
 
-      <Header />
+      <Navbar />
       <main className="flex-1">
         <HeroSection greeting={greeting} />
         <AboutSection />
