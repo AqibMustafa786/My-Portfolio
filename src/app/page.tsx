@@ -1,3 +1,5 @@
+"use client";
+
 import { personalizedGreeting } from '@/ai/flows/personalized-greeting';
 import { Header } from '@/components/header';
 import { HeroSection } from '@/components/sections/hero';
@@ -8,12 +10,16 @@ import { StatsSection } from '@/components/sections/stats';
 import { ContactSection } from '@/components/sections/contact';
 import { Footer } from '@/components/footer';
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
-export default async function Home() {
-  const { greeting } = await personalizedGreeting({
-    // Using a more generic history to not imply specific page visits for the new design
-    browsingHistory: 'A returning visitor interested in modern web development.', 
-  });
+export default function Home() {
+  const [greeting, setGreeting] = useState('');
+
+  useEffect(() => {
+    personalizedGreeting({
+      browsingHistory: 'A returning visitor interested in modern web development.',
+    }).then(response => setGreeting(response.greeting));
+  }, []);
 
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white overflow-x-hidden">

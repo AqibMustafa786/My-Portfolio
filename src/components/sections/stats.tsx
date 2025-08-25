@@ -33,18 +33,17 @@ export function StatsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.15 }}
               viewport={{ once: true, amount: 0.5 }}
+              className="p-6 rounded-2xl bg-white/5 border border-white/10 shadow-lg backdrop-blur-xl text-center h-full"
             >
-              <div className="p-6 rounded-2xl bg-white/5 border border-white/10 shadow-lg backdrop-blur-xl text-center h-full">
-                <stat.icon className="h-10 w-10 mx-auto mb-4 text-purple-400" />
-                <div className="text-4xl font-bold text-white">
-                  <AnimatedCounter endValue={stat.value} />
-                  {stat.suffix}
-                </div>
-                <p className="text-gray-400 mt-2">{stat.label}</p>
+              <stat.icon className="h-10 w-10 mx-auto mb-4 text-purple-400" />
+              <div className="text-4xl font-bold text-white">
+                <AnimatedCounter endValue={stat.value} />
+                {stat.suffix}
               </div>
+              <p className="text-gray-400 mt-2">{stat.label}</p>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
