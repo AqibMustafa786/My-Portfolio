@@ -18,6 +18,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/aqib-mustafa-cv.pdf',
+        destination: '/aqib-mustafa-cv.pdf',
+        permanent: true,
+      },
+    ]
+  },
 };
 
 export default nextConfig;

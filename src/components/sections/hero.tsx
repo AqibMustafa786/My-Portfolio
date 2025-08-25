@@ -4,7 +4,7 @@ import { Download, MoveRight } from "lucide-react";
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
-export function HeroSection({ greeting }: { greeting: string }) {
+export function HeroSection() {
   return (
     <section id="hero" className="relative flex flex-col items-center justify-center min-h-screen text-center">
       <motion.h1
