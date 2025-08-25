@@ -2,36 +2,52 @@
 import { Button } from "@/components/ui/button";
 import { Download, MoveRight } from "lucide-react";
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export function HeroSection({ greeting }: { greeting: string }) {
   return (
-    <section id="home" className="relative overflow-hidden h-[90vh] min-h-[600px] max-h-[1080px] flex items-center justify-center">
-      <div className="absolute inset-0 w-full h-full animated-gradient -z-10" />
-      <div className="container px-4 md:px-6 text-center">
-        <div className="max-w-3xl mx-auto">
-          <div className="fade-in-down">
-            <h2 className="text-lg font-semibold text-accent-foreground tracking-widest mb-2 uppercase">{greeting}</h2>
-            <h1 className="text-4xl md:text-6xl font-headline font-bold mb-4">
-              Hi, I&apos;m Aqib Mustafa 👋
-            </h1>
-          </div>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8 fade-in-up" style={{ animationDelay: '200ms' }}>
-            Software Engineer | Web & App Developer | AI Enthusiast
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 fade-in-up" style={{ animationDelay: '400ms' }}>
-            <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 transition-transform hover:scale-105 shadow-lg">
-              <Link href="#portfolio">
-                View Portfolio <MoveRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="transition-transform hover:scale-105 shadow-lg bg-background/50">
-              <Link href="/aqib-mustafa-cv.pdf" download target="_blank">
-                Download CV <Download className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </div>
+    <section id="home" className="relative flex flex-col items-center justify-center min-h-screen text-center">
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.6, duration: 1 }}
+        className="text-lg md:text-xl text-purple-300 tracking-widest uppercase mb-4"
+      >
+        {greeting}
+      </motion.p>
+      <motion.h1
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="text-5xl md:text-7xl font-extrabold text-gradient"
+      >
+        Hi, I&apos;m Aqib Mustafa 👋
+      </motion.h1>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.4, duration: 1 }}
+        className="mt-4 text-xl md:text-2xl text-gray-300"
+      >
+        Software Engineer | Web & App Developer | AI Enthusiast
+      </motion.p>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8, duration: 1 }}
+        className="mt-8 flex flex-col sm:flex-row gap-4"
+      >
+        <Button asChild size="lg" className="px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-pink-500 text-white font-medium shadow-lg shadow-purple-600/30 hover:scale-105 transition-transform duration-300">
+          <Link href="#portfolio">
+            View Portfolio <MoveRight className="ml-2 h-5 w-5" />
+          </Link>
+        </Button>
+        <Button asChild size="lg" variant="outline" className="px-6 py-3 rounded-full bg-white/10 border-white/30 text-white font-medium backdrop-blur-lg hover:scale-105 transition-transform duration-300 hover:bg-white/20 hover:text-white">
+          <Link href="/aqib-mustafa-cv.pdf" download target="_blank">
+            Download CV <Download className="ml-2 h-5 w-5" />
+          </Link>
+        </Button>
+      </motion.div>
     </section>
   );
 }

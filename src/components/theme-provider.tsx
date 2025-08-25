@@ -17,39 +17,35 @@ interface ThemeProviderState {
 
 const ThemeProviderContext = createContext<ThemeProviderState | undefined>(undefined);
 
+// The new design is dark-only, so this provider is simplified.
+// It still respects the theme switching logic in case you want to re-enable it.
 export function ThemeProvider({ 
   children, 
   storageKey = 'aquafolio-theme',
-  defaultTheme = 'dark'
+  defaultTheme = 'dark' // Forcing dark theme for the new design
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(defaultTheme);
 
   useEffect(() => {
+    // We always want the dark theme for this new design.
+    const root = window.document.documentElement;
+    root.classList.remove('light', 'dark');
+    root.classList.add('dark');
+  }, []);
+  
+  const handleSetTheme = useCallback((newTheme: Theme) => {
+    // The functionality is kept, but the UI toggle is removed.
+    // For now, it will always be dark.
+    const newForcedTheme = 'dark';
     try {
-      const storedTheme = localStorage.getItem(storageKey) as Theme;
-      if (storedTheme) {
-        setTheme(storedTheme);
-      }
+      localStorage.setItem(storageKey, newForcedTheme);
+      document.documentElement.classList.remove('light', 'dark');
+      document.documentElement.classList.add(newForcedTheme);
+      setTheme(newForcedTheme);
     } catch (e) {
       console.error("Could not access localStorage: ", e);
     }
   }, [storageKey]);
-  
-  const handleSetTheme = useCallback((newTheme: Theme) => {
-    try {
-      localStorage.setItem(storageKey, newTheme);
-      document.documentElement.classList.remove(theme);
-      document.documentElement.classList.add(newTheme);
-      setTheme(newTheme);
-    } catch (e) {
-      console.error("Could not access localStorage: ", e);
-    }
-  }, [theme, storageKey]);
-
-  useEffect(() => {
-    document.documentElement.classList.remove('light', 'dark');
-    document.documentElement.classList.add(theme);
-  },[theme]);
 
   return (
     <ThemeProviderContext.Provider value={{ theme, setTheme: handleSetTheme }}>

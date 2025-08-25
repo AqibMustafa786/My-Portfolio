@@ -1,16 +1,23 @@
 "use client"
 import Link from 'next/link';
 import { ThemeToggle } from './theme-toggle';
+import { motion } from 'framer-motion';
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 max-w-screen-2xl items-center justify-between">
-        <Link href="/" className="text-xl font-bold font-headline tracking-wider text-accent-foreground/90 hover:text-accent-foreground transition-colors">
+    <motion.header 
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="sticky top-0 z-50 w-full bg-black/30 backdrop-blur-lg"
+    >
+      <div className="container flex h-20 items-center justify-between">
+        <Link href="/" className="text-2xl font-bold tracking-wider text-white">
           AquaFolio
         </Link>
-        <ThemeToggle />
+        {/* ThemeToggle can be re-enabled if needed, but the new design is dark by default */}
+        {/* <ThemeToggle /> */}
       </div>
-    </header>
+    </motion.header>
   );
 }

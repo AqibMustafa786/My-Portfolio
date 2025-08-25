@@ -6,69 +6,41 @@ import { motion } from "framer-motion";
 
 const stats = [
   { label: "Projects Completed", value: 5, icon: Award, suffix: "+" },
-  { label: "International Work Experience", value: 1, icon: Globe },
-  { label: "Skilled in Web, Mobile & AI", value: 3, icon: Lightbulb },
-  { label: "Computer Science Graduate", value: 1, icon: GraduationCap },
+  { label: "Work Experiences", value: 2, icon: Globe },
+  { label: "CS Graduate", value: 1, icon: GraduationCap },
+  { label: "Core Skills", value: 3, icon: Lightbulb },
 ];
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { y: 30, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.6,
-      ease: [0.6, 0.05, 0.01, 0.9]
-    }
-  },
-};
-
 
 export function StatsSection() {
   return (
-    <section id="stats" className="bg-secondary/50">
+    <section id="stats" className="bg-black/40 backdrop-blur-lg">
       <div className="container">
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
+        <motion.h2
             whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 40 }}
+            transition={{ duration: 1 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
+            className="text-4xl font-bold text-center mb-12"
         >
-          <h2 className="text-3xl font-bold text-center mb-12 font-headline">Achievements & Stats</h2>
-        </motion.div>
+          Achievements & Stats
+        </motion.h2>
 
-        <motion.div 
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-        >
-          {stats.map((stat) => (
-            <motion.div 
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {stats.map((stat, index) => (
+            <motion.div
               key={stat.label}
-              variants={itemVariants}
-              whileHover={{ y: -5, scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              viewport={{ once: true, amount: 0.5 }}
             >
-              <div className="bg-card p-6 rounded-lg shadow-md text-center h-full">
-                <stat.icon className="h-10 w-10 mx-auto mb-4 text-accent" />
-                <div className="text-4xl font-bold font-headline text-accent-foreground/90">
+              <div className="p-6 rounded-2xl bg-white/5 border border-white/10 shadow-lg backdrop-blur-xl text-center h-full">
+                <stat.icon className="h-10 w-10 mx-auto mb-4 text-purple-400" />
+                <div className="text-4xl font-bold text-white">
                   <AnimatedCounter endValue={stat.value} />
                   {stat.suffix}
                 </div>
-                <p className="text-muted-foreground mt-2">{stat.label}</p>
+                <p className="text-gray-400 mt-2">{stat.label}</p>
               </div>
             </motion.div>
           ))}

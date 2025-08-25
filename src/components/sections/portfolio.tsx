@@ -2,25 +2,22 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import { ExternalLink, Github } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const projects = [
   {
     title: "Nutrimate AI Chatbot",
-    description: "An AI-powered nutritionist chatbot built with Flutter and Google Gemini API for personalized diet plans.",
+    description: "Flutter + Google Gemini for health recommendations",
     image: "https://placehold.co/600x400.png",
     hint: "AI chatbot",
-    tags: ["Flutter", "AI", "Mobile App"],
+    tags: ["Flutter", "AI", "Mobile"],
     liveUrl: "#",
     githubUrl: "#",
   },
   {
     title: "Canteen Management System",
-    description: "A comprehensive web application for managing canteen operations, built with Laravel and Breeze Authentication.",
+    description: "Laravel Breeze authentication system",
     image: "https://placehold.co/600x400.png",
     hint: "web application",
     tags: ["Laravel", "Web App"],
@@ -29,16 +26,16 @@ const projects = [
   },
   {
     title: "AI Age & Gender Recognition",
-    description: "A computer vision project using Python and OpenCV to detect age and gender from images.",
+    description: "AI with Python & OpenCV",
     image: "https://placehold.co/600x400.png",
     hint: "AI recognition",
-    tags: ["Python", "AI", "OpenCV"],
+    tags: ["Python", "AI", "CV"],
     liveUrl: "#",
     githubUrl: "#",
   },
-  {
+   {
     title: "Learnify Kids App",
-    description: "An educational mobile application for children, developed using Flutter to provide an interactive learning experience.",
+    description: "Flutter learning app with interactive quizzes",
     image: "https://placehold.co/600x400.png",
     hint: "mobile learning",
     tags: ["Flutter", "Mobile App"],
@@ -46,8 +43,17 @@ const projects = [
     githubUrl: "#",
   },
   {
+    title: "SwiftDocs",
+    description: "PDF tools website with modern UI",
+    image: "https://placehold.co/600x400.png",
+    hint: "website tools",
+    tags: ["Web App", "Utility"],
+    liveUrl: "#",
+    githubUrl: "#",
+  },
+  {
     title: "Freelance WordPress Site",
-    description: "A custom WordPress theme and plugin development for a freelance client, focusing on performance and SEO.",
+    description: "A custom WordPress theme and plugin development",
     image: "https://placehold.co/600x400.png",
     hint: "website design",
     tags: ["WordPress", "Web App"],
@@ -56,94 +62,61 @@ const projects = [
   }
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.5
-    }
-  },
-};
-
 export function PortfolioSection() {
   return (
-    <section id="portfolio" className="bg-background">
+    <section id="portfolio">
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
+        <motion.h2
           whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 40 }}
+          transition={{ duration: 1 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
+          className="text-4xl font-bold text-center mb-12"
         >
-          <h2 className="text-3xl font-bold text-center mb-12 font-headline">My Portfolio</h2>
-        </motion.div>
+          My Portfolio
+        </motion.h2>
         
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-        >
-          {projects.map((project) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
             <motion.div
               key={project.title}
-              variants={itemVariants}
-              whileHover={{ scale: 1.05, y: -8 }}
-              transition={{ type: 'spring', stiffness: 300 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ scale: 1.05, y: -8, rotate: -1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true, amount: 0.3 }}
+              className="flex flex-col rounded-2xl bg-white/5 border border-white/10 shadow-xl backdrop-blur-xl overflow-hidden"
             >
-              <Card className="h-full flex flex-col overflow-hidden group shadow-md hover:shadow-xl transition-shadow duration-300">
-                <CardHeader className="p-0">
-                  <div className="overflow-hidden">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      data-ai-hint={project.hint}
-                      width={600}
-                      height={400}
-                      className="object-cover w-full h-48 transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </div>
-                </CardHeader>
-                <CardContent className="p-6 flex-grow">
-                  <CardTitle className="mb-2 font-headline">{project.title}</CardTitle>
-                  <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
-                  <div className="flex flex-wrap gap-2">
+              <div className="relative h-48 w-full">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  data-ai-hint={project.hint}
+                  layout="fill"
+                  objectFit="cover"
+                  className="transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-6 flex flex-col flex-grow">
+                  <h3 className="text-xl font-bold text-purple-300">{project.title}</h3>
+                  <p className="mt-2 text-gray-400 text-sm flex-grow">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mt-4">
                     {project.tags.map(tag => (
-                      <Badge key={tag} variant="secondary">{tag}</Badge>
+                      <span key={tag} className="text-xs bg-purple-500/20 text-purple-300 px-2 py-1 rounded-full">{tag}</span>
                     ))}
                   </div>
-                </CardContent>
-                <CardFooter className="p-6 bg-secondary/30">
-                  <div className="flex justify-between w-full">
-                    <Button variant="ghost" asChild>
-                      <Link href={project.githubUrl} target="_blank">
-                        <Github className="mr-2 h-4 w-4" /> GitHub
-                      </Link>
-                    </Button>
-                    <Button variant="ghost" asChild>
-                      <Link href={project.liveUrl} target="_blank">
-                        <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
-                      </Link>
-                    </Button>
-                  </div>
-                </CardFooter>
-              </Card>
+              </div>
+              <div className="p-4 bg-black/30 mt-auto flex justify-end gap-2">
+                <Link href={project.githubUrl} target="_blank" className="p-2 rounded-full hover:bg-white/10 transition-colors">
+                    <Github className="h-5 w-5" />
+                </Link>
+                <Link href={project.liveUrl} target="_blank" className="p-2 rounded-full hover:bg-white/10 transition-colors">
+                    <ExternalLink className="h-5 w-5" />
+                </Link>
+              </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

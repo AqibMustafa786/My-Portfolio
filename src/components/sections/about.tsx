@@ -1,77 +1,50 @@
 "use client";
 
 import { BrainCircuit, CodeXml, Database, Keyboard, Smartphone } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
 
 const skills = [
-  { name: "Web Development", technologies: "HTML, CSS, JS, PHP, Laravel", icon: CodeXml },
-  { name: "Mobile Development", technologies: "Flutter, Dart", icon: Smartphone },
-  { name: "AI & ML", technologies: "Python, OpenCV, CNN, NLP", icon: BrainCircuit },
-  { name: "Tools & Databases", technologies: "Firebase, Git, MySQL, APIs", icon: Database },
-  { name: "Data Entry", technologies: "Automation Scripts", icon: Keyboard },
+  { name: "Web Development", icon: CodeXml },
+  { name: "Mobile Development", icon: Smartphone },
+  { name: "AI & ML", icon: BrainCircuit },
+  { name: "Tools & Databases", icon: Database },
 ];
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.5
-    }
-  },
-};
 
 export function AboutSection() {
   return (
-    <section id="about" className="bg-background">
+    <section id="about" className="bg-black/40 backdrop-blur-lg rounded-t-3xl">
       <div className="container">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8 }}
         >
-          <h2 className="text-3xl font-bold text-center mb-4 font-headline">About Me</h2>
-          <p className="max-w-3xl mx-auto text-center text-muted-foreground text-lg mb-12">
-            I’m a passionate Software Engineer and Computer Science graduate specializing in Web Apps, Mobile Apps, WordPress Development, and AI Projects. I enjoy building modern, user-friendly solutions that merge creativity with technology. With professional experience in international projects, internships, and freelancing, I deliver efficient digital solutions that drive real impact.
+          <h2 className="text-4xl font-bold text-center mb-8">About Me</h2>
+          <p className="max-w-3xl mx-auto text-lg text-gray-300 text-center leading-relaxed mb-12">
+            I’m a passionate <span className="text-purple-400 font-semibold">Software Engineer</span> 
+            and Computer Science graduate specializing in 
+            <span className="text-pink-400"> Web Apps, Mobile Apps, WordPress Development, and AI Projects</span>.  
+            With international work experience, internships, and freelance projects, 
+            I build digital solutions that merge creativity with technology 🚀
           </p>
         </motion.div>
 
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {skills.map((skill, index) => (
-            <motion.div key={skill.name} variants={itemVariants}>
-              <Card className="h-full text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300 bg-card">
-                <CardHeader>
-                  <div className="mx-auto bg-primary/20 text-accent p-4 rounded-full w-fit mb-4">
-                    <skill.icon className="w-8 h-8 text-accent-foreground" />
-                  </div>
-                  <CardTitle>{skill.name}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{skill.technologies}</p>
-                </CardContent>
-              </Card>
+             <motion.div
+              key={skill.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              viewport={{ once: true, amount: 0.5 }}
+              className="flex flex-col items-center text-center p-4"
+            >
+              <skill.icon className="w-12 h-12 mb-3 text-purple-300" />
+              <h3 className="text-lg font-semibold">{skill.name}</h3>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
