@@ -13,7 +13,7 @@ const stats = [
 
 export function StatsSection() {
   return (
-    <section id="stats" className="bg-black/40 backdrop-blur-lg">
+    <section id="stats" className="bg-white/40 dark:bg-black/40 backdrop-blur-lg">
       <div className="container">
         <motion.h2
             whileInView={{ opacity: 1, y: 0 }}
@@ -33,14 +33,14 @@ export function StatsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.15 }}
               viewport={{ once: true, amount: 0.5 }}
-              className="p-6 rounded-2xl bg-white/5 border border-white/10 shadow-lg backdrop-blur-xl text-center h-full"
+              className="p-6 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 shadow-lg backdrop-blur-xl text-center h-full"
             >
-              <stat.icon className="h-10 w-10 mx-auto mb-4 text-purple-400" />
-              <div className="text-4xl font-bold text-white">
+              <stat.icon className="h-10 w-10 mx-auto mb-4 text-purple-500 dark:text-purple-400" />
+              <div className="text-4xl font-bold text-gray-800 dark:text-white">
                 <AnimatedCounter endValue={stat.value} />
                 {stat.suffix}
               </div>
-              <p className="text-gray-400 mt-2">{stat.label}</p>
+              <p className="text-gray-600 dark:text-gray-400 mt-2">{stat.label}</p>
             </motion.div>
           ))}
         </div>

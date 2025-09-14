@@ -4,7 +4,11 @@ import { Download, MoveRight } from "lucide-react";
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
-export function HeroSection() {
+interface HeroSectionProps {
+  greeting: string;
+}
+
+export function HeroSection({ greeting }: HeroSectionProps) {
   return (
     <section id="hero" className="relative flex flex-col items-center justify-center min-h-screen text-center">
       <motion.h1
@@ -19,7 +23,7 @@ export function HeroSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4, duration: 1 }}
-        className="mt-4 text-xl md:text-2xl text-gray-300"
+        className="mt-4 text-xl md:text-2xl text-gray-600 dark:text-gray-300"
       >
         Software Engineer | Web & App Developer | AI Enthusiast
       </motion.p>
@@ -35,8 +39,7 @@ export function HeroSection() {
             View Portfolio <MoveRight className="ml-2 h-5 w-5" />
           </Link>
         </Button>
-        {/* Add your CV to the public folder and uncomment the link below */}
-        <Button asChild size="lg" variant="outline" className="px-6 py-3 rounded-full bg-white/10 border-white/30 text-white font-medium backdrop-blur-lg hover:scale-105 transition-transform duration-300 hover:bg-white/20 hover:text-white">
+        <Button asChild size="lg" variant="outline" className="px-6 py-3 rounded-full bg-black/5 dark:bg-white/10 border-black/20 dark:border-white/30 text-gray-800 dark:text-white font-medium backdrop-blur-lg hover:scale-105 transition-transform duration-300 hover:bg-black/10 dark:hover:bg-white/20 hover:text-gray-900 dark:hover:text-white">
           <Link href="/aqib-mustafa-cv.pdf" download target="_blank">
             Download CV <Download className="ml-2 h-5 w-5" />
           </Link>

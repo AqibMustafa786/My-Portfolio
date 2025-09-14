@@ -9,7 +9,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="relative w-full py-8 text-center text-gray-400 z-10">
+    <footer className="relative w-full py-8 text-center text-gray-500 dark:text-gray-400 z-10">
         <p>&copy; {new Date().getFullYear()} Aqib Mustafa. All Rights Reserved.</p>
     </footer>
   );

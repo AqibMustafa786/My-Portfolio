@@ -22,7 +22,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white overflow-x-hidden">
+    <div className="relative min-h-screen bg-gradient-to-br from-gray-100 via-white to-gray-200 dark:from-gray-900 dark:via-black dark:to-gray-800 text-gray-800 dark:text-white overflow-x-hidden">
       {/* Floating Animated Blobs */}
       <motion.div 
         initial={{ scale: 0, x: "-50%", y: "-50%" }}

@@ -50,15 +50,15 @@ export function ExperienceSection() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="p-6 rounded-2xl bg-white/5 border border-white/10 shadow-xl backdrop-blur-xl"
+                    className="p-6 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 shadow-xl backdrop-blur-xl"
                   >
-                    <h3 className="text-2xl font-semibold text-purple-300">{exp.role}</h3>
-                    <p className="text-gray-300">{exp.company}</p>
-                    <p className="text-sm text-gray-400 mt-1">{exp.duration}</p>
+                    <h3 className="text-2xl font-semibold text-purple-600 dark:text-purple-300">{exp.role}</h3>
+                    <p className="text-gray-600 dark:text-gray-300">{exp.company}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{exp.duration}</p>
                    </motion.div>
                 </div>
                 {/* Timeline dot */}
-                <div className="absolute left-4 md:left-1/2 top-1 w-4 h-4 bg-purple-400 rounded-full -translate-x-1/2 -translate-y-1/2 ring-8 ring-purple-400/20"></div>
+                <div className="absolute left-4 md:left-1/2 top-1 w-4 h-4 bg-purple-500 dark:bg-purple-400 rounded-full -translate-x-1/2 -translate-y-1/2 ring-8 ring-purple-500/20 dark:ring-purple-400/20"></div>
                 
                 {/* Spacer for alignment on desktop */}
                 <div className={`hidden md:block w-1/2 ${index % 2 === 0 ? 'md:pl-8' : 'md:pr-8'}`}></div>
