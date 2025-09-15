@@ -13,7 +13,7 @@ export function ContactSection() {
   const [loading, setLoading] = useState(false);
 
   // IMPORTANT: Replace this with your actual Google Apps Script Web App URL
-  const SCRIPT_URL = "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec";
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyGoMhaDzYGzcieeGKPdxoMEOgTsZs_trevIWzKpq9cvq1X6CcsAyaY7IVUiOYQPLtc/exec";
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
