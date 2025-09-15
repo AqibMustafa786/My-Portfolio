@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AquaFolio | Aqib Mustafa",
+  title: "Aqib Portfolio | Aqib Mustafa",
   description: "Personal portfolio of Aqib Mustafa, a Software Engineer.",
 };
 
