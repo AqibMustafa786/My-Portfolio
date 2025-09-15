@@ -4,8 +4,8 @@ import Link from 'next/link';
 export function Footer() {
   const socialLinks = [
     { name: 'GitHub', icon: Github, url: 'https://github.com/aqibmustafa' },
-    { name: 'LinkedIn', icon: Linkedin, url: 'https://linkedin.com/in/aqibmustafa' },
-    { name: 'Email', icon: Mail, url: 'mailto:aqib.mustafa@example.com' },
+    { name: 'LinkedIn', icon: Linkedin, url: 'https://www.linkedin.com/in/aqibmustafa/' },
+    { name: 'Email', icon: Mail, url: 'mailto:aqib2k1@gmail.com' },
   ];
 
   return (
