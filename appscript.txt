@@ -32,9 +32,11 @@ function doPost(e) {
 
     sheet.appendRow([timestamp, name, email, message]);
 
-    // Redirect after submission to avoid CORS issues and show a simple success page.
-    // This is a common pattern for Google Apps Script web apps.
-    return HtmlService.createHtmlOutput("<p>Form submitted successfully!</p>");
+    // Return a simple success message. 
+    // The browser won't be able to read this in 'no-cors' mode, but it's good practice.
+    return ContentService.createTextOutput(JSON.stringify({
+      result: 'success'
+    })).setMimeType(ContentService.MimeType.JSON);
 
   } catch (error) {
     return ContentService.createTextOutput(JSON.stringify({

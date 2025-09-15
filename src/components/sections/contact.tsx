@@ -23,18 +23,17 @@ export function ContactSection() {
     const formData = new FormData(form);
   
     try {
-      // We use a different approach here to get around CORS issues with Google Scripts
-      // by submitting the form data via a hidden iframe.
-      // However, a simple fetch with a redirect can also work.
-      
-      const response = await fetch(SCRIPT_URL, {
+      // We use `mode: 'no-cors'` because Google Apps Script web apps often have
+      // strict CORS policies. This mode allows us to send the data ("fire and forget")
+      // without trying to read the response, which would be blocked by the browser.
+      await fetch(SCRIPT_URL, {
         method: 'POST',
         body: formData,
-        // The mode 'no-cors' is not needed here as we are not trying to read the response.
-        // Google Apps Script will handle the redirect after processing the POST request.
+        mode: 'no-cors',
       });
 
-      // Since we can't read the response directly, we optimistically show a success message.
+      // Since we can't read the response in 'no-cors' mode, we can't be 100% sure
+      // it was successful. We optimistically show a success message.
       toast({
         title: "Message Sent!",
         description: "Thank you for reaching out. I'll get back to you soon.",
