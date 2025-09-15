@@ -60,7 +60,7 @@ export function ContactSection() {
           <a href="https://github.com/aqibmustafa" target="_blank" rel="noopener noreferrer" className="hover:scale-125 text-gray-700 dark:text-gray-300 hover:text-purple-500 dark:hover:text-purple-400 transition-all duration-300">
             <Github size={28} />
           </a>
-          <a href="https://www.linkedin.com/in/aqibmustafa/" target="_blank" rel="noopener noreferrer" className="hover:scale-125 text-gray-700 dark:text-gray-300 hover:text-purple-500 dark:hover:text-purple-400 transition-all duration-300">
+          <a href="https://www.linkedin.com/in/aqib-surahio-355363294/" target="_blank" rel="noopener noreferrer" className="hover:scale-125 text-gray-700 dark:text-gray-300 hover:text-purple-500 dark:hover:text-purple-400 transition-all duration-300">
             <Linkedin size={28} />
           </a>
           <a href="mailto:aqib2k1@gmail.com" className="hover:scale-125 text-gray-700 dark:text-gray-300 hover:text-purple-500 dark:hover:text-purple-400 transition-all duration-300">
