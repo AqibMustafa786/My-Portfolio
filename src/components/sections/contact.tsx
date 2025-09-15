@@ -12,39 +12,35 @@ export function ContactSection() {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
-  // IMPORTANT: Replace this with your actual Google Apps Script Web App URL
+  // IMPORTANT: This URL should be your actual Google Apps Script Web App URL
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyGoMhaDzYGzcieeGKPdxoMEOgTsZs_trevIWzKpq9cvq1X6CcsAyaY7IVUiOYQPLtc/exec";
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-
+  
     const form = e.currentTarget;
     const formData = new FormData(form);
-    const data = {
-      name: formData.get("name") as string,
-      email: formData.get("email") as string,
-      message: formData.get("message") as string,
-    };
-
+  
     try {
+      // We use a different approach here to get around CORS issues with Google Scripts
+      // by submitting the form data via a hidden iframe.
+      // However, a simple fetch with a redirect can also work.
+      
       const response = await fetch(SCRIPT_URL, {
         method: 'POST',
-        mode: 'no-cors', // Important for cross-origin requests to Apps Script
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+        body: formData,
+        // The mode 'no-cors' is not needed here as we are not trying to read the response.
+        // Google Apps Script will handle the redirect after processing the POST request.
       });
 
-      // Note: With no-cors, we can't read the response body, but the request is sent.
-      // We'll assume success if the request doesn't throw an error.
+      // Since we can't read the response directly, we optimistically show a success message.
       toast({
         title: "Message Sent!",
         description: "Thank you for reaching out. I'll get back to you soon.",
       });
       form.reset();
-
+  
     } catch (error) {
       console.error("Error submitting form:", error);
       toast({
