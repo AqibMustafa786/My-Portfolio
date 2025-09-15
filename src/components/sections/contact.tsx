@@ -1,17 +1,62 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Send, Github, Linkedin, Mail } from "lucide-react";
-import Link from "next/link";
+import { Send, Github, Linkedin, Mail, Loader2 } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
 
 export function ContactSection() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const { toast } = useToast();
+  const [loading, setLoading] = useState(false);
+
+  // IMPORTANT: Replace this with your actual Google Apps Script Web App URL
+  const SCRIPT_URL = "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec";
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Form submission logic would go here
+    setLoading(true);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const data = {
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      message: formData.get("message") as string,
+    };
+
+    try {
+      const response = await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors', // Important for cross-origin requests to Apps Script
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      // Note: With no-cors, we can't read the response body, but the request is sent.
+      // We'll assume success if the request doesn't throw an error.
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for reaching out. I'll get back to you soon.",
+      });
+      form.reset();
+
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "There was a problem sending your message. Please try again.",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
+
 
   return (
     <section id="contact" className="bg-white/50 dark:bg-black/50 backdrop-blur-lg rounded-t-3xl">
@@ -42,11 +87,20 @@ export function ContactSection() {
           viewport={{ once: true }}
           onSubmit={handleSubmit} className="max-w-xl mx-auto space-y-4"
         >
-          <Input type="text" placeholder="Your Name" className="w-full p-3 rounded-lg bg-black/5 dark:bg-white/10 text-gray-800 dark:text-white border border-black/10 dark:border-white/20 focus:ring-purple-500" required />
-          <Input type="email" placeholder="Your Email" className="w-full p-3 rounded-lg bg-black/5 dark:bg-white/10 text-gray-800 dark:text-white border border-black/10 dark:border-white/20 focus:ring-purple-500" required />
-          <Textarea placeholder="Your Message" className="w-full p-3 rounded-lg bg-black/5 dark:bg-white/10 text-gray-800 dark:text-white border border-black/10 dark:border-white/20 h-32 focus:ring-purple-500" required />
-          <Button type="submit" className="w-full px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-pink-500 text-white font-medium shadow-lg shadow-purple-600/30 hover:scale-105 transition">
-            Send Message <Send className="ml-2" />
+          <Input name="name" type="text" placeholder="Your Name" className="w-full p-3 rounded-lg bg-black/5 dark:bg-white/10 text-gray-800 dark:text-white border border-black/10 dark:border-white/20 focus:ring-purple-500" required />
+          <Input name="email" type="email" placeholder="Your Email" className="w-full p-3 rounded-lg bg-black/5 dark:bg-white/10 text-gray-800 dark:text-white border border-black/10 dark:border-white/20 focus:ring-purple-500" required />
+          <Textarea name="message" placeholder="Your Message" className="w-full p-3 rounded-lg bg-black/5 dark:bg-white/10 text-gray-800 dark:text-white border border-black/10 dark:border-white/20 h-32 focus:ring-purple-500" required />
+          <Button type="submit" className="w-full px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-pink-500 text-white font-medium shadow-lg shadow-purple-600/30 hover:scale-105 transition" disabled={loading}>
+            {loading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Sending...
+              </>
+            ) : (
+              <>
+                Send Message <Send className="ml-2" />
+              </>
+            )}
           </Button>
         </motion.form>
         
