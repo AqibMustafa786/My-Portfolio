@@ -9,7 +9,7 @@ const projects = [
   {
     title: "Live CRM Dashboard",
     description: "Built with Firebase Studio and using Google Sheets for the database.",
-    image: "https://picsum.photos/seed/1/600/400",
+    image: "/live-crm.jpg",
     hint: "CRM dashboard",
     tags: ["Firebase Studio", "Google Sheets", "Web App"],
     liveUrl: "#",
@@ -18,7 +18,7 @@ const projects = [
   {
     title: "SwiftDocs - PDF Toolkit",
     description: "A modern PDF tools website built on Firebase Studio with MongoDB.",
-    image: "https://picsum.photos/seed/2/600/400",
+    image: "/swiftdocs.jpg",
     hint: "document tools",
     tags: ["Firebase Studio", "MongoDB", "Web App"],
     liveUrl: "#",
@@ -27,7 +27,7 @@ const projects = [
   {
     title: "EduGenius Kids App",
     description: "An interactive learning application for children, developed in Firebase Studio.",
-    image: "https://picsum.photos/seed/3/600/400",
+    image: "/edugenius.jpg",
     hint: "kids learning",
     tags: ["Firebase Studio", "MongoDB", "Web App"],
     liveUrl: "#",
@@ -36,7 +36,7 @@ const projects = [
    {
     title: "Task Management App",
     description: "A collaborative task management application built with AppSheet.",
-    image: "https://picsum.photos/seed/4/600/400",
+    image: "/task-management.jpg",
     hint: "task management",
     tags: ["AppSheet", "Productivity", "Business App"],
     liveUrl: "#",
@@ -45,7 +45,7 @@ const projects = [
   {
     title: "Client Portal / CRM",
     description: "A comprehensive CRM and client portal built on AppSheet with Google Sheets.",
-    image: "https://picsum.photos/seed/5/600/400",
+    image: "/client-portal.jpg",
     hint: "CRM AppSheet",
     tags: ["AppSheet", "Google Sheets", "Business App"],
     liveUrl: "#",
@@ -54,7 +54,7 @@ const projects = [
   {
     title: "Inventory Management System",
     description: "An efficient inventory tracking system created using AppSheet.",
-    image: "https://picsum.photos/seed/6/600/400",
+    image: "/inventory-system.jpg",
     hint: "inventory system",
     tags: ["AppSheet", "Google Sheets", "Utility"],
     liveUrl: "#",
