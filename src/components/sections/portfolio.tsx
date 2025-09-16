@@ -18,7 +18,7 @@ const projects = [
   {
     title: "Resume Rocket",
     description: "A modern PDF tools website built on Firebase Studio with MongoDB.",
-    image: "/images/swiftdocs.jpg",
+    image: "/images/resume.png",
     hint: "resume builder",
     tags: ["Firebase Studio", "MongoDB", "Web App"],
     liveUrl: "#",
