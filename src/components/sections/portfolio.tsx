@@ -36,7 +36,7 @@ const projects = [
    {
     title: "Task Management App",
     description: "A collaborative task management application built with AppSheet.",
-    image: "/images/task-management.jpg",
+    image: "/images/Task.png",
     hint: "task management",
     tags: ["AppSheet", "Productivity", "Business App"],
     liveUrl: "#",
