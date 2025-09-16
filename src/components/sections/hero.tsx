@@ -40,7 +40,7 @@ export function HeroSection({ greeting }: HeroSectionProps) {
           </Link>
         </Button>
         <Button asChild size="lg" variant="outline" className="px-6 py-3 rounded-full bg-black/5 dark:bg-white/10 border-black/20 dark:border-white/30 text-gray-800 dark:text-white font-medium backdrop-blur-lg hover:scale-105 transition-transform duration-300 hover:bg-black/10 dark:hover:bg-white/20 hover:text-gray-900 dark:hover:text-white">
-          <a href="/images/aqib-mustafa-cv.pdf" download>
+          <a href="/images/resume.pdf" download>
             Download CV <Download className="ml-2 h-5 w-5" />
           </a>
         </Button>
