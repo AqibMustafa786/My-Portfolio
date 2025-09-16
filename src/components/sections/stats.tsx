@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const stats = [
   { label: "Projects Completed", value: 50, icon: Award, suffix: "+" },
-  { label: "Work Experiences", value: 2, icon: Globe },
+  { label: "Years of Experience", value: 2, icon: Globe },
   { label: "CS Graduate", value: 1, icon: GraduationCap },
   { label: "Core Skills", value: 3, icon: Lightbulb },
 ];
