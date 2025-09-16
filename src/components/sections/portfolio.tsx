@@ -9,8 +9,8 @@ const projects = [
   {
     title: "Live CRM Dashboard",
     description: "Built with Firebase Studio and using Google Sheets for the database.",
-    image: "/images/live-crm.jpg",
-    hint: "CRM dashboard",
+    image: "/images/furniture.png",
+    hint: "furniture dashboard",
     tags: ["Firebase Studio", "Google Sheets", "Web App"],
     liveUrl: "#",
     githubUrl: "#",
