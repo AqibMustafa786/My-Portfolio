@@ -45,7 +45,7 @@ const projects = [
   {
     title: "Client Portal / CRM",
     description: "A comprehensive CRM and client portal built on AppSheet with Google Sheets.",
-    image: "/images/client-portal.jpg",
+    image: "/images/client-portal.png",
     hint: "CRM AppSheet",
     tags: ["AppSheet", "Google Sheets", "Business App"],
     liveUrl: "#",
@@ -54,7 +54,7 @@ const projects = [
   {
     title: "Inventory Management System",
     description: "An efficient inventory tracking system created using AppSheet.",
-    image: "/images/inventory-system.jpg",
+    image: "/images/Showroom.png",
     hint: "inventory system",
     tags: ["AppSheet", "Google Sheets", "Utility"],
     liveUrl: "#",
