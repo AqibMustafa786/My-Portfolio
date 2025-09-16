@@ -52,10 +52,10 @@ const projects = [
     githubUrl: "#",
   },
   {
-    title: "Inventory Management System",
-    description: "An efficient inventory tracking system created using AppSheet.",
+    title: "Showroom Management System",
+    description: "An efficient showroom management system created using AppSheet.",
     image: "/images/Showroom.png",
-    hint: "inventory system",
+    hint: "showroom system",
     tags: ["AppSheet", "Google Sheets", "Utility"],
     liveUrl: "#",
     githubUrl: "#",
