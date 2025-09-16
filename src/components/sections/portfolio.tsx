@@ -16,10 +16,10 @@ const projects = [
     githubUrl: "#",
   },
   {
-    title: "SwiftDocs - PDF Toolkit",
+    title: "Resume Rocket",
     description: "A modern PDF tools website built on Firebase Studio with MongoDB.",
     image: "/images/swiftdocs.jpg",
-    hint: "document tools",
+    hint: "resume builder",
     tags: ["Firebase Studio", "MongoDB", "Web App"],
     liveUrl: "#",
     githubUrl: "#",
