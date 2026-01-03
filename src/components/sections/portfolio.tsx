@@ -92,9 +92,8 @@ export function PortfolioSection() {
                   src={project.image}
                   alt={project.title}
                   data-ai-hint={project.hint}
-                  layout="fill"
-                  objectFit="cover"
-                  className="transition-transform duration-300 group-hover:scale-105"
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
               <div className="p-6 flex flex-col flex-grow">
