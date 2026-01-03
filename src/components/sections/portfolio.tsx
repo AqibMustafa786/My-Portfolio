@@ -26,7 +26,7 @@ const projects = [
   },
   {
     title: "EduGenius Kids App",
-    description: "An interactive learning application for children, developed in Firebase Studio.",
+    description: "An engaging educational platform designed to make learning a fun adventure for children, brought to life with interactive features in Firebase Studio.",
     image: "/images/edu.png",
     hint: "kids learning",
     tags: ["Firebase Studio", "MongoDB", "Web App"],
