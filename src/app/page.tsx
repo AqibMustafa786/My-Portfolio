@@ -1,5 +1,6 @@
 "use client";
 
+<<<<<<< HEAD
 import { Navbar } from '@/components/navbar';
 import { HeroModern } from '@/components/sections/hero-modern';
 import { SkillsModern } from '@/components/sections/skills-modern';
@@ -12,6 +13,19 @@ import { ExperienceSection } from '@/components/sections/experience';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { personalizedGreeting } from '@/ai/flows/personalized-greeting';
+=======
+import { personalizedGreeting } from '@/ai/flows/personalized-greeting';
+import { Navbar } from '@/components/navbar';
+import { HeroSection } from '@/components/sections/hero';
+import { AboutSection } from '@/components/sections/about';
+import { ExperienceSection } from '@/components/sections/experience';
+import { PortfolioSection } from '@/components/sections/portfolio';
+import { StatsSection } from '@/components/sections/stats';
+import { ContactSection } from '@/components/sections/contact';
+import { Footer } from '@/components/footer';
+import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+>>>>>>> 9b17483b1c20511f609e0b2dbbc5b1795e822fb7
 
 export default function Home() {
   const [greeting, setGreeting] = useState('');
@@ -23,6 +37,7 @@ export default function Home() {
   }, []);
 
   return (
+<<<<<<< HEAD
     <div className="relative min-h-screen bg-black text-white selection:bg-purple-500/30">
       <Navbar />
 
@@ -40,6 +55,32 @@ export default function Home() {
         <ContactSection />
       </main>
 
+=======
+    <div className="relative min-h-screen bg-gradient-to-br from-gray-100 via-white to-gray-200 dark:from-gray-900 dark:via-black dark:to-gray-800 text-gray-800 dark:text-white overflow-x-hidden">
+      {/* Floating Animated Blobs */}
+      <motion.div 
+        initial={{ scale: 0, x: "-50%", y: "-50%" }}
+        animate={{ scale: [1, 1.2, 1], rotate: [0, 20, 0] }}
+        transition={{ duration: 25, repeat: Infinity, repeatType: 'mirror' }}
+        className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl filter"
+      />
+      <motion.div 
+        initial={{ scale: 0, x: "-50%", y: "-50%" }}
+        animate={{ scale: [1, 1.3, 1], rotate: [0, -20, 0] }}
+        transition={{ duration: 30, repeat: Infinity, repeatType: 'mirror' }}
+        className="absolute bottom-1/4 right-1/4 w-[30rem] h-[30rem] bg-blue-500/15 rounded-full blur-3xl filter"
+      />
+
+      <Navbar />
+      <main className="flex-1">
+        <HeroSection greeting={greeting} />
+        <AboutSection />
+        <ExperienceSection />
+        <PortfolioSection />
+        <StatsSection />
+        <ContactSection />
+      </main>
+>>>>>>> 9b17483b1c20511f609e0b2dbbc5b1795e822fb7
       <Footer />
     </div>
   );
