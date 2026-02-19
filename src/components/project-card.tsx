@@ -32,7 +32,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
             transition={{ duration: 0.5, delay: index * 0.1 }}
             viewport={{ once: true }}
             onMouseMove={handleMouseMove}
-            className="group relative flex flex-col h-full rounded-[2rem] bg-gray-900/40 border border-white/10 overflow-hidden hover:border-purple-500/50 transition-colors duration-500"
+            className="group relative flex flex-col h-full rounded-[2rem] bg-gray-900/40 border border-white/10 overflow-hidden hover:border-purple-500/50 active:scale-[0.98] transition-all duration-300"
         >
             {/* Spotlight Effect */}
             <motion.div

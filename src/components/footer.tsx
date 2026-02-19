@@ -37,10 +37,10 @@ export function Footer() {
 
   return (
     <footer className="relative bg-black pt-20 pb-10 overflow-hidden border-t border-white/10">
-      {/* Background Gradients */}
+      {/* Background Gradients - Mobile Optimized */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-purple-900/20 rounded-full blur-[128px]" />
-        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-blue-900/20 rounded-full blur-[128px]" />
+        <div className="absolute bottom-0 left-1/4 w-[300px] h-[300px] lg:w-[500px] lg:h-[500px] bg-purple-900/10 rounded-full blur-[80px] lg:blur-[128px]" />
+        <div className="absolute top-0 right-1/4 w-[300px] h-[300px] lg:w-[500px] lg:h-[500px] bg-blue-900/10 rounded-full blur-[80px] lg:blur-[128px]" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
