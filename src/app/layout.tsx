@@ -7,8 +7,11 @@ export const metadata: Metadata = {
   title: "Aqib Portfolio | Aqib Mustafa",
   description: "Personal portfolio of Aqib Mustafa, a Software Engineer.",
   icons: {
-    icon: '/favicon.ico',
+    icon: '/icon.png',
+    shortcut: '/icon.png',
+    apple: '/icon.png',
   },
+  manifest: '/manifest.json',
 };
 
 export default function RootLayout({
