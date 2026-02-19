@@ -6,12 +6,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Aqib Portfolio | Aqib Mustafa",
   description: "Personal portfolio of Aqib Mustafa, a Software Engineer.",
-<<<<<<< HEAD
   icons: {
     icon: '/favicon.ico',
   },
-=======
->>>>>>> 9b17483b1c20511f609e0b2dbbc5b1795e822fb7
 };
 
 export default function RootLayout({
