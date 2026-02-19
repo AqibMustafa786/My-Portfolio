@@ -1,0 +1,47 @@
+// 1. Open your Google Sheet.
+// 2. Go to Extensions > Apps Script.
+// 3. Paste this entire code into the editor, replacing any existing code.
+// 4. Click the "Deploy" button -> "New deployment".
+// 5. For "Select type", choose "Web app".
+// 6. In the "New deployment" dialog:
+//    - For "Description", you can write "Portfolio Contact Form".
+//    - For "Execute as", select "Me".
+//    - For "Who has access", select "Anyone". This is very important.
+// 7. Click "Deploy".
+// 8. Authorize the script when prompted.
+// 9. A "Deployment successful" dialog will appear with a "Web app URL". Copy this URL.
+// 10. You will need this URL to update the contact form component in your Next.js app.
+
+const SHEET_NAME = 'ContactFormSubmissions';
+
+function doPost(e) {
+  try {
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
+    if (!sheet) {
+      return ContentService.createTextOutput(JSON.stringify({
+        result: 'error',
+        message: `Sheet "${SHEET_NAME}" not found. Please create it.`
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+    
+    // The data from FormData arrives in e.parameter
+    const name = e.parameter.name;
+    const email = e.parameter.email;
+    const message = e.parameter.message;
+    const timestamp = new Date();
+
+    sheet.appendRow([timestamp, name, email, message]);
+
+    // Return a simple success message. 
+    // The browser won't be able to read this in 'no-cors' mode, but it's good practice.
+    return ContentService.createTextOutput(JSON.stringify({
+      result: 'success'
+    })).setMimeType(ContentService.MimeType.JSON);
+
+  } catch (error) {
+    return ContentService.createTextOutput(JSON.stringify({
+      result: 'error',
+      message: error.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
