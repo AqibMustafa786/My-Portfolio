@@ -11,10 +11,10 @@ export function PortfolioSection() {
 
   return (
     <section id="projects" className="relative py-32 overflow-hidden bg-black selection:bg-purple-500/30">
-      {/* Dynamic Background Elements */}
+      {/* Dynamic Background Elements - Optimized */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-purple-500/10 rounded-full blur-[120px] mix-blend-screen opacity-30 animate-pulse" />
-        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[100px] mix-blend-screen opacity-30 animate-pulse delay-1000" />
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] lg:w-[800px] lg:h-[800px] bg-purple-500/10 rounded-full blur-[80px] lg:blur-[120px] mix-blend-screen opacity-20 lg:opacity-30 animate-pulse" />
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] lg:w-[600px] lg:h-[600px] bg-blue-500/10 rounded-full blur-[60px] lg:blur-[100px] mix-blend-screen opacity-20 lg:opacity-30 animate-pulse delay-1000" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">

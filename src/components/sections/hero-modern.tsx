@@ -12,10 +12,10 @@ interface HeroModernProps {
 export const HeroModern = ({ greeting }: HeroModernProps) => {
     return (
         <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-20">
-            {/* Background Elements */}
+            {/* Background Elements - Optimized for Mobile */}
             <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-20 right-[10%] w-72 h-72 bg-purple-500/30 rounded-full blur-[100px]" />
-                <div className="absolute bottom-20 left-[10%] w-72 h-72 bg-blue-500/30 rounded-full blur-[100px]" />
+                <div className="absolute top-20 right-[10%] w-60 h-60 lg:w-72 lg:h-72 bg-purple-500/20 rounded-full blur-[60px] lg:blur-[100px]" />
+                <div className="absolute bottom-20 left-[10%] w-60 h-60 lg:w-72 lg:h-72 bg-blue-500/20 rounded-full blur-[60px] lg:blur-[100px]" />
             </div>
 
             <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center relative z-10">
@@ -36,7 +36,7 @@ export const HeroModern = ({ greeting }: HeroModernProps) => {
                         </motion.p>
                     )}
 
-                    <h1 className="text-5xl lg:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+                    <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
                         Aqib Mustafa
                     </h1>
 

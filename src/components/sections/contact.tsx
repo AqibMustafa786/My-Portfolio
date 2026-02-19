@@ -59,8 +59,8 @@ export function ContactSection() {
     <section id="contact" className="py-20 relative overflow-hidden">
       {/* Decorative Background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px]" />
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] lg:w-[500px] lg:h-[500px] bg-purple-600/10 rounded-full blur-[80px] lg:blur-[120px]" />
+        <div className="absolute top-0 right-0 w-[300px] h-[300px] lg:w-[500px] lg:h-[500px] bg-blue-600/10 rounded-full blur-[80px] lg:blur-[120px]" />
       </div>
 
       <div className="container relative z-10 mx-auto px-4">
