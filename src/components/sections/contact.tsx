@@ -85,7 +85,7 @@ export function ContactSection() {
           >
             <h3 className="text-2xl font-bold mb-6">Let's Build Something Great</h3>
             <p className="text-gray-400 mb-8 leading-relaxed">
-              I'm currently available for freelance projects and remote opportunities.
+              I'm available for contract work with US & UK clients. I accept payments in USD ($), GBP (£), and EUR (€).
               Whether you need a Flutter app, a SaaS platform, or AppSheet automation,
               I'm here to help bring your ideas to life.
             </p>
