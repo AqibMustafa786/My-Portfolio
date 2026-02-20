@@ -39,10 +39,11 @@ export default function BlogPage() {
                         >
                             <div className="relative aspect-video bg-gray-900 overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
-                                {/* Image Placeholder - relying on simple div if image fails or use component */}
-                                <div className="w-full h-full bg-gray-800 flex items-center justify-center text-gray-600 group-hover:scale-105 transition-transform duration-700">
-                                    Image: {post.category}
-                                </div>
+                                <img
+                                    src={post.image}
+                                    alt={post.title}
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                />
                                 <div className="absolute bottom-4 left-4 z-20">
                                     <span className="px-3 py-1 bg-purple-500 text-white text-xs rounded-full font-medium">
                                         {post.category}

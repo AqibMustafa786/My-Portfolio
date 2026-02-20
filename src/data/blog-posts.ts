@@ -18,7 +18,7 @@ export const posts: BlogPost[] = [
         date: "Feb 10, 2026",
         author: "Aqib Mustafa",
         category: "Mobile Dev",
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
+        image: "/assets/flutterblog.png",
         content: `
         <p class="lead">Flutter continues to dominate the cross-platform landscape in 2026, offering unparalleled performance and developer productivity. As enterprises pivot towards unified development teams, Flutter has emerged as the clear winner over traditional native approaches.</p>
         
@@ -829,11 +829,346 @@ export const posts: BlogPost[] = [
         category: "Backend Engineering",
         image: "https://placehold.co/600x400/1a1a1a/FFF?text=API+Design",
         content: `
-        <p>The API Gateway is the front door to your digital estate. It must handle traffic from the <strong>US</strong>, <strong>Europe</strong>, and beyond with grace.</p>
-        <h2>Rate Limiting</h2>
-        <p>Protect your backend services from abuse by implementing leaky bucket or token bucket rate limiting algorithms.</p>
-        <h2>Authentication</h2>
-        <p>Centralizing auth logic (OIDC, JWT validation) at the gateway offloads complexity from your microservices, ensuring a consistent security posture.</p>
+        <article class="prose prose-invert max-w-none">
+
+            <p class="lead text-xl text-gray-300 mb-8 leading-relaxed">Microservices have revolutionized software architecture by breaking down monolithic applications into smaller, independently deployable services. However, this distributed nature introduces complexity: how do clients interact with dozens or hundreds of services without chaos? The answer lies in the <strong>API Gateway</strong> — a centralized entry point that manages requests, enforces security, and ensures smooth communication.</p>
+
+            <p class="text-gray-400 mb-8 leading-relaxed">A robust API gateway is not just a router; it's the backbone of scalability, security, and observability in microservices. In this blog, we'll explore design principles, best practices, and real‑world case studies to help you build gateways that can withstand production demands.</p>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-white mb-6">1. Understanding API Gateways</h2>
+                <p class="text-gray-300 mb-6 leading-relaxed">An <strong>API Gateway</strong> acts as a reverse proxy, routing client requests to appropriate microservices. It consolidates multiple endpoints into a single entry point, simplifying client interactions.</p>
+
+                <h3 class="text-2xl font-semibold text-white mt-8 mb-4">Responsibilities of an API Gateway</h3>
+                <ul class="space-y-3 mb-8">
+                    <li class="bg-gray-900/50 p-4 rounded-lg border-l-4 border-purple-500">
+                        <strong class="text-white block mb-1">Request Routing</strong>
+                        <span class="text-gray-400">Directs traffic to the correct microservice.</span>
+                    </li>
+                    <li class="bg-gray-900/50 p-4 rounded-lg border-l-4 border-blue-500">
+                        <strong class="text-white block mb-1">Authentication & Authorization</strong>
+                        <span class="text-gray-400">Validates user identity and permissions.</span>
+                    </li>
+                    <li class="bg-gray-900/50 p-4 rounded-lg border-l-4 border-green-500">
+                        <strong class="text-white block mb-1">Rate Limiting & Throttling</strong>
+                        <span class="text-gray-400">Prevents abuse and ensures fair usage.</span>
+                    </li>
+                    <li class="bg-gray-900/50 p-4 rounded-lg border-l-4 border-yellow-500">
+                        <strong class="text-white block mb-1">Monitoring & Logging</strong>
+                        <span class="text-gray-400">Captures metrics for observability.</span>
+                    </li>
+                    <li class="bg-gray-900/50 p-4 rounded-lg border-l-4 border-red-500">
+                        <strong class="text-white block mb-1">Transformation</strong>
+                        <span class="text-gray-400">Modifies requests/responses (e.g., JSON ↔ XML).</span>
+                    </li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold text-white mt-8 mb-4">API Gateway vs. Service Mesh</h3>
+                <div class="overflow-x-auto border border-white/10 rounded-lg mb-8">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-white/10">
+                            <tr>
+                                <th class="p-4 text-white font-semibold">Feature</th>
+                                <th class="p-4 text-white font-semibold">API Gateway</th>
+                                <th class="p-4 text-white font-semibold">Service Mesh</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/10 bg-black/20 text-gray-300">
+                            <tr>
+                                <td class="p-4 font-medium text-white">Request Routing</td>
+                                <td class="p-4 text-green-400">✅</td>
+                                <td class="p-4 text-green-400">✅</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-medium text-white">Authentication</td>
+                                <td class="p-4 text-green-400">✅</td>
+                                <td class="p-4 text-red-400">❌</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-medium text-white">Service Discovery</td>
+                                <td class="p-4 text-green-400">✅</td>
+                                <td class="p-4 text-green-400">✅</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-medium text-white">Observability</td>
+                                <td class="p-4 text-green-400">✅</td>
+                                <td class="p-4 text-green-400">✅</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-medium text-white">Traffic Policies</td>
+                                <td class="p-4 text-yellow-400">Limited</td>
+                                <td class="p-4 text-green-400">Advanced</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-white mb-6">2. Core Design Principles</h2>
+                <p class="text-gray-300 mb-6">Designing a robust API gateway requires adherence to key principles:</p>
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                        <h3 class="text-xl font-bold text-purple-400 mb-3">🚀 Scalability</h3>
+                        <p class="text-gray-400">Must handle increasing traffic via horizontal scaling and load balancing.</p>
+                    </div>
+                    <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                        <h3 class="text-xl font-bold text-blue-400 mb-3">🔐 Security</h3>
+                        <p class="text-gray-400">Implement OAuth2, JWT, and API keys for robust access control.</p>
+                    </div>
+                    <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                        <h3 class="text-xl font-bold text-green-400 mb-3">🛡️ Reliability</h3>
+                        <p class="text-gray-400">Circuit breakers, retries, and failover mechanisms for fault tolerance.</p>
+                    </div>
+                    <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                        <h3 class="text-xl font-bold text-yellow-400 mb-3">⚡ Performance</h3>
+                        <p class="text-gray-400">Caching, compression, and asynchronous processing for speed.</p>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-white mt-8 mb-4">Must‑Have Features</h3>
+                <div class="bg-purple-900/10 border border-purple-500/20 p-6 rounded-xl mb-6">
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-start gap-2"><span class="text-purple-400">✓</span> Centralized authentication</li>
+                        <li class="flex items-start gap-2"><span class="text-purple-400">✓</span> Rate limiting</li>
+                        <li class="flex items-start gap-2"><span class="text-purple-400">✓</span> Request/response transformation</li>
+                        <li class="flex items-start gap-2"><span class="text-purple-400">✓</span> Service discovery integration</li>
+                        <li class="flex items-start gap-2"><span class="text-purple-400">✓</span> Observability dashboards</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-white mb-6">3. Architectural Patterns</h2>
+                <p class="text-gray-300 mb-6">Different organizations adopt different gateway patterns depending on their scale and needs:</p>
+                <div class="space-y-4 mb-8">
+                    <div class="bg-gray-900/40 p-6 rounded-xl border-l-4 border-purple-500">
+                        <strong class="text-white text-lg">Monolithic Gateway</strong>
+                        <p class="mt-2 text-gray-400">A single gateway serving all clients. Simple to set up but can become a bottleneck at scale.</p>
+                    </div>
+                    <div class="bg-gray-900/40 p-6 rounded-xl border-l-4 border-blue-500">
+                        <strong class="text-white text-lg">Distributed Gateways</strong>
+                        <p class="mt-2 text-gray-400">Multiple gateways for different domains. Provides better isolation and independent scalability.</p>
+                    </div>
+                    <div class="bg-gray-900/40 p-6 rounded-xl border-l-4 border-green-500">
+                        <strong class="text-white text-lg">Edge Gateway</strong>
+                        <p class="mt-2 text-gray-400">Handles external traffic at the perimeter. Ideal for public‑facing APIs.</p>
+                    </div>
+                    <div class="bg-gray-900/40 p-6 rounded-xl border-l-4 border-yellow-500">
+                        <strong class="text-white text-lg">Internal Gateway</strong>
+                        <p class="mt-2 text-gray-400">Manages service‑to‑service communication within the cluster. Simplifies inter‑service auth.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-white mb-6">4. Technology Choices</h2>
+                <p class="text-gray-300 mb-6">Choosing the right gateway depends on your ecosystem.</p>
+                <div class="overflow-x-auto border border-white/10 rounded-lg mb-8">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-white/10">
+                            <tr>
+                                <th class="p-4 text-white font-semibold">Gateway</th>
+                                <th class="p-4 text-white font-semibold">Open Source</th>
+                                <th class="p-4 text-white font-semibold">Cloud Native</th>
+                                <th class="p-4 text-white font-semibold">Plugins</th>
+                                <th class="p-4 text-white font-semibold">Best Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/10 bg-black/20 text-gray-300">
+                            <tr>
+                                <td class="p-4 font-medium text-white">Kong</td>
+                                <td class="p-4 text-green-400">✅</td>
+                                <td class="p-4 text-green-400">✅</td>
+                                <td class="p-4">Rich</td>
+                                <td class="p-4">Enterprise APIs</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-medium text-white">NGINX</td>
+                                <td class="p-4 text-green-400">✅</td>
+                                <td class="p-4 text-green-400">✅</td>
+                                <td class="p-4">Limited</td>
+                                <td class="p-4">High‑performance routing</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-medium text-white">AWS API GW</td>
+                                <td class="p-4 text-red-400">❌</td>
+                                <td class="p-4 text-green-400">✅</td>
+                                <td class="p-4">Native</td>
+                                <td class="p-4">Serverless apps</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-medium text-white">Apigee</td>
+                                <td class="p-4 text-red-400">❌</td>
+                                <td class="p-4 text-green-400">✅</td>
+                                <td class="p-4">Rich</td>
+                                <td class="p-4">Enterprise API management</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-medium text-white">Traefik</td>
+                                <td class="p-4 text-green-400">✅</td>
+                                <td class="p-4 text-green-400">✅</td>
+                                <td class="p-4">Moderate</td>
+                                <td class="p-4">Kubernetes ingress</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-white mb-6">5. Security Best Practices</h2>
+                <p class="text-gray-300 mb-6">Security is non‑negotiable in API gateway design.</p>
+                <div class="grid md:grid-cols-2 gap-4 mb-8">
+                    <div class="flex items-center gap-3 bg-white/5 p-4 rounded-lg border border-white/10">
+                        <span class="text-green-400">🔒</span> <span><strong>TLS Termination:</strong> Encrypt traffic end‑to‑end.</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-white/5 p-4 rounded-lg border border-white/10">
+                        <span class="text-blue-400">🔑</span> <span><strong>OAuth2 & JWT:</strong> Secure token‑based authentication.</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-white/5 p-4 rounded-lg border border-white/10">
+                        <span class="text-purple-400">🗝️</span> <span><strong>API Key Management:</strong> Control access for external clients.</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-white/5 p-4 rounded-lg border border-white/10">
+                        <span class="text-red-400">🛡️</span> <span><strong>Threat Detection:</strong> Block SQL injection, XSS, and DDoS.</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-white/5 p-4 rounded-lg border border-white/10 md:col-span-2">
+                        <span class="text-yellow-400">⚠️</span> <span><strong>Zero‑Trust Networking:</strong> Never assume trust; always verify every request.</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-white mb-6">6. Performance Optimization</h2>
+                <p class="text-gray-300 mb-6">A sluggish gateway can bottleneck the entire system. Here's how to keep it blazing fast:</p>
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/10 hover:border-purple-500/50 transition-colors">
+                        <h5 class="text-white font-bold mb-2">Caching Strategies</h5>
+                        <p class="text-xs text-gray-400">Edge caching and response caching reduce latency and backend load dramatically.</p>
+                    </div>
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/10 hover:border-purple-500/50 transition-colors">
+                        <h5 class="text-white font-bold mb-2">Connection Pooling</h5>
+                        <p class="text-xs text-gray-400">Efficient resource usage by reusing established connections to backend services.</p>
+                    </div>
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/10 hover:border-purple-500/50 transition-colors">
+                        <h5 class="text-white font-bold mb-2">Async Request Handling</h5>
+                        <p class="text-xs text-gray-400">Non‑blocking I/O ensures the gateway can handle thousands of concurrent requests.</p>
+                    </div>
+                    <div class="bg-white/5 p-5 rounded-lg border border-white/10 hover:border-purple-500/50 transition-colors">
+                        <h5 class="text-white font-bold mb-2">Compression</h5>
+                        <p class="text-xs text-gray-400">Gzip and Brotli compression for faster payload transfers over the wire.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-white mb-6">7. Observability & Monitoring</h2>
+                <p class="text-gray-300 mb-6">Without observability, debugging microservices is impossible.</p>
+                <div class="space-y-4 mb-8">
+                    <div class="bg-gray-900/40 p-6 rounded-xl border-l-4 border-purple-500">
+                        <strong class="text-white text-lg">Metrics</strong>
+                        <p class="mt-2 text-gray-400">Track latency percentiles (p50, p95, p99), throughput, and error rates across all endpoints.</p>
+                    </div>
+                    <div class="bg-gray-900/40 p-6 rounded-xl border-l-4 border-blue-500">
+                        <strong class="text-white text-lg">Distributed Tracing</strong>
+                        <p class="mt-2 text-gray-400">Tools like Jaeger and Zipkin reveal the full lifecycle of a request across services.</p>
+                    </div>
+                    <div class="bg-gray-900/40 p-6 rounded-xl border-l-4 border-green-500">
+                        <strong class="text-white text-lg">Logging Strategies</strong>
+                        <p class="mt-2 text-gray-400">Structured JSON logs for machine analysis. Correlation IDs for tracing requests end‑to‑end.</p>
+                    </div>
+                    <div class="bg-gray-900/40 p-6 rounded-xl border-l-4 border-yellow-500">
+                        <strong class="text-white text-lg">Alerting & Dashboards</strong>
+                        <p class="mt-2 text-gray-400">Real‑time monitoring with tools like Grafana, Datadog, and PagerDuty for instant incident response.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-white mb-6">8. Case Studies</h2>
+                <div class="grid md:grid-cols-3 gap-4 mb-8">
+                    <div class="p-6 bg-purple-900/10 border border-purple-500/20 rounded-xl">
+                        <div class="text-2xl font-bold text-white mb-2">Netflix</div>
+                        <div class="text-sm text-gray-400">Migrated from Zuul to Spring Cloud Gateway for improved scalability and reactive architecture.</div>
+                    </div>
+                    <div class="p-6 bg-blue-900/10 border border-blue-500/20 rounded-xl">
+                        <div class="text-2xl font-bold text-white mb-2">Uber</div>
+                        <div class="text-sm text-gray-400">Custom API Gateway handling billions of requests daily across global ride‑hailing infrastructure.</div>
+                    </div>
+                    <div class="p-6 bg-green-900/10 border border-green-500/20 rounded-xl">
+                        <div class="text-2xl font-bold text-white mb-2">Shopify</div>
+                        <div class="text-sm text-gray-400">GraphQL Gateway optimized for high‑throughput e‑commerce API operations at massive scale.</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-white mb-6">9. Common Pitfalls</h2>
+                <div class="bg-red-900/10 border border-red-500/20 p-6 rounded-xl mb-6">
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-start gap-2"><span class="text-red-400">✗</span> <span>Overloading gateway with business logic — keep it thin.</span></li>
+                        <li class="flex items-start gap-2"><span class="text-red-400">✗</span> <span>Ignoring scalability — plan for 10x traffic from day one.</span></li>
+                        <li class="flex items-start gap-2"><span class="text-red-400">✗</span> <span>Weak authentication — never skip token validation.</span></li>
+                        <li class="flex items-start gap-2"><span class="text-red-400">✗</span> <span>Poor documentation — your gateway IS your API contract.</span></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-white mb-6">10. Future Trends</h2>
+                <div class="grid md:grid-cols-2 gap-4 mb-8">
+                    <div class="flex items-center gap-3 bg-white/5 p-4 rounded-lg border border-white/10">
+                        <span class="text-purple-400">🤖</span> <span><strong>AI‑Powered Gateways:</strong> Predictive scaling based on traffic patterns.</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-white/5 p-4 rounded-lg border border-white/10">
+                        <span class="text-blue-400">🔄</span> <span><strong>Service Mesh Integration:</strong> Istio + Gateway synergy.</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-white/5 p-4 rounded-lg border border-white/10">
+                        <span class="text-green-400">💰</span> <span><strong>API Monetization:</strong> Turning APIs into revenue streams.</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-white/5 p-4 rounded-lg border border-white/10">
+                        <span class="text-yellow-400">🌐</span> <span><strong>Edge Computing Gateways:</strong> Processing closer to users.</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-white mb-6">Frequently Asked Questions</h2>
+                <div class="grid gap-4">
+                    <details class="group bg-white/5 p-6 rounded-xl border border-white/10">
+                        <summary class="list-none cursor-pointer flex justify-between items-center text-white font-bold text-lg">
+                            What is the difference between an API Gateway and a Load Balancer?
+                            <span class="text-purple-500 group-open:rotate-180 transition-transform">↓</span>
+                        </summary>
+                        <p class="text-gray-400 mt-4 leading-relaxed italic">Load balancers distribute traffic across instances of the same service, while API gateways handle authentication, routing to different services, request transformation, and rate limiting — they operate at a higher abstraction level.</p>
+                    </details>
+                    <details class="group bg-white/5 p-6 rounded-xl border border-white/10">
+                        <summary class="list-none cursor-pointer flex justify-between items-center text-white font-bold text-lg">
+                            Can I use multiple API gateways in one system?
+                            <span class="text-blue-400 group-open:rotate-180 transition-transform">↓</span>
+                        </summary>
+                        <p class="text-gray-400 mt-4 leading-relaxed italic">Yes, especially in hybrid cloud or multi‑tenant architectures. A common pattern is using an edge gateway for external traffic and an internal gateway for service‑to‑service communication.</p>
+                    </details>
+                    <details class="group bg-white/5 p-6 rounded-xl border border-white/10">
+                        <summary class="list-none cursor-pointer flex justify-between items-center text-white font-bold text-lg">
+                            Which API gateway is best for Kubernetes?
+                            <span class="text-green-400 group-open:rotate-180 transition-transform">↓</span>
+                        </summary>
+                        <p class="text-gray-400 mt-4 leading-relaxed italic">Traefik and Kong are popular choices due to native Kubernetes integration. Traefik excels as an ingress controller, while Kong provides a richer enterprise plugin ecosystem.</p>
+                    </details>
+                </div>
+            </section>
+
+            <section class="mt-16 bg-gradient-to-tr from-purple-600 to-blue-600 p-12 rounded-[2.5rem] text-center">
+                <h2 class="text-4xl font-bold text-white mb-6">Need an API Gateway Architect?</h2>
+                <p class="text-purple-100 mb-8 max-w-2xl mx-auto text-lg leading-relaxed italic">Aqib Mustafa specializes in designing and deploying scalable, secure API gateway architectures for enterprises. From Kong configurations to custom solutions, let's build infrastructure that scales.</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="/contact" class="px-10 py-4 bg-white text-purple-600 font-bold rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all">
+                        Schedule a Consultation
+                    </a>
+                </div>
+            </section>
+        </article>
       `
     }
 ];
