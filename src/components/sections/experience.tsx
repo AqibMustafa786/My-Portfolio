@@ -8,16 +8,16 @@ const experiences = [
     role: "Flutter Mobile App Developer",
     company: "Freelance / Fiverr",
     duration: "2024 - Present",
-    location: "Remote (Global)",
-    description: "Developed and deployed multiple high-performance mobile applications using Flutter for enterprise clients. Specialized in custom UI designs, secure Firebase integration, and scalable state management.",
+    location: "Remote",
+    description: "Developed and deployed multiple high-performance mobile applications using Flutter. Specialized in custom UI designs, Firebase integration, and state management solutions.",
     skills: ["Flutter", "Dart", "Firebase", "State Management"]
   },
   {
     role: "AppSheet Developer",
     company: "Freelance",
     duration: "2023 - Present",
-    location: "Remote (Global)",
-    description: "Designed and implemented complex business process automation tools for large-scale operations using Google AppSheet. Built inventory management systems, CRM dashboards, and field data collection apps.",
+    location: "Remote",
+    description: "Designed and implemented complex business process automation tools using Google AppSheet. Built inventory management systems, CRM dashboards, and field data collection apps.",
     skills: ["AppSheet", "Google Workspace", "Automation"]
   },
   {
@@ -25,15 +25,15 @@ const experiences = [
     company: "Self-Initiated / Projects",
     duration: "2023 - Present",
     location: "Remote",
-    description: "Built modern web applications using Next.js and React. Created SaaS platforms and e-commerce solutions with secure authentication, cloud database integration, and payment gateway architectures.",
+    description: "Built modern web applications using Next.js and React. Created SaaS platforms like InvoiceCraft and e-commerce solutions with secure authentication and payment integration.",
     skills: ["Next.js", "React", "Node.js", "Tailwind CSS"]
   },
   {
     role: "Data Entry & App Management",
     company: "Pioneer Home Solutions",
     duration: "2022 - 2023",
-    location: "Remote (Corporate)",
-    description: "Managed internal company data and application systems for a corporate firm. Ensured data integrity, compliance, and optimized workflows for operational efficiency.",
+    location: "Remote (USA Based)",
+    description: "Managed internal company data and application systems. Ensured data accuracy and optimized workflows for the operations team.",
     skills: ["Data Entry", "System Administration", "Communication"]
   },
 ];

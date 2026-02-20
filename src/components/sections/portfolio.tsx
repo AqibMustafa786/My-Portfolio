@@ -32,7 +32,7 @@ export function PortfolioSection() {
             Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">Masterpieces</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            Strategic digital architectures delivered for high-growth startups and established enterprises.
+            A curated selection of high-performance applications designed to solve real-world problems.
           </p>
         </motion.div>
 

@@ -45,7 +45,7 @@ export const HeroModern = ({ greeting }: HeroModernProps) => {
                     </h2>
 
                     <p className="text-gray-400 text-lg mb-8 max-w-xl mx-auto lg:mx-0">
-                        Architecting enterprise-grade digital solutions. Specializing in high-performance SaaS platforms, scalable cloud-native architectures, and cross-platform mobile ecosystems (Flutter) for forward-thinking organizations.
+                        Crafting premium digital experiences. Specialist in AppSheet, SaaS development, and creating stunning, high-performance applications.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
