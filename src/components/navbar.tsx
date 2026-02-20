@@ -69,14 +69,7 @@ export function Navbar() {
 
           {/* Actions */}
           <div className="hidden md:flex items-center gap-4">
-            <button
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="p-2.5 rounded-full bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors text-gray-600 dark:text-gray-300"
-            >
-              <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 absolute" />
-              <Moon className="h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-              <span className="sr-only">Toggle theme</span>
-            </button>
+
 
             <Link
               href="#contact"
@@ -88,13 +81,7 @@ export function Navbar() {
 
           {/* Mobile Menu Toggle */}
           <div className="md:hidden flex items-center gap-4">
-            <button
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="p-2 rounded-full bg-black/5 dark:bg-white/5 text-gray-600 dark:text-gray-300"
-            >
-              <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 absolute" />
-              <Moon className="h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-            </button>
+
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               className="relative z-50 p-2 text-gray-600 dark:text-gray-300"
