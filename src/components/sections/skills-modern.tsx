@@ -25,7 +25,7 @@ export const SkillsModern = () => {
                         Skills & <span className="text-purple-400">Services</span>
                     </h2>
                     <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                        Leveraging top-tier tech stacks (React, Next.js, Flutter) to deliver robust, scalable solutions preferred by Silicon Valley and London fintech startups.
+                        Leveraging top-tier tech stacks (React, Next.js, Flutter) to deliver robust, scalable solutions preferred by Fintech unicorns and Enterprise market leaders.
                     </p>
                 </motion.div>
 
