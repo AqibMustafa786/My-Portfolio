@@ -41,7 +41,7 @@ export const HeroModern = ({ greeting }: HeroModernProps) => {
                     </h1>
 
                     <h2 className="text-2xl lg:text-3xl font-semibold mb-6 text-gray-300">
-                        <span className="text-purple-400">Flutter Mobile</span> & <span className="text-blue-400">Full Stack Web</span> Developer
+                        <span className="text-purple-400">Flutter Developer</span> & <span className="text-blue-400">Full Stack Web</span> Developer
                     </h2>
 
                     <p className="text-gray-400 text-lg mb-8 max-w-xl mx-auto lg:mx-0">
