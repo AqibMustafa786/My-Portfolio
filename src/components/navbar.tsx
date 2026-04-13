@@ -98,9 +98,9 @@ export function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 200 }}
-            className="fixed inset-0 z-40 bg-white md:hidden flex flex-col justify-center items-center px-6"
+            className="fixed inset-0 z-40 bg-white md:hidden flex flex-col justify-start items-center px-6 pt-32 overflow-y-auto"
           >
-            <div className="flex flex-col gap-12 text-center w-full">
+            <div className="flex flex-col gap-8 text-center w-full">
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.name}
@@ -111,7 +111,7 @@ export function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
-                    className="text-4xl xs:text-5xl font-black italic uppercase tracking-tighter text-black hover:text-rose-600 transition-colors block font-headline leading-[0.8]"
+                    className="text-3xl xs:text-4xl font-black italic uppercase tracking-tighter text-black hover:text-rose-600 transition-colors block font-headline leading-none"
                   >
                     {link.name}
                   </Link>
@@ -122,21 +122,21 @@ export function Navbar() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="mt-16 flex flex-col gap-8 items-center"
+                className="mt-8 flex flex-col gap-8 items-center pb-12"
               >
                 <Link
                   href="#contact"
                   onClick={() => setMenuOpen(false)}
-                  className="w-full max-w-xs px-16 py-7 rounded-[2rem] bg-black text-white font-black italic uppercase tracking-[0.3em] text-xs shadow-2xl hover:bg-rose-600 transition-all font-headline"
+                  className="w-full max-w-xs px-10 py-5 rounded-2xl bg-black text-white font-black italic uppercase tracking-[0.3em] text-[10px] shadow-2xl hover:bg-rose-600 transition-all font-headline"
                 >
                   Start a Project
                 </Link>
 
-                <div className="flex justify-center gap-10 mt-10">
-                  <a href="https://github.com/AqibMustafa786" className="w-16 h-16 rounded-[1.5rem] bg-zinc-50 border border-zinc-100 flex items-center justify-center text-zinc-600 hover:bg-black hover:text-white transition-all shadow-xl" aria-label="Github">
+                <div className="flex justify-center gap-10 mt-4">
+                  <a href="https://github.com/AqibMustafa786" className="w-14 h-14 rounded-2xl bg-zinc-50 border border-zinc-100 flex items-center justify-center text-zinc-600 hover:bg-black hover:text-white transition-all shadow-xl" aria-label="Github">
                     <Github className="w-6 h-6" />
                   </a>
-                  <a href="https://www.linkedin.com/in/aqib-surahio-355363294/" className="w-16 h-16 rounded-[1.5rem] bg-zinc-50 border border-zinc-100 flex items-center justify-center text-zinc-600 hover:bg-[#0077b5] hover:text-white transition-all shadow-xl" aria-label="LinkedIn">
+                  <a href="https://www.linkedin.com/in/aqib-surahio-355363294/" className="w-14 h-14 rounded-2xl bg-zinc-50 border border-zinc-100 flex items-center justify-center text-zinc-600 hover:bg-[#0077b5] hover:text-white transition-all shadow-xl" aria-label="LinkedIn">
                     <Linkedin className="w-6 h-6" />
                   </a>
                 </div>
