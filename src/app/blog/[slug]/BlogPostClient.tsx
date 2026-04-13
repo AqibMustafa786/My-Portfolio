@@ -1,10 +1,10 @@
 "use client";
 
-import { use } from "react";
+import { use, useState, useEffect } from "react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { posts } from "@/data/blog-posts";
-import { MoveLeft, Calendar, User, Clock, Share2, Globe, Shield } from "lucide-react";
+import { posts as staticPosts } from "@/data/blog-posts";
+import { MoveLeft, Calendar, User, Clock, Share2, Globe, Shield, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { motion } from "framer-motion";
@@ -17,7 +17,38 @@ interface BlogPostClientProps {
 
 export default function BlogPostClient({ params }: BlogPostClientProps) {
     const { slug } = use(params);
-    const post = posts.find(p => p.slug === slug);
+    const [post, setPost] = useState<any>(staticPosts.find(p => p.slug === slug));
+    const [loading, setLoading] = useState(!post);
+
+    useEffect(() => {
+        if (!post) {
+            const fetchCloudPost = async () => {
+                try {
+                    const { db } = await import("@/lib/firebase");
+                    const { collection, getDocs, query, where } = await import("firebase/firestore");
+                    const q = query(collection(db, "blogs"), where("slug", "==", slug));
+                    const snapshot = await getDocs(q);
+                    
+                    if (!snapshot.empty) {
+                        setPost({ id: snapshot.docs[0].id, ...snapshot.docs[0].data() });
+                    }
+                } catch (error) {
+                    console.error("Cloud Fetch Error:", error);
+                } finally {
+                    setLoading(false);
+                }
+            };
+            fetchCloudPost();
+        }
+    }, [slug, post]);
+
+    if (loading) {
+        return (
+            <div className="min-h-screen bg-[#080808] flex items-center justify-center">
+                <Loader2 className="w-12 h-12 text-rose-500 animate-spin" />
+            </div>
+        );
+    }
 
     if (!post) {
         notFound();

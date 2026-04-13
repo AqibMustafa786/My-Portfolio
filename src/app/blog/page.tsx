@@ -1,31 +1,57 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, User, ArrowRight, Search, Hash, Globe } from "lucide-react";
 import Link from "next/link";
-import { posts } from "@/data/blog-posts";
+import { posts as staticPosts } from "@/data/blog-posts";
 import { cn } from "@/lib/utils";
 
 export default function BlogPage() {
     const [searchQuery, setSearchQuery] = useState("");
     const [activeCategory, setActiveCategory] = useState("All");
+    const [cloudPosts, setCloudPosts] = useState<any[]>([]);
 
-    const categories = useMemo(() => {
-        const cats = ["All", ...new Set(posts.map(post => post.category))];
-        return cats;
+    useEffect(() => {
+        const fetchCloudBlogs = async () => {
+            try {
+                const { db } = await import("@/lib/firebase");
+                const { collection, getDocs, orderBy, query } = await import("firebase/firestore");
+                const q = query(collection(db, "blogs"), orderBy("createdAt", "desc"));
+                const snapshot = await getDocs(q);
+                const blogs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                setCloudPosts(blogs);
+            } catch (error) {
+                console.error("Firestore Fetch Error:", error);
+            }
+        };
+        fetchCloudBlogs();
     }, []);
 
+    const allPosts = useMemo(() => {
+        // Merge static and cloud posts, prioritizing cloud (newer)
+        const combined = [...cloudPosts, ...staticPosts];
+        // Deduplicate by slug
+        return combined.filter((post, index, self) =>
+            index === self.findIndex((p) => p.slug === post.slug)
+        );
+    }, [cloudPosts]);
+
+    const categories = useMemo(() => {
+        const cats = ["All", ...new Set(allPosts.map(post => post.category))];
+        return cats;
+    }, [allPosts]);
+
     const filteredPosts = useMemo(() => {
-        return posts.filter(post => {
+        return allPosts.filter(post => {
             const matchesQuery = post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
                                post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
             const matchesCategory = activeCategory === "All" || post.category === activeCategory;
             return matchesQuery && matchesCategory;
         });
-    }, [searchQuery, activeCategory]);
+    }, [searchQuery, activeCategory, allPosts]);
 
     return (
         <div className="min-h-screen bg-[#080808] text-white selection:bg-rose-500/30 font-sans relative overflow-x-hidden">
