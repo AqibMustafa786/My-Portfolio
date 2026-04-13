@@ -15,8 +15,10 @@ export default function BlogAdminPage() {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [form, setForm] = useState({ title: "", slug: "", category: "SaaS", excerpt: "", content: "" });
 
-    // Fetch Real-time lead count from Firestore
-    useState(() => {
+    // Fetch Real-time lead count from Firestore ONLY after login
+    useEffect(() => {
+        if (!isAuthenticated) return;
+
         const fetchLeads = async () => {
             try {
                 const { db } = await import("@/lib/firebase");
@@ -26,11 +28,11 @@ export default function BlogAdminPage() {
                 setLeadCount(snapshot.data().count);
             } catch (error) {
                 console.error("Fetch Error:", error);
-                setLeadCount("OFFLINE");
+                setLeadCount("PROTECTED");
             }
         };
         fetchLeads();
-    });
+    }, [isAuthenticated]);
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();

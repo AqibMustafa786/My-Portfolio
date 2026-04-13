@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://aqibmustafa.com"),
   title: "Aqib Mustafa | Software Engineer & Web App Developer",
   description: "Aqib Mustafa is a Software Engineer specializing in Web Applications, AppSheet, Firebase, SaaS solutions, and admin dashboards. Explore portfolio, projects, and services.",
   keywords: "Aqib Mustafa, Software Engineer Pakistan, Web App Developer, AppSheet Developer, Firebase Developer, SaaS Developer, Portfolio",

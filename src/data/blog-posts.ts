@@ -18,7 +18,7 @@ export const posts: BlogPost[] = [
         date: "Feb 10, 2026",
         author: "Aqib Mustafa",
         category: "Mobile Dev",
-        image: "/assets/flutterblog.png",
+        image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=1974",
         content: `
         <p class="lead">Flutter continues to dominate the cross-platform landscape in 2026, offering unparalleled performance and developer productivity. As enterprises pivot towards unified development teams, Flutter has emerged as the clear winner over traditional native approaches.</p>
         
@@ -66,7 +66,7 @@ export const posts: BlogPost[] = [
         date: "Jan 28, 2026",
         author: "Aqib Mustafa",
         category: "No-Code",
-        image: "/assets/appsheetblog.png",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426",
         content: `
         <article class="prose prose-invert max-w-none">
             <p class="lead text-xl text-gray-300 mb-8">In the competitive landscape of 2026, operational efficiency is the dividing line between thriving enterprises and those struggling to keep pace. <strong>Google AppSheet</strong> has emerged as the definitive solution for bridging the gap between legacy spreadsheets and modern mobile-first workflows.</p>
@@ -303,7 +303,7 @@ export const posts: BlogPost[] = [
         date: "Jan 15, 2026",
         author: "Aqib Mustafa",
         category: "Web Design",
-        image: "/assets/glassmorphismblog.png",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426",
         content: `
         <article class="prose prose-invert max-w-none">
 
@@ -490,7 +490,7 @@ export const posts: BlogPost[] = [
         date: "Feb 15, 2026",
         author: "Aqib Mustafa",
         category: "Artificial Intelligence",
-        image: "/assets/GenerativeAIBlog.png",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426",
         content: `
         <article class="prose prose-invert max-w-none">
 
@@ -656,7 +656,7 @@ export const posts: BlogPost[] = [
         date: "Feb 08, 2026",
         author: "Aqib Mustafa",
         category: "Fintech",
-        image: "/assets/FintechBlog.png",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426",
         content: `
         <article class="prose prose-invert max-w-none">
 
@@ -825,7 +825,7 @@ export const posts: BlogPost[] = [
         date: "Feb 12, 2026",
         author: "Aqib Mustafa",
         category: "Cloud Security",
-        image: "/assets/advancedcloudblog.png",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426",
         content: `
                             < article class="max-w-none" >
 
@@ -1167,7 +1167,7 @@ export const posts: BlogPost[] = [
         date: "Feb 05, 2026",
         author: "Aqib Mustafa",
         category: "SaaS Architecture",
-        image: "/assets/saasblog.png",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426",
         content: `
         <article class="prose prose-invert max-w-none">
 
@@ -1371,7 +1371,7 @@ export const posts: BlogPost[] = [
         date: "Feb 01, 2026",
         author: "Aqib Mustafa",
         category: "DevOps",
-        image: "/assets/Kubernetesblog.png",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426",
         content: `
         <article class="prose prose-invert max-w-none">
 
@@ -1547,7 +1547,7 @@ export const posts: BlogPost[] = [
         date: "Jan 25, 2026",
         author: "Aqib Mustafa",
         category: "Blockchain",
-        image: "/assets/smartcontractsblog.png",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426",
         content: `
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 < article class="prose prose-invert max-w-none" >
 
@@ -1834,7 +1834,7 @@ export const posts: BlogPost[] = [
         date: "Jan 20, 2026",
         author: "Aqib Mustafa",
         category: "Data Engineering",
-        image: "/assets/datapipelinesblog.png",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426",
         content: `
         <article class="prose prose-invert max-w-none">
 
@@ -1982,7 +1982,7 @@ export const posts: BlogPost[] = [
         date: "Jan 10, 2026",
         author: "Aqib Mustafa",
         category: "Cybersecurity",
-        image: "/assets/threatintelblog.png",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426",
         content: `
         <article class="prose prose-invert max-w-none">
 
@@ -2136,7 +2136,7 @@ export const posts: BlogPost[] = [
         date: "Jan 05, 2026",
         author: "Aqib Mustafa",
         category: "Mobile Strategy",
-        image: "/assets/mobilestrategyblog.png",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426",
         content: `
         <article class="prose prose-invert max-w-none">
 
@@ -2305,7 +2305,7 @@ export const posts: BlogPost[] = [
         date: "Jan 01, 2026",
         author: "Aqib Mustafa",
         category: "Backend Engineering",
-        image: "/assets/APIdesignblog.png",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426",
         content: `
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             < article class="prose prose-invert max-w-none" >
 
@@ -2656,7 +2656,7 @@ export const posts: BlogPost[] = [
         date: "Feb 20, 2026",
         author: "Aqib Mustafa",
         category: "SaaS",
-        image: "/assets/invoiceblog.png",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426",
         content: `
             <article class="prose prose-invert max-w-none">
                 <p class="lead">Building a SaaS invoice application in 2026 requires more than just a table and a PDF export button. It requires a resilient architecture that handles multi-currency, tax compliance, and real-time synchronization.</p>
@@ -2678,7 +2678,7 @@ export const posts: BlogPost[] = [
         date: "Feb 22, 2026",
         author: "Aqib Mustafa",
         category: "AppSheet",
-        image: "/assets/appsheetblog.png",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426",
         content: `<p>AppSheet is the future of internal business tooling. From inventory management to field agent tracking, the possibilities are endless.</p>`
     },
     {
@@ -2688,7 +2688,7 @@ export const posts: BlogPost[] = [
         date: "Feb 25, 2026",
         author: "Aqib Mustafa",
         category: "Firebase",
-        image: "/assets/dashboardblog.png",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426",
         content: `<p>A secure admin dashboard is the backbone of any SaaS. Learn how to implement RBAC (Role-Based Access Control) using Firebase Custom Claims.</p>`
     },
     {
@@ -2698,7 +2698,7 @@ export const posts: BlogPost[] = [
         date: "Feb 28, 2026",
         author: "Aqib Mustafa",
         category: "SaaS",
-        image: "/assets/saasfeatures.png",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426",
         content: `
             <p>A successful SaaS application must include authentication, subscription management, dashboards, and scalability.</p>
             <p>User authentication ensures secure access. Subscription systems allow monetization. Dashboards provide insights to users.</p>
@@ -2714,7 +2714,7 @@ export const posts: BlogPost[] = [
         date: "Mar 02, 2026",
         author: "Aqib Mustafa",
         category: "Backend",
-        image: "/assets/backendblog.png",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426",
         content: `
             <p>Firebase is a Backend-as-a-Service platform, while traditional backends require manual server setup.</p>
             <p>Firebase offers real-time databases, authentication, and hosting out of the box. Traditional backends provide more control but require more development time.</p>
@@ -2730,7 +2730,7 @@ export const posts: BlogPost[] = [
         date: "Mar 05, 2026",
         author: "Aqib Mustafa",
         category: "Web Dev",
-        image: "/assets/performanceblog.png",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426",
         content: `
             <p>Performance is critical for any web application. Slow websites lead to high bounce rates.</p>
             <p>Optimize images, minimize JavaScript, and use lazy loading. Implement caching and reduce API calls.</p>
@@ -2746,7 +2746,7 @@ export const posts: BlogPost[] = [
         date: "Mar 10, 2026",
         author: "Aqib Mustafa",
         category: "Architecture",
-        image: "/assets/scalableblog.png",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426",
         content: `
             <p>Scalability ensures your application can handle growth. Use modular architecture and efficient database design.</p>
             <p>Avoid tightly coupled systems. Use cloud services for flexibility. Plan for scaling from the beginning to avoid costly redesigns later.</p>
@@ -2760,7 +2760,7 @@ export const posts: BlogPost[] = [
         date: "Mar 15, 2026",
         author: "Aqib Mustafa",
         category: "No-Code",
-        image: "/assets/devblog.png",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426",
         content: `
             <p>No-code platforms allow rapid development, while traditional coding offers flexibility.</p>
             <p>For simple business apps, no-code is ideal. For complex systems, traditional development is better.</p>
@@ -2775,7 +2775,7 @@ export const posts: BlogPost[] = [
         date: "Mar 20, 2026",
         author: "Aqib Mustafa",
         category: "SaaS",
-        image: "/assets/portalblog.png",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426",
         content: `
             <p>Client portals allow users to access their data securely. Features include authentication, dashboards, and document management.</p>
             <p>Use Firebase for backend and ensure secure data access.</p>
@@ -2790,7 +2790,7 @@ export const posts: BlogPost[] = [
         date: "Mar 25, 2026",
         author: "Aqib Mustafa",
         category: "Web Dev",
-        image: "/assets/toolsblog.png",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426",
         content: `
             <p>Modern web development requires efficient tools. Popular choices include Firebase for backend, GitHub for version control, and modern frameworks for frontend.</p>
             <p>Automation tools and no-code platforms are also gaining popularity. Using the right tools increases productivity and code quality.</p>
