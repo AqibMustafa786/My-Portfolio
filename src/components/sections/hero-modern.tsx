@@ -32,6 +32,7 @@ export const HeroModern = ({ greeting }: HeroModernProps) => {
 
                     <h1 className="text-5xl md:text-[5rem] font-black italic uppercase tracking-tighter leading-[0.8] text-black mb-8 font-headline">
                         Aqib <br /> Mustafa
+                        <span className="sr-only"> – Software Engineer & Web App Developer</span>
                     </h1>
 
                     <h2 className="text-xl lg:text-2xl font-black mb-8 text-black font-headline tracking-tighter uppercase italic leading-none">

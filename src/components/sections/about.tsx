@@ -56,12 +56,15 @@ export function AboutSection() {
                             About <span className="text-rose-600 NOT-italic">Me</span>
                         </h2>
 
-                        <div className="space-y-8 text-zinc-600 text-lg leading-relaxed italic">
+                        <div className="space-y-8 text-zinc-600 text-base lg:text-lg leading-relaxed italic">
                             <p>
-                                I’m a passionate <span className="text-black font-black underline decoration-rose-500/50 decoration-4">Software Engineer</span> and Computer Science graduate from SZABIST, specializing in building premium digital solutions.
+                                I am <span className="text-black font-black underline decoration-rose-500/50 decoration-4">Aqib Mustafa</span>, a dedicated Software Engineer and Computer Science graduate from **SZABIST**. My professional journey is driven by a commitment to engineering excellence, specializing in complex web architectures and cross-platform mobile ecosystems.
                             </p>
                             <p>
-                                With over <span className="text-black font-black">3+ years</span> of experience, I excel in creating scalable web applications, cross-platform mobile apps with Flutter, and automated business systems.
+                                With over <span className="text-black font-black">3+ years of professional experience</span>, I have successfully delivered 50+ high-impact projects. My core expertise lies in developing scalable **SaaS products**, high-performance **Firebase** applications, and robust business automation using **AppSheet**. I bridge the gap between sophisticated backend logic and intuitive, premium user interfaces.
+                            </p>
+                            <p>
+                                Whether it's architecting a custom CRM, building a real-time data monitoring dashboard, or deploying a global-scale Flutter application, my focus is always on speed, security, and precision. I specialize in helping businesses transition from manual workflows to automated, cloud-powered digital environments that scale with their growth.
                             </p>
                         </div>
 

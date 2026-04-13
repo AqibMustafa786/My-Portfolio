@@ -30,6 +30,24 @@ export default function RootLayout({
           rel="stylesheet"
         />
         <meta name="google-adsense-account" content="ca-pub-3263209406470911" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Aqib Mustafa",
+              "jobTitle": "Software Engineer & Web App Developer",
+              "url": "https://aqibmustafa.com",
+              "sameAs": [
+                "https://github.com/AqibMustafa786",
+                "https://www.linkedin.com/in/aqib-surahio-355363294/",
+                "https://www.fiverr.com/aqibmustafa"
+              ],
+              "description": "Aqib Mustafa is a Software Engineer specializing in Web Applications, AppSheet, Firebase, and SaaS development."
+            })
+          }}
+        />
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3263209406470911"
