@@ -11,18 +11,35 @@ export default function BlogAdminPage() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [password, setPassword] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
+    const [leadCount, setLeadCount] = useState<number | string>("...");
+    const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+    const [form, setForm] = useState({ title: "", slug: "", category: "SaaS", excerpt: "", content: "" });
+
+    // Fetch Real-time lead count from Firestore
+    useState(() => {
+        const fetchLeads = async () => {
+            try {
+                const { db } = await import("@/lib/firebase");
+                const { collection, getCountFromServer } = await import("firebase/firestore");
+                const coll = collection(db, "contacts");
+                const snapshot = await getCountFromServer(coll);
+                setLeadCount(snapshot.data().count);
+            } catch (error) {
+                console.error("Fetch Error:", error);
+                setLeadCount("OFFLINE");
+            }
+        };
+        fetchLeads();
+    });
 
     const handleLogin = (e: React.FormEvent) => {
         e.preventDefault();
-        if (password === "aqib123") { // Simple protection
+        if (password === "aqib123") {
             setIsAuthenticated(true);
         } else {
             alert("Unauthorized Access");
         }
     };
-
-    const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-    const [form, setForm] = useState({ title: "", slug: "", category: "SaaS", excerpt: "", content: "" });
 
     const filteredPosts = posts.filter(post => 
         post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -41,7 +58,7 @@ export default function BlogAdminPage() {
                         <div className="w-20 h-20 rounded-full bg-rose-600/10 flex items-center justify-center mb-6 border border-rose-600/20">
                             <Lock className="w-8 h-8 text-rose-500" />
                         </div>
-                        <h1 className="text-3xl font-black italic uppercase tracking-tighter text-center">Security Check</h1>
+                        <h1 className="text-3xl font-black italic uppercase tracking-tighter text-center text-white">Security Check</h1>
                         <p className="text-zinc-500 text-[10px] font-black uppercase tracking-[0.3em] mt-2 italic text-center">Blog Authority Access Terminal</p>
                     </div>
 
@@ -50,7 +67,7 @@ export default function BlogAdminPage() {
                             <input 
                                 type="password" 
                                 placeholder="ACCESS_KEY" 
-                                className="w-full bg-black/40 border border-white/5 px-6 py-4 rounded-full text-[12px] font-black uppercase tracking-widest placeholder:text-zinc-700 focus:border-rose-600 transition-all outline-none italic"
+                                className="w-full bg-black/40 border border-white/5 px-6 py-4 rounded-full text-[12px] font-black uppercase tracking-widest placeholder:text-zinc-700 focus:border-rose-600 transition-all outline-none italic text-white"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
@@ -94,10 +111,10 @@ export default function BlogAdminPage() {
                 {/* Stats Bar */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-16">
                     {[
-                        { label: "Total Articles", val: posts.length, icon: Share2 },
-                        { label: "Active Nodes", val: "GLOBAL", icon: Shield },
-                        { label: "Total Reach", val: "125K+", icon: Eye },
-                        { label: "Admin Status", val: "VERIFIED", icon: Shield },
+                        { label: "Articles Live", val: posts.length, icon: Share2 },
+                        { label: "Active Nodes", val: "FIREBASE_UP", icon: Shield },
+                        { label: "Total Inquiries", val: leadCount, icon: Eye },
+                        { label: "Current Identity", val: "AQIB_ROOT", icon: Shield },
                     ].map((stat, i) => (
                         <div key={i} className="bg-white/5 border border-white/5 p-8 rounded-3xl backdrop-blur-md">
                             <stat.icon className="w-5 h-5 text-rose-500 mb-4" />
