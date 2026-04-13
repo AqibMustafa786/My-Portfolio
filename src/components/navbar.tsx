@@ -111,7 +111,7 @@ export function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
-                    className="text-6xl font-black italic uppercase tracking-tighter text-black hover:text-rose-600 transition-colors block font-headline leading-[0.8]"
+                    className="text-4xl xs:text-5xl font-black italic uppercase tracking-tighter text-black hover:text-rose-600 transition-colors block font-headline leading-[0.8]"
                   >
                     {link.name}
                   </Link>

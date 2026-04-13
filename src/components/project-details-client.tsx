@@ -242,10 +242,10 @@ export function ProjectDetailsClient({ project }: ProjectDetailsClientProps) {
                                 </div>
                             </div>
 
-                            <div className="w-full md:w-[420px] bg-white p-10 md:p-12 border-l border-zinc-100 overflow-y-auto scrollbar-hide relative">
+                            <div className="w-full md:w-[420px] bg-white p-6 md:p-12 border-l border-zinc-100 overflow-y-auto scrollbar-hide relative pt-24 md:pt-12">
                                 <button 
                                     onClick={() => setIsGalleryOpen(false)}
-                                    className="absolute top-8 right-8 w-12 h-12 rounded-full bg-black text-white flex items-center justify-center hover:bg-rose-600 transition-all z-50 shadow-2xl"
+                                    className="absolute top-6 right-6 md:top-8 md:right-8 w-12 h-12 rounded-full bg-black text-white flex items-center justify-center hover:bg-rose-600 transition-all z-50 shadow-2xl"
                                     aria-label="Close Gallery"
                                     title="Close Gallery"
                                 >
@@ -253,8 +253,8 @@ export function ProjectDetailsClient({ project }: ProjectDetailsClientProps) {
                                 </button>
 
                                 <div className="mb-10">
-                                    <h2 className="text-4xl font-black text-black tracking-tight mb-4 font-headline italic uppercase leading-tight">{project.title}</h2>
-                                    <p className="text-zinc-400 leading-relaxed italic font-medium">{project.shortDescription}</p>
+                                    <h2 className="text-2xl md:text-4xl font-black text-black tracking-tight mb-4 font-headline italic uppercase leading-tight break-normal text-balance">{project.title}</h2>
+                                    <p className="text-zinc-400 leading-relaxed italic font-medium text-sm md:text-base">{project.shortDescription}</p>
                                 </div>
 
                                 <div className="space-y-20">

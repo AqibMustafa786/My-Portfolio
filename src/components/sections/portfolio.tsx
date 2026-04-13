@@ -23,7 +23,7 @@ export function PortfolioSection() {
           <span className="inline-block py-2 px-6 rounded-full bg-black text-[10px] font-black uppercase tracking-[0.3em] text-white mb-8 shadow-2xl shadow-rose-500/20 italic">
             Selected Works
           </span>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-black italic uppercase tracking-tighter text-black mb-8 leading-[0.9] font-headline">
+          <h2 className="text-3xl md:text-5xl lg:text-7xl font-black italic uppercase tracking-tighter text-black mb-8 leading-[0.9] font-headline break-words text-balance px-4">
             Featured <span className="text-rose-600 not-italic">Masterpieces</span>
           </h2>
           <p className="text-zinc-500 max-w-2xl mx-auto text-lg italic font-medium">
