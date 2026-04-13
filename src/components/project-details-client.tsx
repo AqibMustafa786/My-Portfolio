@@ -95,7 +95,12 @@ export function ProjectDetailsClient({ project }: ProjectDetailsClientProps) {
                                         className="object-contain p-4 md:p-8 transition-transform duration-[3s] group-hover:scale-105"
                                     />
                                     <div className="absolute inset-x-0 bottom-0 p-6 flex justify-end">
-                                        <button onClick={() => setIsGalleryOpen(true)} className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-black text-white flex items-center justify-center hover:bg-rose-600 transition-all shadow-2xl">
+                                        <button 
+                                            onClick={() => setIsGalleryOpen(true)} 
+                                            className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-black text-white flex items-center justify-center hover:bg-rose-600 transition-all shadow-2xl"
+                                            aria-label="Expand Gallery"
+                                            title="Expand Gallery"
+                                        >
                                             <Maximize2 className="w-5 h-5 md:w-6 md:h-6" />
                                         </button>
                                     </div>
@@ -150,6 +155,8 @@ export function ProjectDetailsClient({ project }: ProjectDetailsClientProps) {
                                     <button 
                                         onClick={() => setIsGalleryOpen(true)}
                                         className="group flex items-center gap-4 text-black hover:text-rose-600 transition-all"
+                                        aria-label="Expand Full Vision"
+                                        title="Expand Full Vision"
                                     >
                                         <div className="w-14 h-14 md:w-16 md:h-16 rounded-full border border-zinc-900 flex items-center justify-center group-hover:bg-rose-600 group-hover:border-rose-600 group-hover:text-white transition-all shadow-xl">
                                             <Maximize2 className="w-5 h-5 md:w-6 md:h-6" />
@@ -223,12 +230,12 @@ export function ProjectDetailsClient({ project }: ProjectDetailsClientProps) {
                                     </motion.div>
                                 </AnimatePresence>
 
-                                <button onClick={prevImage} className="absolute left-10 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full border border-zinc-100 hover:bg-black hover:text-white text-black flex items-center justify-center transition-all bg-white/90 backdrop-blur-xl z-50 shadow-2xl" aria-label="Previous"><ChevronLeft className="w-8 h-8" /></button>
-                                <button onClick={nextImage} className="absolute right-10 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full border border-zinc-100 hover:bg-black hover:text-white text-black flex items-center justify-center transition-all bg-white/90 backdrop-blur-xl z-50 shadow-2xl" aria-label="Next"><ChevronRight className="w-8 h-8" /></button>
+                                <button onClick={prevImage} className="absolute left-10 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full border border-zinc-100 hover:bg-black hover:text-white text-black flex items-center justify-center transition-all bg-white/90 backdrop-blur-xl z-50 shadow-2xl" aria-label="Previous" title="Previous Image"><ChevronLeft className="w-8 h-8" /></button>
+                                <button onClick={nextImage} className="absolute right-10 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full border border-zinc-100 hover:bg-black hover:text-white text-black flex items-center justify-center transition-all bg-white/90 backdrop-blur-xl z-50 shadow-2xl" aria-label="Next" title="Next Image"><ChevronRight className="w-8 h-8" /></button>
                                 
                                 <div className="absolute bottom-10 flex gap-4 overflow-x-auto max-w-[90%] px-8 scrollbar-hide py-4 border border-zinc-100 bg-white/90 backdrop-blur-2xl rounded-[2rem] z-50 shadow-2xl">
                                     {allGalleryImages.map((img, i) => (
-                                        <button key={i} onClick={() => setCurrentImageIndex(i)} className={`relative flex-shrink-0 w-16 h-20 rounded-xl overflow-hidden border-2 transition-all ${currentImageIndex === i ? 'border-rose-600 scale-110' : 'border-transparent opacity-30 hover:opacity-100'}`} aria-label={`View ${i + 1}`}>
+                                        <button key={i} onClick={() => setCurrentImageIndex(i)} className={`relative flex-shrink-0 w-16 h-20 rounded-xl overflow-hidden border-2 transition-all ${currentImageIndex === i ? 'border-rose-600 scale-110' : 'border-transparent opacity-30 hover:opacity-100'}`} aria-label={`View Image ${i + 1}`} title={`View Image ${i + 1}`}>
                                             <Image src={img.src} alt="thumbnail" fill className="object-cover" />
                                         </button>
                                     ))}
@@ -239,6 +246,8 @@ export function ProjectDetailsClient({ project }: ProjectDetailsClientProps) {
                                 <button 
                                     onClick={() => setIsGalleryOpen(false)}
                                     className="absolute top-8 right-8 w-12 h-12 rounded-full bg-black text-white flex items-center justify-center hover:bg-rose-600 transition-all z-50 shadow-2xl"
+                                    aria-label="Close Gallery"
+                                    title="Close Gallery"
                                 >
                                     <X className="w-6 h-6" />
                                 </button>
