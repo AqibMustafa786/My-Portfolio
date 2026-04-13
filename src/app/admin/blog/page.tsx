@@ -21,6 +21,9 @@ export default function BlogAdminPage() {
         }
     };
 
+    const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+    const [form, setForm] = useState({ title: "", slug: "", category: "SaaS", excerpt: "", content: "" });
+
     const filteredPosts = posts.filter(post => 
         post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         post.category.toLowerCase().includes(searchQuery.toLowerCase())
@@ -62,7 +65,7 @@ export default function BlogAdminPage() {
     }
 
     return (
-        <div className="min-h-screen bg-[#080808] text-white font-sans selection:bg-rose-500/30">
+        <div className="min-h-screen bg-[#080808] text-white font-sans selection:bg-rose-500/30 relative">
             <Navbar />
             
             <main className="pt-40 pb-40 container mx-auto px-6 max-w-7xl">
@@ -80,7 +83,10 @@ export default function BlogAdminPage() {
                         </h1>
                     </div>
                     
-                    <button className="flex items-center gap-4 px-10 py-5 bg-white text-black rounded-full font-black uppercase tracking-[0.3em] text-[10px] hover:bg-rose-600 hover:text-white transition-all shadow-2xl font-headline italic">
+                    <button 
+                        onClick={() => setIsCreateModalOpen(true)}
+                        className="flex items-center gap-4 px-10 py-5 bg-white text-black rounded-full font-black uppercase tracking-[0.3em] text-[10px] hover:bg-rose-600 hover:text-white transition-all shadow-2xl font-headline italic"
+                    >
                         <Plus className="w-4 h-4" /> Deploy New Article
                     </button>
                 </div>
@@ -101,7 +107,7 @@ export default function BlogAdminPage() {
                     ))}
                 </div>
 
-                {/* Search and Action Bar */}
+                {/* Search Bar */}
                 <div className="relative mb-12">
                     <Search className="absolute left-8 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-600" />
                     <input 
@@ -158,6 +164,86 @@ export default function BlogAdminPage() {
                     </AnimatePresence>
                 </div>
             </main>
+
+            {/* Create Modal */}
+            <AnimatePresence>
+                {isCreateModalOpen && (
+                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
+                        <motion.div 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setIsCreateModalOpen(false)}
+                            className="absolute inset-0 bg-black/90 backdrop-blur-xl"
+                        />
+                        <motion.div 
+                            initial={{ opacity: 0, scale: 0.95, y: 30 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.95, y: 30 }}
+                            className="relative w-full max-w-4xl bg-[#0a0a0a] border border-white/10 rounded-[3rem] p-12 overflow-y-auto max-h-[90vh] shadow-[0_0_100px_rgba(225,29,72,0.1)] font-sans"
+                        >
+                            <h2 className="text-4xl font-black italic uppercase tracking-tighter text-white mb-10 font-headline">Draft New Article</h2>
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                                <div className="space-y-2">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 italic ml-4">Article Title</label>
+                                    <input 
+                                        type="text" 
+                                        placeholder="Enter Title..." 
+                                        className="w-full bg-white/5 border border-white/5 p-5 rounded-3xl text-white outline-none focus:border-rose-600 transition-all italic font-medium"
+                                        value={form.title}
+                                        onChange={(e) => setForm({...form, title: e.target.value})}
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 italic ml-4">Slug Identifier</label>
+                                    <input 
+                                        type="text" 
+                                        placeholder="e.g. saas-invoice-app" 
+                                        className="w-full bg-white/5 border border-white/5 p-5 rounded-3xl text-white outline-none focus:border-rose-600 transition-all italic font-medium"
+                                        value={form.slug}
+                                        onChange={(e) => setForm({...form, slug: e.target.value})}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="space-y-2 mb-8">
+                                <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 italic ml-4">SEO Excerpt (Meta Description)</label>
+                                <textarea 
+                                    rows={3}
+                                    placeholder="Brief summary for indexing..." 
+                                    className="w-full bg-white/5 border border-white/5 p-5 rounded-3xl text-white outline-none focus:border-rose-600 transition-all italic font-medium resize-none"
+                                    value={form.excerpt}
+                                    onChange={(e) => setForm({...form, excerpt: e.target.value})}
+                                />
+                            </div>
+
+                            <div className="space-y-2 mb-10">
+                                <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 italic ml-4">Main Content (HTML/Rich Text)</label>
+                                <textarea 
+                                    rows={8}
+                                    placeholder="Enter full technical brief content..." 
+                                    className="w-full bg-white/5 border border-white/5 p-5 rounded-3xl text-white outline-none focus:border-rose-600 transition-all italic font-medium resize-none"
+                                    value={form.content}
+                                    onChange={(e) => setForm({...form, content: e.target.value})}
+                                />
+                            </div>
+
+                            <div className="flex flex-col md:flex-row gap-4">
+                                <button className="flex-1 py-5 bg-rose-600 text-white rounded-full font-black uppercase tracking-[0.3em] text-[10px] hover:bg-rose-500 transition-all shadow-2xl font-headline italic">
+                                    Generate JSON Node
+                                </button>
+                                <button 
+                                    onClick={() => setIsCreateModalOpen(false)}
+                                    className="px-10 py-5 bg-white/5 text-zinc-500 rounded-full font-black uppercase tracking-[0.3em] text-[10px] hover:bg-white/10 transition-all italic"
+                                >
+                                    Cancel
+                                </button>
+                            </div>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
 
             <Footer />
         </div>
