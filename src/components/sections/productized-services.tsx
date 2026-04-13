@@ -6,34 +6,28 @@ import { Check } from "lucide-react";
 
 export function ProductizedServices() {
     return (
-        <section id="services" className="relative py-32 overflow-hidden bg-black selection:bg-purple-500/30">
-            {/* Background Gradients - Optimized */}
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-1/3 right-0 w-[300px] h-[300px] lg:w-[500px] lg:h-[500px] bg-purple-600/10 rounded-full blur-[80px] lg:blur-[120px] mix-blend-screen opacity-20" />
-                <div className="absolute bottom-0 left-0 w-[300px] h-[300px] lg:w-[500px] lg:h-[500px] bg-blue-600/10 rounded-full blur-[80px] lg:blur-[120px] mix-blend-screen opacity-20" />
-            </div>
-
+        <section id="services" className="relative py-32 overflow-hidden bg-white selection:bg-rose-500/10">
             <div className="container mx-auto px-6 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
-                    className="text-center mb-20"
+                    className="text-center mb-24"
                 >
-                    <span className="inline-block py-1 px-3 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-purple-400 mb-4">
+                    <span className="inline-block py-2 px-6 rounded-full bg-black text-[10px] font-black uppercase tracking-[0.3em] text-white mb-8 shadow-2xl shadow-rose-500/20 italic">
                         What I Offer
                     </span>
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                        Productized <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">Services</span>
+                    <h2 className="text-5xl md:text-6xl lg:text-7xl font-black italic uppercase tracking-tighter text-black mb-8 leading-[0.9] font-headline">
+                        Productized <span className="text-rose-600 not-italic">Services</span>
                     </h2>
-                    <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-                        Streamlined, high-quality solutions packaged for your business needs.
+                    <p className="text-zinc-500 max-w-2xl mx-auto text-lg italic tracking-wide font-medium">
+                        Streamlined, high-quality solutions packaged for your business needs. 
                         Transparent pricing and guaranteed delivery.
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
                     {productizedServices.map((service, index) => {
                         const Icon = service.icon;
                         return (
@@ -43,36 +37,34 @@ export function ProductizedServices() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
                                 viewport={{ once: true }}
-                                className="group relative p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-purple-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] flex flex-col h-full"
+                                className="group relative p-12 rounded-[2.5rem] bg-zinc-50 border border-zinc-100 hover:border-rose-600 transition-all duration-500 hover:shadow-2xl hover:bg-white flex flex-col h-full"
                             >
-                                <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
-
-                                <div className="w-14 h-14 bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-white/5 group-hover:border-purple-500/20">
-                                    <Icon className="w-7 h-7 text-white group-hover:text-purple-400 transition-colors" />
+                                <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center mb-12 group-hover:bg-rose-600 group-hover:text-white transition-all duration-500 border border-zinc-100 group-hover:border-rose-600 shadow-sm">
+                                    <Icon className="w-10 h-10 text-black group-hover:text-white transition-colors" />
                                 </div>
 
-                                <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-blue-400 transition-all">
+                                <h3 className="text-4xl font-black italic uppercase tracking-tighter text-black mb-8 group-hover:text-rose-600 transition-all leading-[0.8] font-headline">
                                     {service.title}
                                 </h3>
 
-                                <p className="text-gray-400 mb-6 flex-grow leading-relaxed">
+                                <p className="text-zinc-500 mb-12 flex-grow leading-relaxed italic text-sm font-medium">
                                     {service.description}
                                 </p>
 
-                                <div className="space-y-3 mb-8">
+                                <div className="space-y-6 mb-16">
                                     {service.features.map((feature, i) => (
-                                        <div key={i} className="flex items-center gap-3 text-sm text-gray-500 group-hover:text-gray-300 transition-colors">
-                                            <div className="w-5 h-5 rounded-full bg-purple-500/10 flex items-center justify-center flex-shrink-0">
-                                                <Check className="w-3 h-3 text-purple-400" />
+                                        <div key={i} className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-zinc-400 group-hover:text-black transition-colors">
+                                            <div className="w-8 h-8 rounded-full bg-rose-500/5 flex items-center justify-center flex-shrink-0 border border-rose-500/10">
+                                                <Check className="w-4 h-4 text-rose-600" />
                                             </div>
                                             {feature}
                                         </div>
                                     ))}
                                 </div>
 
-                                <div className="pt-6 mt-auto border-t border-white/5 flex items-center justify-between group-hover:border-white/10 transition-colors">
-                                    <span className="text-sm font-medium text-gray-500">From</span>
-                                    <span className="text-xl font-bold text-white group-hover:text-purple-400 transition-colors">{service.price}</span>
+                                <div className="pt-10 mt-auto border-t border-zinc-100 flex items-center justify-between">
+                                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 italic">Available From</span>
+                                    <span className="text-3xl font-black text-black group-hover:text-rose-600 transition-colors italic tracking-tighter font-headline">{service.price}</span>
                                 </div>
                             </motion.div>
                         );

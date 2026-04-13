@@ -10,41 +10,44 @@ interface HeroSectionProps {
 
 export function HeroSection({ greeting }: HeroSectionProps) {
   return (
-    <section id="hero" className="relative flex flex-col items-center justify-center min-h-screen text-center">
-      <motion.h1
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="text-5xl md:text-7xl font-extrabold text-gradient"
-      >
-        Hi, I&apos;m Aqib Mustafa 👋
-      </motion.h1>
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4, duration: 1 }}
-        className="mt-4 text-xl md:text-2xl text-gray-600 dark:text-gray-300"
-      >
-        Software Engineer | Web & App Developer | AI Enthusiast
-      </motion.p>
-      
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8, duration: 1 }}
-        className="mt-8 flex flex-col sm:flex-row gap-4"
-      >
-        <Button asChild size="lg" className="px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-pink-500 text-white font-medium shadow-lg shadow-purple-600/30 hover:scale-105 transition-transform duration-300">
-          <Link href="#portfolio">
-            View Portfolio <MoveRight className="ml-2 h-5 w-5" />
-          </Link>
-        </Button>
-        <Button asChild size="lg" variant="outline" className="px-6 py-3 rounded-full bg-black/5 dark:bg-white/10 border-black/20 dark:border-white/30 text-gray-800 dark:text-white font-medium backdrop-blur-lg hover:scale-105 transition-transform duration-300 hover:bg-black/10 dark:hover:bg-white/20 hover:text-gray-900 dark:hover:text-white">
-          <a href="/images/resume.pdf" download="resume.pdf">
-            Download CV <Download className="ml-2 h-5 w-5" />
-          </a>
-        </Button>
-      </motion.div>
+    <section id="home" className="relative flex flex-col items-center justify-center min-h-[100vh] text-center pt-20">
+      <div className="container mx-auto px-6 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col items-center"
+        >
+          <span className="text-rose-600 font-black tracking-[0.6em] uppercase text-[10px] mb-8 block italic">Engineered Excellence</span>
+          <h1 className="text-6xl md:text-[8rem] font-black italic uppercase tracking-tighter leading-[0.8] text-black mb-12 font-headline">
+            Aqib <br /> Mustafa
+          </h1>
+          <p className="max-w-xl text-lg md:text-xl text-zinc-500 italic font-medium leading-relaxed mb-16 px-6 border-x border-zinc-100">
+            Crafting high-performance digital experiences through <span className="text-black font-black">advanced software engineering</span> and modern design.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-6">
+            <Button asChild size="lg" className="h-16 px-12 rounded-full bg-black text-white font-black uppercase tracking-[0.3em] text-[10px] hover:bg-rose-600 shadow-2xl shadow-zinc-200 transition-all duration-500 hover:scale-110 active:scale-95 font-headline italic">
+              <Link href="#projects">
+                View Portfolio <MoveRight className="ml-3 h-5 w-5" />
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="h-16 px-12 rounded-full border-2 border-black text-black font-black uppercase tracking-[0.3em] text-[10px] hover:bg-black hover:text-white transition-all duration-500 hover:scale-110 active:scale-95 font-headline italic">
+              <a href="/resume.pdf" download="Aqib_Mustafa_Resume.pdf">
+                Download CV <Download className="ml-3 h-5 w-5" />
+              </a>
+            </Button>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Decorative Branding */}
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 rotate-90 hidden lg:block">
+        <span className="text-[10px] font-black uppercase tracking-[1em] text-zinc-200 italic">Portfolio 2026 Edition</span>
+      </div>
+      <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 -rotate-90 hidden lg:block">
+        <span className="text-[10px] font-black uppercase tracking-[1em] text-zinc-200 italic">2026 Edition</span>
+      </div>
     </section>
   );
 }

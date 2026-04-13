@@ -32,16 +32,16 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
             transition={{ duration: 0.5, delay: index * 0.1 }}
             viewport={{ once: true }}
             onMouseMove={handleMouseMove}
-            className="group relative flex flex-col h-full rounded-[2rem] bg-gray-900/40 border border-white/10 overflow-hidden hover:border-purple-500/50 active:scale-[0.98] transition-all duration-300"
+            className="group relative flex flex-col h-full rounded-[2.5rem] bg-white border border-zinc-100 overflow-hidden hover:border-rose-600 hover:shadow-2xl hover:shadow-rose-500/10 active:scale-[0.98] transition-all duration-500"
         >
-            {/* Spotlight Effect */}
+            {/* Spotlight Effect (Rose Optimized) */}
             <motion.div
-                className="pointer-events-none absolute -inset-px rounded-[2rem] opacity-0 transition duration-300 group-hover:opacity-100"
+                className="pointer-events-none absolute -inset-px rounded-[2.5rem] opacity-0 transition duration-300 group-hover:opacity-100"
                 style={{
                     background: useMotionTemplate`
                         radial-gradient(
                           650px circle at ${mouseX}px ${mouseY}px,
-                          rgba(168, 85, 247, 0.15),
+                          rgba(225, 29, 72, 0.05),
                           transparent 80%
                         )
                     `,
@@ -49,27 +49,27 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
             />
 
             {/* Image Container */}
-            <div className="relative aspect-[16/10] overflow-hidden m-2 rounded-[1.5rem] border border-white/5">
+            <div className="relative aspect-[16/11] overflow-hidden m-3 rounded-[1.8rem] border border-zinc-50 shadow-inner">
                 {imageSource ? (
                     <Image
                         src={imageSource}
                         alt={project.title}
                         fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                 ) : (
-                    <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-blue-900/20 flex items-center justify-center">
-                        <span className="text-4xl font-bold text-white/10">{project.title.charAt(0)}</span>
+                    <div className="absolute inset-0 bg-zinc-50 flex items-center justify-center">
+                        <span className="text-4xl font-black text-black/5 font-headline">{project.title.charAt(0)}</span>
                     </div>
                 )}
 
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-40" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-80" />
 
                 {/* Floating Tech Stack */}
-                <div className="absolute top-4 left-4 right-4 flex flex-wrap gap-2 opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-10">
+                <div className="absolute bottom-6 left-6 right-6 flex flex-wrap gap-2 opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 z-10">
                     {project.techStack.slice(0, 3).map((tech) => (
-                        <span key={tech} className="px-3 py-1 text-xs font-medium text-white bg-black/50 backdrop-blur-md rounded-full border border-white/10">
+                        <span key={tech} className="px-5 py-2 text-[8px] font-black uppercase tracking-[0.2em] text-black bg-white/90 backdrop-blur-md rounded-full shadow-lg">
                             {tech}
                         </span>
                     ))}
@@ -77,27 +77,23 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
             </div>
 
             {/* Content */}
-            <div className="flex flex-col flex-grow p-6 relative">
-                <div className="mb-4">
-                    <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
+            <div className="flex flex-col flex-grow p-10 relative">
+                <div className="mb-10">
+                    <h3 className="text-3xl font-black italic uppercase tracking-tighter text-black mb-4 group-hover:text-rose-600 transition-colors font-headline leading-[0.85]">
                         {project.title}
                     </h3>
-                    <p className="text-gray-400 text-sm leading-relaxed line-clamp-2">
+                    <p className="text-zinc-500 text-sm leading-relaxed line-clamp-2 italic font-medium">
                         {project.shortDescription}
                     </p>
                 </div>
 
-                <div className="mt-auto flex items-center justify-between">
-                    <div className="flex -space-x-2">
-                        {/* Placeholder for potential team avatars or status icons if needed later */}
-                    </div>
-
+                <div className="mt-auto pt-8 border-t border-zinc-50 flex items-center justify-between">
                     <Link
                         href={`/projects/${project.id}`}
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-gray-900 font-semibold text-sm hover:bg-purple-50 transition-all transform group-hover:translate-x-1"
+                        className="inline-flex items-center gap-4 px-10 py-4 rounded-full bg-black text-white font-black uppercase tracking-[0.3em] text-[9px] hover:bg-rose-600 transition-all shadow-xl shadow-zinc-200 font-headline italic"
                     >
-                        View Project
-                        <ArrowRight className="w-4 h-4" />
+                        Explore Details
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </Link>
                 </div>
             </div>

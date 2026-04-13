@@ -14,6 +14,8 @@ export interface Project {
     duration?: string;
     industries?: string[];
     category: "Web Development" | "Mobile App";
+    technicalImpact?: string;
+    coreCapabilities?: string[];
 }
 
 export const projects: Project[] = [
@@ -37,12 +39,22 @@ export const projects: Project[] = [
         ],
         techStack: ["Flutter", "Dart", "Firebase", "React (Admin)"],
         category: "Mobile App",
+        price: "$1000-$3000",
+        duration: "14-45 days",
+        industries: ["Fitness", "Healthcare", "E-commerce", "SaaS", "Lifestyle"],
         features: [
             "Workout Tracking & Logging",
             "Nutrition & Calorie Tracking",
             "Progress Monitoring & Analytics",
             "Trainer Admin Panel (Web)",
             "User Authentication & Profiles"
+        ],
+        technicalImpact: "40% Faster User Onboarding",
+        coreCapabilities: [
+            "AI Workout Analysis",
+            "Real-time Metric Sync",
+            "Health Kit Integration",
+            "Custom Training Plans"
         ]
     },
     {
@@ -78,6 +90,13 @@ export const projects: Project[] = [
             "Patients Management - Full patient data including name, age, gender, contact, and assigned doctor. Automatic color rules: Female → Pink, Male → Black. Priority highlighting for elderly patients (Age > 60). Blood group tagging and rare blood groups highlighted in yellow/red. Timestamp auto-captured on new entries.",
             "Appointments Tracking - Linked patients and doctors for scheduling appointments. Timestamp-based tracking to identify recent appointments.",
             "Departments View - Displays all hospital departments with linked doctors."
+        ],
+        technicalImpact: "60% Reduction in Administrative Time",
+        coreCapabilities: [
+            "Intelligent Doctor Scheduling",
+            "Automated Patient Record Sync",
+            "Priority-Based Health Monitoring",
+            "Real-time Dept Dashboard"
         ]
     },
     {
@@ -107,6 +126,9 @@ export const projects: Project[] = [
         techStack: ["Next.js", "React", "Tailwind CSS", "Firebase", "Stripe"],
         category: "Web Development",
         liveLink: "https://invoicecraft.com", // Example link
+        price: "$1200-$2500",
+        duration: "14-30 days",
+        industries: ["SaaS", "Fintech", "Freelancing", "Business Automation", "Finance"],
         features: [
             "Customizable Invoice Templates",
             "PDF Generation & Download",

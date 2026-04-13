@@ -9,6 +9,7 @@ import { PortfolioSection } from '@/components/sections/portfolio';
 import { ProductizedServices } from '@/components/sections/productized-services';
 import { ContactSection } from '@/components/sections/contact';
 import { ExperienceSection } from '@/components/sections/experience';
+import { AboutSection } from '@/components/sections/about';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { personalizedGreeting } from '@/ai/flows/personalized-greeting';
@@ -23,11 +24,13 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-black text-white selection:bg-purple-500/30">
+    <div className="relative min-h-screen bg-white text-black selection:bg-rose-500/10 font-body">
       <Navbar />
 
       <main className="flex-1">
         <HeroModern greeting={greeting} />
+        
+        <AboutSection />
 
         <SkillsModern />
 

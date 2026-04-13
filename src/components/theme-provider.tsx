@@ -20,7 +20,7 @@ const ThemeProviderContext = createContext<ThemeProviderState | undefined>(undef
 export function ThemeProvider({ 
   children, 
   storageKey = 'aqib-portfolio-theme',
-  defaultTheme = 'dark'
+  defaultTheme = 'light'
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(defaultTheme);
 

@@ -24,60 +24,57 @@ export default function BlogPostClient({ params }: BlogPostClientProps) {
     }
 
     return (
-        <div className="min-h-screen bg-black text-white selection:bg-purple-500/30">
+        <div className="min-h-screen bg-white text-black selection:bg-rose-500/10 font-sans">
             <Navbar />
 
-            <div className="fixed inset-0 pointer-events-none z-0">
-                <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-purple-900/10 rounded-full blur-[128px]" />
-                <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-900/10 rounded-full blur-[128px]" />
-            </div>
-
-            <main className="pt-32 pb-20 container mx-auto px-4 relative z-10 max-w-4xl">
-                <Link href="/blog" className="inline-flex items-center text-gray-400 hover:text-white mb-8 transition-colors group">
-                    <MoveLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
-                    Back to Blog
+            <main className="pt-40 pb-40 container mx-auto px-6 relative z-10 max-w-5xl">
+                <Link href="/blog" className="inline-flex items-center gap-4 text-zinc-400 hover:text-black mb-16 transition-all group">
+                    <div className="w-12 h-12 rounded-full border border-zinc-100 flex items-center justify-center group-hover:bg-black group-hover:text-white transition-all shadow-xl">
+                        <MoveLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-[0.4em] italic leading-none">Back to Articles</span>
                 </Link>
 
                 <motion.article
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.8 }}
                 >
-                    <header className="mb-12 text-center">
-                        <div className="flex items-center justify-center gap-2 mb-6">
-                            <span className="px-3 py-1 bg-purple-500/20 text-purple-300 text-xs rounded-full font-medium border border-purple-500/20">
+                    <header className="mb-24">
+                        <div className="flex items-center gap-2 mb-10">
+                            <span className="px-5 py-2 bg-zinc-50 text-black text-[9px] rounded-full font-black uppercase tracking-widest border border-zinc-100 italic">
                                 {post.category}
                             </span>
                         </div>
-                        <h1 className="text-3xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-gray-400 leading-tight">
+                        <h1 className="text-5xl md:text-7xl font-black italic uppercase tracking-tighter leading-none text-black mb-12 font-headline">
                             {post.title}
                         </h1>
 
-                        <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-400 border-y border-white/10 py-6">
-                            <div className="flex items-center gap-2">
-                                <User className="w-4 h-4 text-purple-400" />
+                        <div className="flex flex-wrap items-center gap-12 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 border-y border-zinc-50 py-10 italic">
+                            <div className="flex items-center gap-3">
+                                <User className="w-4 h-4 text-rose-600" />
                                 {post.author}
                             </div>
-                            <div className="flex items-center gap-2">
-                                <Calendar className="w-4 h-4 text-blue-400" />
+                            <div className="flex items-center gap-3">
+                                <Calendar className="w-4 h-4 text-black" />
                                 {post.date}
                             </div>
-                            <div className="flex items-center gap-2">
-                                <Clock className="w-4 h-4 text-green-400" />
-                                15 min read
+                            <div className="flex items-center gap-3">
+                                <Clock className="w-4 h-4 text-black" />
+                                15 Min Read
                             </div>
                         </div>
                     </header>
 
-                    <div className="prose prose-invert prose-lg max-w-none prose-headings:text-white prose-a:text-purple-400 hover:prose-a:text-purple-300 prose-strong:text-white prose-code:text-purple-300">
+                    <div className="prose prose-lg max-w-none text-zinc-500 italic font-medium leading-relaxed prose-headings:text-black prose-headings:font-black prose-headings:italic prose-headings:uppercase prose-headings:tracking-tighter prose-headings:font-headline prose-strong:text-black prose-a:text-rose-600 hover:prose-a:text-rose-700 transition-colors">
                         <div dangerouslySetInnerHTML={{ __html: post.content || `<p>${post.excerpt}</p><p>Full content coming soon...</p>` }} />
                     </div>
 
-                    <div className="mt-16 pt-8 border-t border-white/10 flex justify-between items-center">
-                        <div className="text-gray-400 text-sm">
-                            Tags: <span className="text-white">{post.category}, Tech, 2026</span>
+                    <div className="mt-32 pt-12 border-t border-zinc-50 flex flex-col md:flex-row justify-between items-center gap-10">
+                        <div className="text-zinc-400 text-[10px] font-black uppercase tracking-[0.3em] italic">
+                            Tags: <span className="text-black">{post.category}, Tech, 2026</span>
                         </div>
-                        <button className="flex items-center gap-2 text-white hover:text-purple-400 transition-colors">
+                        <button className="flex items-center gap-4 px-10 py-4 bg-black text-white rounded-full font-black uppercase tracking-[0.3em] text-[10px] hover:bg-rose-600 transition-all shadow-2xl font-headline italic">
                             <Share2 className="w-4 h-4" /> Share Article
                         </button>
                     </div>

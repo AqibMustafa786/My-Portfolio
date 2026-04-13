@@ -81,135 +81,137 @@ export default function ContactPage() {
     };
 
     return (
-        <div className="min-h-screen bg-black text-white selection:bg-purple-500/30">
+        <div className="min-h-screen bg-white text-black selection:bg-rose-500/10 font-sans relative overflow-x-hidden">
             <Navbar />
 
-            <div className="fixed inset-0 pointer-events-none z-0">
-                <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-purple-900/10 rounded-full blur-[128px]" />
-            </div>
-
-            <main className="pt-32 pb-20 container mx-auto px-4 relative z-10">
-                <div className="text-center mb-16">
-                    <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-gray-400">
-                        Get in <span className="text-purple-400">Touch</span>
-                    </h1>
-                    <p className="text-gray-400 text-xl max-w-2xl mx-auto">
-                        Have a project in mind? Let's build something amazing together.
-                    </p>
+            <main className="pt-40 pb-40 container mx-auto px-6 relative z-10">
+                <div className="text-center mb-32">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <span className="text-rose-600 font-black tracking-[0.6em] uppercase text-[10px] mb-8 block italic">Project Initiation</span>
+                        <h1 className="text-6xl md:text-[8rem] font-black italic uppercase tracking-tighter leading-[0.8] text-black mb-12 font-headline">
+                            Get In <span className="text-rose-600 not-italic">Touch</span>
+                        </h1>
+                        <p className="text-zinc-500 text-xl max-w-3xl mx-auto italic font-medium leading-relaxed border-x border-zinc-100 px-16">
+                            Have a vision? Let&apos;s architect something exceptional together. 
+                        </p>
+                    </motion.div>
                 </div>
 
-                <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12">
+                <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-24">
                     {/* Contact Info */}
                     <motion.div
-                        initial={{ opacity: 0, x: -30 }}
+                        initial={{ opacity: 0, x: -60 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="space-y-8"
+                        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                        className="space-y-12"
                     >
-                        <div className="bg-white/5 p-8 rounded-3xl border border-white/10">
-                            <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
-                            <div className="space-y-6">
-                                <div className="flex items-start gap-4">
-                                    <div className="p-3 bg-purple-500/10 rounded-xl text-purple-400">
-                                        <Mail className="w-6 h-6" />
+                        <div className="bg-zinc-50 p-12 rounded-[3.5rem] border border-zinc-100">
+                            <h3 className="text-3xl font-black mb-12 font-headline italic uppercase tracking-tighter">Contact Protocol</h3>
+                            <div className="space-y-10">
+                                <div className="group flex items-start gap-8">
+                                    <div className="p-5 bg-white rounded-2xl text-black border border-zinc-100 shadow-sm group-hover:bg-rose-600 group-hover:text-white transition-all duration-500">
+                                        <Mail className="w-8 h-8" />
                                     </div>
                                     <div>
-                                        <div className="font-bold text-white">Email</div>
-                                        <a href="mailto:contact@aqib.dev" className="text-gray-400 hover:text-white transition-colors">contact@aqib.dev</a>
+                                        <div className="font-black text-black uppercase tracking-widest text-[9px] mb-1 italic">Direct Channel</div>
+                                        <a href="mailto:contact@aqib.dev" className="text-2xl font-black font-headline italic uppercase tracking-tighter text-zinc-500 hover:text-rose-600 transition-colors">contact@aqib.dev</a>
                                     </div>
                                 </div>
-                                <div className="flex items-start gap-4">
-                                    <div className="p-3 bg-blue-500/10 rounded-xl text-blue-400">
-                                        <Phone className="w-6 h-6" />
+                                <div className="group flex items-start gap-8">
+                                    <div className="p-5 bg-white rounded-2xl text-black border border-zinc-100 shadow-sm group-hover:bg-rose-600 group-hover:text-white transition-all duration-500">
+                                        <Phone className="w-8 h-8" />
                                     </div>
                                     <div>
-                                        <div className="font-bold text-white">Phone</div>
-                                        <div className="text-gray-400">+1 (000) 000-0000</div>
+                                        <div className="font-black text-black uppercase tracking-widest text-[9px] mb-1 italic">Vocal Network</div>
+                                        <div className="text-2xl font-black font-headline italic uppercase tracking-tighter text-zinc-500">+1 (000) 000-0000</div>
                                     </div>
                                 </div>
-                                <div className="flex items-start gap-4">
-                                    <div className="p-3 bg-green-500/10 rounded-xl text-green-400">
-                                        <MapPin className="w-6 h-6" />
+                                <div className="group flex items-start gap-8">
+                                    <div className="p-5 bg-white rounded-2xl text-black border border-zinc-100 shadow-sm group-hover:bg-rose-600 group-hover:text-white transition-all duration-500">
+                                        <MapPin className="w-8 h-8" />
                                     </div>
                                     <div>
-                                        <div className="font-bold text-white">Location</div>
-                                        <div className="text-gray-400">Remote / Available Worldwide</div>
+                                        <div className="font-black text-black uppercase tracking-widest text-[9px] mb-1 italic">Base Location</div>
+                                        <div className="text-2xl font-black font-headline italic uppercase tracking-tighter text-zinc-500">Remote / Global Architecture</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="p-8 rounded-3xl bg-gradient-to-br from-purple-900/20 to-blue-900/20 border border-white/10">
-                            <h3 className="text-xl font-bold mb-2">Freelance Availability</h3>
-                            <p className="text-green-400 font-medium flex items-center gap-2 mb-4">
-                                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                                Available for new projects
+                        <div className="p-12 rounded-[3.5rem] bg-black text-white shadow-2xl">
+                            <h3 className="text-2xl font-black mb-4 font-headline italic uppercase tracking-tighter">Current Deployment</h3>
+                            <p className="text-rose-600 font-black flex items-center gap-3 mb-8 uppercase tracking-widest text-[10px] italic">
+                                <span className="w-3 h-3 rounded-full bg-rose-600 animate-pulse" />
+                                Accepting Priority Projects
                             </p>
-                            <p className="text-gray-400 text-sm mb-6">
-                                I am currently accepting new freelance projects on Fiverr and Upwork.
-                                Response time: &lt; 24 hours.
+                            <p className="text-zinc-400 italic font-medium text-lg leading-relaxed mb-10 border-l border-zinc-800 pl-8">
+                                Available for enterprise consulting, SaaS development, and bespoke digital architecture.
                             </p>
-                            <a href="https://www.fiverr.com/aqibmustafa" target="_blank" className="w-full block py-3 bg-white text-black text-center font-bold rounded-xl hover:bg-gray-100 transition-colors">
-                                Hire Me on Fiverr
+                            <a href="https://www.fiverr.com/aqibmustafa" target="_blank" rel="noopener noreferrer" className="w-full block py-6 bg-white text-black text-center font-black rounded-2xl hover:bg-rose-600 hover:text-white transition-all font-headline italic uppercase tracking-[0.3em] text-[10px]">
+                                Secure On Fiverr
                             </a>
                         </div>
                     </motion.div>
 
                     {/* Contact Form */}
                     <motion.div
-                        initial={{ opacity: 0, x: 30 }}
+                        initial={{ opacity: 0, x: 60 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                        className="bg-white/5 p-8 md:p-10 rounded-3xl border border-white/10"
+                        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+                        className="bg-zinc-50 p-12 md:p-16 rounded-[3.5rem] border border-zinc-100 h-full"
                     >
-                        <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="grid md:grid-cols-2 gap-6">
-                                <div className="space-y-2">
-                                    <label className="text-sm font-medium text-gray-300">Name</label>
+                        <form onSubmit={handleSubmit} className="space-y-10">
+                            <div className="grid gap-10">
+                                <div className="space-y-4">
+                                    <label className="text-[10px] font-black text-black uppercase tracking-[0.4em] italic pl-2">Subject Identity</label>
                                     <input
                                         type="text"
                                         name="name"
                                         value={formData.name}
                                         onChange={handleChange}
-                                        className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors"
-                                        placeholder="John Doe"
+                                        className="w-full bg-white border border-zinc-100 rounded-2xl px-8 py-5 text-black font-medium focus:outline-none focus:border-rose-600 transition-all shadow-sm"
+                                        placeholder="Identification"
                                         required
                                     />
                                 </div>
-                                <div className="space-y-2">
-                                    <label className="text-sm font-medium text-gray-300">Email</label>
+                                <div className="space-y-4">
+                                    <label className="text-[10px] font-black text-black uppercase tracking-[0.4em] italic pl-2">Digital Address</label>
                                     <input
                                         type="email"
                                         name="email"
                                         value={formData.email}
                                         onChange={handleChange}
-                                        className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors"
-                                        placeholder="john@example.com"
+                                        className="w-full bg-white border border-zinc-100 rounded-2xl px-8 py-5 text-black font-medium focus:outline-none focus:border-rose-600 transition-all shadow-sm"
+                                        placeholder="Email Link"
                                         required
                                     />
                                 </div>
                             </div>
-                            <div className="space-y-2">
-                                <label className="text-sm font-medium text-gray-300">Subject</label>
+                            <div className="space-y-4">
+                                <label className="text-[10px] font-black text-black uppercase tracking-[0.4em] italic pl-2">Inquiry Type</label>
                                 <input
                                     type="text"
                                     name="subject"
                                     value={formData.subject}
                                     onChange={handleChange}
-                                    className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors"
-                                    placeholder="Project Inquiry"
+                                    className="w-full bg-white border border-zinc-100 rounded-2xl px-8 py-5 text-black font-medium focus:outline-none focus:border-rose-600 transition-all shadow-sm"
+                                    placeholder="Project Classification"
                                     required
                                 />
                             </div>
-                            <div className="space-y-2">
-                                <label className="text-sm font-medium text-gray-300">Message</label>
+                            <div className="space-y-4">
+                                <label className="text-[10px] font-black text-black uppercase tracking-[0.4em] italic pl-2">Transmission Data</label>
                                 <textarea
-                                    rows={5}
+                                    rows={6}
                                     name="message"
                                     value={formData.message}
                                     onChange={handleChange}
-                                    className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors"
-                                    placeholder="Tell me about your project..."
+                                    className="w-full bg-white border border-zinc-100 rounded-2xl px-8 py-5 text-black font-medium focus:outline-none focus:border-rose-600 transition-all shadow-sm resize-none"
+                                    placeholder="Briefing details..."
                                     required
                                 />
                             </div>
@@ -217,9 +219,9 @@ export default function ContactPage() {
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="w-full py-4 bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl font-bold text-white text-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="w-full py-7 bg-black rounded-2xl font-black text-white text-[11px] uppercase tracking-[0.4em] italic hover:bg-rose-600 transition-all shadow-2xl shadow-zinc-200 flex items-center justify-center gap-4 disabled:opacity-50 disabled:cursor-not-allowed font-headline"
                             >
-                                {isSubmitting ? "Sending..." : "Send Message"}
+                                {isSubmitting ? "Transmitting..." : "Send Message"}
                                 {!isSubmitting && <Send className="w-5 h-5" />}
                             </button>
                         </form>

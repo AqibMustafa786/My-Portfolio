@@ -20,101 +20,89 @@ export default function AboutPage() {
     ];
 
     return (
-        <div className="min-h-screen bg-black text-white selection:bg-purple-500/30">
+        <div className="min-h-screen bg-white text-black selection:bg-rose-500/10 font-sans relative overflow-x-hidden">
             <Navbar />
 
-            <div className="fixed inset-0 pointer-events-none z-0">
-                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-purple-900/10 rounded-full blur-[128px]" />
-                <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-900/10 rounded-full blur-[128px]" />
-            </div>
-
-            <main className="pt-32 pb-20 container mx-auto px-4 relative z-10">
+            <main className="pt-40 pb-40 container mx-auto px-6 relative z-10">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="max-w-4xl mx-auto text-center mb-20"
+                    transition={{ duration: 0.8 }}
+                    className="max-w-5xl mx-auto text-center mb-32"
                 >
-                    <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-gray-400">
-                        About <span className="text-purple-400">Me</span>
+                    <span className="text-rose-600 font-black tracking-[0.6em] uppercase text-[10px] mb-8 block italic">Personal Directive</span>
+                    <h1 className="text-6xl md:text-[8rem] font-black italic uppercase tracking-tighter leading-[0.8] text-black mb-12 font-headline">
+                        The Developer <br /> <span className="text-rose-600 not-italic">Behind The Code</span>
                     </h1>
-                    <p className="text-gray-400 text-xl leading-relaxed max-w-3xl mx-auto">
-                        Full Stack Developer | Flutter Developer | CRM & SaaS Specialist
-                    </p>
                 </motion.div>
 
-                <div className="grid lg:grid-cols-2 gap-16 items-start max-w-6xl mx-auto mb-24">
+                <div className="grid lg:grid-cols-2 gap-24 items-start max-w-7xl mx-auto mb-48">
                     <motion.div
-                        initial={{ opacity: 0, x: -50 }}
+                        initial={{ opacity: 0, x: -60 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="relative top-0 lg:sticky lg:top-32"
+                        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                        className="relative lg:sticky lg:top-40"
                     >
-                        <div className="aspect-[3/4] rounded-3xl overflow-hidden bg-gray-900/50 border border-white/10 relative group">
+                        <div className="aspect-[4/5] rounded-[3.5rem] overflow-hidden bg-zinc-50 border border-zinc-100 relative group shadow-2xl">
                             <Image
                                 src="/assets/my-picture.png"
                                 alt="Aqib Mustafa"
                                 fill
-                                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                className="object-cover transition-transform duration-1000 group-hover:scale-110"
                             />
-                            {/* Overlay Gradient */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
+                            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 to-transparent" />
 
-                            <div className="absolute bottom-6 left-6 right-6 z-10">
-                                <div className="text-white font-bold text-2xl">Aqib Mustafa</div>
-                                <div className="text-purple-400 font-medium">BSCS Graduate, SZABIST</div>
+                            <div className="absolute bottom-10 left-10 right-10 z-10">
+                                <div className="text-white font-black text-4xl font-headline italic uppercase tracking-tighter mb-2">Aqib Mustafa</div>
+                                <div className="text-rose-600 font-black text-xs uppercase tracking-[0.3em] italic">BSCS Graduate, SZABIST</div>
                             </div>
                         </div>
-
                     </motion.div>
 
                     <motion.div
-                        initial={{ opacity: 0, x: 50 }}
+                        initial={{ opacity: 0, x: 60 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="space-y-8"
+                        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                        className="space-y-16"
                     >
-                        <div>
-                            <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                                <BookOpen className="w-6 h-6 text-purple-500" />
-                                My Journey
-                            </h3>
-                            <p className="text-gray-400 leading-relaxed text-lg mb-4">
-                                I am a Bachelor of Science in Computer Science (BSCS) graduate from SZABIST University. My academic background provided me with strong foundations in software engineering, data structures, databases, object-oriented programming, and system design. During my degree, I developed a deep interest in building practical software solutions that solve real business problems.
+                        <div className="space-y-8">
+                            <div className="flex items-center gap-6">
+                                <div className="w-16 h-[2px] bg-rose-600" />
+                                <h3 className="text-3xl font-black text-black font-headline italic uppercase tracking-tighter">My Journey</h3>
+                            </div>
+                            <p className="text-zinc-500 leading-relaxed text-xl mb-4 italic font-medium border-l-[6px] border-zinc-100 pl-10">
+                                I am a Bachelor of Science in Computer Science (BSCS) graduate from SZABIST University. My academic background provided me with strong foundations in software engineering, data structures, and system design.
                             </p>
-                            <p className="text-gray-400 leading-relaxed text-lg">
-                                Over the past <span className="text-white font-semibold">3+ years</span>, I have gained professional experience in Web Application Development and AppSheet business solutions, along with <span className="text-white font-semibold">2+ years</span> of hands-on experience in Flutter mobile app development.
+                            <p className="text-zinc-500 leading-relaxed text-xl italic font-medium">
+                                Over the past <span className="text-black font-black">3+ years</span>, I have gained professional experience in Web Application Development and AppSheet business solutions, along with <span className="text-black font-black">2+ years</span> of hands-on experience in Flutter mobile app development.
                             </p>
                         </div>
 
-                        <div>
-                            <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                                <Layers className="w-6 h-6 text-blue-500" />
-                                What I Do
-                            </h3>
-                            <p className="text-gray-400 leading-relaxed text-lg mb-6">
-                                I specialize in building scalable SaaS platforms, CRM systems, admin dashboards, client portals, and workflow automation systems. My focus is always on performance optimization, security, scalability, and modern UI/UX standards.
+                        <div className="space-y-10">
+                            <div className="flex items-center gap-6">
+                                <div className="w-16 h-[2px] bg-black" />
+                                <h3 className="text-3xl font-black text-black font-headline italic uppercase tracking-tighter">Core Competencies</h3>
+                            </div>
+                            <p className="text-zinc-500 leading-relaxed text-xl italic font-medium">
+                                I specialize in building scalable SaaS platforms, CRM systems, admin dashboards, and workflow automation. My focus is always on performance optimization, security, and modern UI/UX standards.
                             </p>
 
-                            <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
-                                <h4 className="font-bold text-white mb-4">Technical Expertise</h4>
-                                <div className="flex flex-wrap gap-2">
-                                    {expertise.map((skill, i) => (
-                                        <span key={i} className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-300 text-sm hover:border-purple-500/30 transition-colors">
-                                            {skill}
-                                        </span>
-                                    ))}
-                                </div>
+                            <div className="flex flex-wrap gap-4">
+                                {expertise.map((skill, i) => (
+                                    <span key={i} className="px-6 py-3 rounded-full bg-zinc-50 border border-zinc-100 text-zinc-500 text-[10px] font-black uppercase tracking-widest hover:border-black hover:text-black transition-all italic">
+                                        {skill}
+                                    </span>
+                                ))}
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-3 gap-4 pt-4">
+                        <div className="grid grid-cols-3 gap-8 pt-10 border-t border-zinc-50">
                             {stats.map((stat, i) => (
-                                <div key={i} className="text-center p-4 bg-white/5 rounded-2xl border border-white/5">
-                                    <div className="text-2xl md:text-3xl font-bold text-purple-400 mb-1">{stat.value}</div>
-                                    <div className="text-xs md:text-sm text-gray-400">{stat.label}</div>
+                                <div key={i} className="text-left group">
+                                    <div className="text-4xl md:text-5xl font-black text-black font-headline group-hover:text-rose-600 transition-colors italic tracking-tighter">{stat.value}</div>
+                                    <div className="text-[9px] font-black text-zinc-300 uppercase tracking-[0.3em] italic mt-2">{stat.label}</div>
                                 </div>
                             ))}
                         </div>
@@ -122,13 +110,14 @@ export default function AboutPage() {
                 </div>
 
                 {/* Values Section */}
-                <div className="max-w-6xl mx-auto">
-                    <h2 className="text-3xl font-bold text-center mb-12">My Core Values</h2>
-                    <div className="grid md:grid-cols-3 gap-8">
+                <div className="max-w-7xl mx-auto border-t border-zinc-50 pt-32">
+                    <span className="text-rose-600 font-black tracking-[0.6em] uppercase text-[10px] mb-8 block italic text-center">Operational Ethics</span>
+                    <h2 className="text-5xl font-black text-center mb-24 font-headline italic uppercase tracking-tighter">Strategic Values</h2>
+                    <div className="grid md:grid-cols-3 gap-16">
                         {[
-                            { title: "Continuous Learning", desc: "I constantly upgrade my skills in modern frameworks and cloud backend systems.", icon: BookOpen },
+                            { title: "Continuous Evolution", desc: "I constantly upgrade my skills in modern frameworks and cloud backend systems.", icon: BookOpen },
                             { title: "Scalable Architecture", desc: "My goal is to build enterprise-grade SaaS solutions and high-quality software products.", icon: Server },
-                            { title: "Security First", desc: "Prioritizing secure authentication, RBAC, and data protection in every application.", icon: ShieldCheck },
+                            { title: "Defense Integrity", desc: "Prioritizing secure authentication, RBAC, and data protection in every application.", icon: ShieldCheck },
                         ].map((item, i) => (
                             <motion.div
                                 key={i}
@@ -136,20 +125,20 @@ export default function AboutPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.1 }}
-                                className="bg-white/5 p-8 rounded-3xl border border-white/5 hover:border-purple-500/30 transition-colors group"
+                                className="group relative p-12 bg-zinc-50 rounded-[3rem] border border-zinc-100 hover:border-rose-600 hover:bg-white transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-rose-500/5"
                             >
-                                <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-purple-400 mb-6 group-hover:scale-110 transition-transform">
-                                    <item.icon className="w-6 h-6" />
+                                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-black mb-10 group-hover:bg-rose-600 group-hover:text-white transition-all duration-500 border border-zinc-100 shadow-sm">
+                                    <item.icon className="w-8 h-8" />
                                 </div>
-                                <h3 className="text-xl font-bold mb-3 text-white">{item.title}</h3>
-                                <p className="text-gray-400">{item.desc}</p>
+                                <h3 className="text-2xl font-black mb-4 text-black font-headline tracking-tighter uppercase italic">{item.title}</h3>
+                                <p className="text-zinc-500 italic font-medium leading-relaxed">{item.desc}</p>
                             </motion.div>
                         ))}
                     </div>
                 </div>
 
-            </main >
+            </main>
             <Footer />
-        </div >
+        </div>
     );
 }

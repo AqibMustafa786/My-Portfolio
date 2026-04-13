@@ -13,34 +13,39 @@ const stats = [
 
 export function StatsSection() {
   return (
-    <section id="stats" className="bg-white/40 dark:bg-black/40 backdrop-blur-lg">
-      <div className="container">
-        <motion.h2
+    <section id="stats" className="bg-white py-32 overflow-hidden">
+      <div className="container mx-auto px-6 relative z-10">
+        <motion.div
             whileInView={{ opacity: 1, y: 0 }}
-            initial={{ opacity: 0, y: 40 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            className="text-4xl font-bold text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-24"
         >
-          Achievements & Stats
-        </motion.h2>
+          <span className="text-rose-600 font-black tracking-[0.5em] uppercase text-[10px] mb-8 block italic">Measurable Impact</span>
+          <h2 className="text-5xl md:text-7xl font-black italic uppercase tracking-tighter text-black font-headline leading-none">
+            Strategic <span className="text-rose-600 not-italic">Metrics</span>
+          </h2>
+        </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              viewport={{ once: true, amount: 0.5 }}
-              className="p-6 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 shadow-lg backdrop-blur-xl text-center h-full"
+              transition={{ duration: 1, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true }}
+              className="p-10 rounded-[2.5rem] bg-zinc-50 border border-zinc-100 hover:border-rose-600 hover:bg-white transition-all duration-700 shadow-sm hover:shadow-2xl hover:shadow-rose-500/5 text-left h-full group"
             >
-              <stat.icon className="h-10 w-10 mx-auto mb-4 text-purple-500 dark:text-purple-400" />
-              <div className="text-4xl font-bold text-gray-800 dark:text-white">
+              <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-black mb-8 group-hover:bg-rose-600 group-hover:text-white transition-all duration-500 border border-zinc-100 group-hover:border-rose-600 shadow-sm">
+                <stat.icon className="h-8 w-8" />
+              </div>
+              <div className="text-5xl md:text-6xl font-black text-black font-headline italic tracking-tighter mb-2">
                 <AnimatedCounter endValue={stat.value} />
                 {stat.suffix}
               </div>
-              <p className="text-gray-600 dark:text-gray-400 mt-2">{stat.label}</p>
+              <p className="text-zinc-400 font-black uppercase tracking-widest text-[9px] italic">{stat.label}</p>
             </motion.div>
           ))}
         </div>
