@@ -1,0 +1,165 @@
+"use client";
+
+import { useState } from "react";
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
+import { posts } from "@/data/blog-posts";
+import { Plus, Search, Edit3, Trash2, LayoutDashboard, Share2, Eye, Shield, Lock } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+export default function BlogAdminPage() {
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [password, setPassword] = useState("");
+    const [searchQuery, setSearchQuery] = useState("");
+
+    const handleLogin = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (password === "aqib123") { // Simple protection
+            setIsAuthenticated(true);
+        } else {
+            alert("Unauthorized Access");
+        }
+    };
+
+    const filteredPosts = posts.filter(post => 
+        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.category.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    if (!isAuthenticated) {
+        return (
+            <div className="min-h-screen bg-[#080808] flex items-center justify-center p-6 text-white font-sans">
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="w-full max-w-md bg-white/5 border border-white/10 p-12 rounded-[2.5rem] backdrop-blur-3xl shadow-2xl"
+                >
+                    <div className="flex flex-col items-center mb-10">
+                        <div className="w-20 h-20 rounded-full bg-rose-600/10 flex items-center justify-center mb-6 border border-rose-600/20">
+                            <Lock className="w-8 h-8 text-rose-500" />
+                        </div>
+                        <h1 className="text-3xl font-black italic uppercase tracking-tighter text-center">Security Check</h1>
+                        <p className="text-zinc-500 text-[10px] font-black uppercase tracking-[0.3em] mt-2 italic text-center">Blog Authority Access Terminal</p>
+                    </div>
+
+                    <form onSubmit={handleLogin} className="space-y-6">
+                        <div className="relative group">
+                            <input 
+                                type="password" 
+                                placeholder="ACCESS_KEY" 
+                                className="w-full bg-black/40 border border-white/5 px-6 py-4 rounded-full text-[12px] font-black uppercase tracking-widest placeholder:text-zinc-700 focus:border-rose-600 transition-all outline-none italic"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </div>
+                        <button className="w-full py-4 bg-white text-black rounded-full font-black uppercase tracking-[0.3em] text-[10px] hover:bg-rose-600 hover:text-white transition-all shadow-2xl font-headline italic">
+                            Initialize Connection
+                        </button>
+                    </form>
+                </motion.div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="min-h-screen bg-[#080808] text-white font-sans selection:bg-rose-500/30">
+            <Navbar />
+            
+            <main className="pt-40 pb-40 container mx-auto px-6 max-w-7xl">
+                {/* Dashboard Header */}
+                <div className="flex flex-col md:flex-row justify-between items-end gap-10 mb-20">
+                    <div>
+                        <div className="flex items-center gap-4 mb-4">
+                            <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
+                                <LayoutDashboard className="w-5 h-5 text-rose-500" />
+                            </div>
+                            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-500 italic leading-none">Management Core</span>
+                        </div>
+                        <h1 className="text-5xl md:text-8xl font-black italic uppercase tracking-tighter leading-none text-white font-headline">
+                            Blog Terminal
+                        </h1>
+                    </div>
+                    
+                    <button className="flex items-center gap-4 px-10 py-5 bg-white text-black rounded-full font-black uppercase tracking-[0.3em] text-[10px] hover:bg-rose-600 hover:text-white transition-all shadow-2xl font-headline italic">
+                        <Plus className="w-4 h-4" /> Deploy New Article
+                    </button>
+                </div>
+
+                {/* Stats Bar */}
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-16">
+                    {[
+                        { label: "Total Articles", val: posts.length, icon: Share2 },
+                        { label: "Active Nodes", val: "GLOBAL", icon: Shield },
+                        { label: "Total Reach", val: "125K+", icon: Eye },
+                        { label: "Admin Status", val: "VERIFIED", icon: Shield },
+                    ].map((stat, i) => (
+                        <div key={i} className="bg-white/5 border border-white/5 p-8 rounded-3xl backdrop-blur-md">
+                            <stat.icon className="w-5 h-5 text-rose-500 mb-4" />
+                            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 mb-2 italic">{stat.label}</div>
+                            <div className="text-2xl font-black italic uppercase tracking-tighter text-white font-headline">{stat.val}</div>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Search and Action Bar */}
+                <div className="relative mb-12">
+                    <Search className="absolute left-8 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-600" />
+                    <input 
+                        type="text"
+                        placeholder="SEARCH INDEX..."
+                        className="w-full bg-white/5 border border-white/5 px-20 py-6 rounded-full text-zinc-300 font-black tracking-widest text-[11px] uppercase placeholder:text-zinc-800 focus:border-rose-600/50 transition-all outline-none italic shadow-2xl"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                </div>
+
+                {/* Articles Table/Grid */}
+                <div className="space-y-4">
+                    <AnimatePresence mode="popLayout">
+                        {filteredPosts.map((post, index) => (
+                            <motion.div 
+                                key={post.slug}
+                                layout
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: index * 0.05 }}
+                                className="group bg-white/5 hover:bg-white/[0.08] border border-white/5 p-8 rounded-[2rem] flex flex-col md:flex-row items-center justify-between gap-10 transition-all backdrop-blur-sm"
+                            >
+                                <div className="flex items-center gap-10">
+                                    <div className="w-20 h-20 rounded-2xl overflow-hidden bg-black border border-white/5 flex-shrink-0 grayscale group-hover:grayscale-0 transition-all duration-500">
+                                        <img src={post.image} alt="" className="w-full h-full object-cover opacity-50 group-hover:opacity-100" />
+                                    </div>
+                                    <div>
+                                        <div className="flex items-center gap-3 mb-2">
+                                            <span className="px-3 py-1 bg-rose-600/10 text-rose-500 text-[8px] rounded-full font-black uppercase tracking-widest border border-rose-600/20 italic">
+                                                {post.category}
+                                            </span>
+                                            <span className="text-[8px] font-black uppercase tracking-widest text-zinc-600 italic">
+                                                {post.date}
+                                            </span>
+                                        </div>
+                                        <h3 className="text-xl font-black italic uppercase tracking-tighter text-white font-headline line-clamp-1">
+                                            {post.title}
+                                        </h3>
+                                        <p className="text-zinc-500 text-[10px] font-medium italic mt-2 line-clamp-1">{post.excerpt}</p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-center gap-4">
+                                    <button className="w-12 h-12 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-rose-600 transition-all group/btn">
+                                        <Edit3 className="w-4 h-4 text-white group-hover/btn:scale-110 transition-transform" />
+                                    </button>
+                                    <button className="w-12 h-12 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-zinc-800 transition-all group/btn">
+                                        <Trash2 className="w-4 h-4 text-zinc-500 group-hover/btn:text-white transition-all" />
+                                    </button>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </AnimatePresence>
+                </div>
+            </main>
+
+            <Footer />
+        </div>
+    );
+}
