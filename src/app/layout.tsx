@@ -5,8 +5,8 @@ import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Aqib Portfolio | Aqib Mustafa",
-  description: "Personal portfolio of Aqib Mustafa, a Software Engineer.",
+  title: "Aqib Mustafa | Software Engineer Portfolio",
+  description: "Aqib Mustafa - Software Engineer specializing in Web Apps, AppSheet, and SaaS solutions.",
   icons: {
     icon: '/icon.png',
     shortcut: '/icon.png',
