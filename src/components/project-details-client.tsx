@@ -216,7 +216,7 @@ export function ProjectDetailsClient({ project }: ProjectDetailsClientProps) {
                             <DialogTitle className="sr-only">Showcase: {project.title}</DialogTitle>
                             <DialogDescription className="sr-only">Interactive immersive gallery for {project.title}</DialogDescription>
                             
-                            <div className="flex-1 relative bg-zinc-50 flex items-center justify-center p-12 md:p-24 overflow-hidden">
+                            <div className="h-[55vh] md:flex-1 relative bg-zinc-50 flex items-center justify-center p-6 md:p-24 overflow-hidden border-b md:border-b-0 border-zinc-100">
                                 <AnimatePresence mode="wait">
                                     <motion.div 
                                         key={currentImageIndex}
@@ -226,23 +226,23 @@ export function ProjectDetailsClient({ project }: ProjectDetailsClientProps) {
                                         transition={{ duration: 0.3 }}
                                         className="relative w-full h-full flex items-center justify-center"
                                     >
-                                        <Image src={allGalleryImages[currentImageIndex]?.src} alt="gallery" width={1920} height={1080} className="max-w-full max-h-full object-contain rounded-2xl shadow-[0_40px_100px_-20px_rgba(0,0,0,0.2)]" priority />
+                                        <Image src={allGalleryImages[currentImageIndex]?.src} alt="gallery" width={1920} height={1080} className="max-w-[90%] max-h-[90%] md:max-w-full md:max-h-full object-contain rounded-2xl shadow-[0_40px_100px_-20px_rgba(0,0,0,0.2)]" priority />
                                     </motion.div>
                                 </AnimatePresence>
 
-                                <button onClick={prevImage} className="absolute left-10 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full border border-zinc-100 hover:bg-black hover:text-white text-black flex items-center justify-center transition-all bg-white/90 backdrop-blur-xl z-50 shadow-2xl" aria-label="Previous" title="Previous Image"><ChevronLeft className="w-8 h-8" /></button>
-                                <button onClick={nextImage} className="absolute right-10 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full border border-zinc-100 hover:bg-black hover:text-white text-black flex items-center justify-center transition-all bg-white/90 backdrop-blur-xl z-50 shadow-2xl" aria-label="Next" title="Next Image"><ChevronRight className="w-8 h-8" /></button>
+                                <button onClick={prevImage} className="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full border border-zinc-100 hover:bg-black hover:text-white text-black flex items-center justify-center transition-all bg-white/90 backdrop-blur-xl z-50 shadow-2xl" aria-label="Previous" title="Previous Image"><ChevronLeft className="w-6 h-6 md:w-8 md:h-8" /></button>
+                                <button onClick={nextImage} className="absolute right-4 md:right-10 top-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full border border-zinc-100 hover:bg-black hover:text-white text-black flex items-center justify-center transition-all bg-white/90 backdrop-blur-xl z-50 shadow-2xl" aria-label="Next" title="Next Image"><ChevronRight className="w-8 h-8 md:w-8 md:h-8" /></button>
                                 
-                                <div className="absolute bottom-10 flex gap-4 overflow-x-auto max-w-[90%] px-8 scrollbar-hide py-4 border border-zinc-100 bg-white/90 backdrop-blur-2xl rounded-[2rem] z-50 shadow-2xl">
+                                <div className="absolute bottom-4 md:bottom-10 flex gap-4 overflow-x-auto max-w-[95%] md:max-w-[90%] px-4 md:px-8 scrollbar-hide py-3 md:py-4 border border-zinc-100 bg-white/90 backdrop-blur-2xl rounded-[1.5rem] md:rounded-[2rem] z-50 shadow-2xl">
                                     {allGalleryImages.map((img, i) => (
-                                        <button key={i} onClick={() => setCurrentImageIndex(i)} className={`relative flex-shrink-0 w-16 h-20 rounded-xl overflow-hidden border-2 transition-all ${currentImageIndex === i ? 'border-rose-600 scale-110' : 'border-transparent opacity-30 hover:opacity-100'}`} aria-label={`View Image ${i + 1}`} title={`View Image ${i + 1}`}>
+                                        <button key={i} onClick={() => setCurrentImageIndex(i)} className={`relative flex-shrink-0 w-12 h-16 md:w-16 h-20 rounded-xl overflow-hidden border-2 transition-all ${currentImageIndex === i ? 'border-rose-600 scale-110' : 'border-transparent opacity-30 hover:opacity-100'}`} aria-label={`View Image ${i + 1}`} title={`View Image ${i + 1}`}>
                                             <Image src={img.src} alt="thumbnail" fill className="object-cover" />
                                         </button>
                                     ))}
                                 </div>
                             </div>
 
-                            <div className="w-full md:w-[420px] bg-white p-6 md:p-12 border-l border-zinc-100 overflow-y-auto scrollbar-hide relative pt-24 md:pt-12">
+                            <div className="flex-1 md:w-[420px] md:flex-none bg-white p-6 md:p-12 border-l border-zinc-100 overflow-y-auto scrollbar-hide relative pt-20 md:pt-12">
                                 <button 
                                     onClick={() => setIsGalleryOpen(false)}
                                     className="absolute top-6 right-6 md:top-8 md:right-8 w-12 h-12 rounded-full bg-black text-white flex items-center justify-center hover:bg-rose-600 transition-all z-50 shadow-2xl"
