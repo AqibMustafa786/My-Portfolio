@@ -14,13 +14,11 @@ import {
 import { Send, Github, Linkedin, Mail, Loader2, MessageSquare, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
+import { serverTimestamp } from "firebase/firestore";
 
 export function ContactSection() {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
-
-  // IMPORTANT: This URL should be your actual Google Apps Script Web App URL
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwzsQk3PXH1-cb53O1LIWpXmrasuFgazCHDYqTJCKb4HD4cjZFoAeQJVS4DFqahSnLR/exec";
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,17 +26,27 @@ export function ContactSection() {
 
     const form = e.currentTarget;
     const formData = new FormData(form);
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      service: formData.get("service"),
+      budget: formData.get("budget"),
+      timeline: formData.get("timeline"),
+      message: formData.get("message"),
+      createdAt: serverTimestamp(),
+      status: "new",
+      node: "GLOBAL_PORTFOLIO_NODE"
+    };
 
     try {
-      await fetch(SCRIPT_URL, {
-        method: 'POST',
-        body: formData,
-        mode: 'no-cors',
-      });
+      const { db } = await import("@/lib/firebase");
+      const { collection, addDoc } = await import("firebase/firestore");
+      
+      await addDoc(collection(db, "contacts"), data);
 
       toast({
-        title: "Message Sent!",
-        description: "Thank you for reaching out. I'll get back to you soon.",
+        title: "Message Encrypted & Sent!",
+        description: "Your inquiry has been stored in our secure database. I'll get back to you soon.",
       });
       form.reset();
 
@@ -46,8 +54,8 @@ export function ContactSection() {
       console.error("Error submitting form:", error);
       toast({
         variant: "destructive",
-        title: "Uh oh! Something went wrong.",
-        description: "There was a problem sending your message. Please try again.",
+        title: "Database Connection Error",
+        description: "There was a problem syncing your message. Please try again or use direct email.",
       });
     } finally {
       setLoading(false);
