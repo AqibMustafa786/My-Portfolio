@@ -230,8 +230,21 @@ export default function BlogAdminPage() {
                             </div>
 
                             <div className="flex flex-col md:flex-row gap-4">
-                                <button className="flex-1 py-5 bg-rose-600 text-white rounded-full font-black uppercase tracking-[0.3em] text-[10px] hover:bg-rose-500 transition-all shadow-2xl font-headline italic">
-                                    Generate JSON Node
+                                <button 
+                                    onClick={async () => {
+                                        const { saveBlogPostAction } = await import("./actions");
+                                        const res = await saveBlogPostAction(form);
+                                        if (res.success) {
+                                          alert("ARTICLE DEPLOYED SUCCESSFULLY");
+                                          setIsCreateModalOpen(false);
+                                          window.location.reload();
+                                        } else {
+                                          alert("DEPLOYMENT FAILED: " + res.error);
+                                        }
+                                    }}
+                                    className="flex-1 py-5 bg-rose-600 text-white rounded-full font-black uppercase tracking-[0.3em] text-[10px] hover:bg-rose-500 transition-all shadow-2xl font-headline italic"
+                                >
+                                    Confirm Live Deployment
                                 </button>
                                 <button 
                                     onClick={() => setIsCreateModalOpen(false)}
