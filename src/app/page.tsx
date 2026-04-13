@@ -32,6 +32,21 @@ export default function Home() {
         
         <AboutSection />
 
+        {/* Hidden SEO Keywords Section for Google Indexing */}
+        <div className="sr-only">
+          <h2>My Expertise</h2>
+          <ul>
+            <li>Web Application Development</li>
+            <li>AppSheet Mobile & Web Apps</li>
+            <li>Firebase Backend Systems</li>
+            <li>SaaS Product Development</li>
+          </ul>
+          <h2>Featured Projects</h2>
+          <p>InvoiceCraft – SaaS Invoice System</p>
+          <p>FurnishFlow – E-Commerce Platform</p>
+          <p>FitTrack Pro - Mobile & Admin Ecosystem</p>
+        </div>
+
         <SkillsModern />
 
         <ExperienceSection />

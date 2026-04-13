@@ -5,14 +5,41 @@ import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Aqib Mustafa | Software Engineer Portfolio",
-  description: "Aqib Mustafa - Software Engineer specializing in Web Apps, AppSheet, and SaaS solutions.",
-  icons: {
-    icon: '/icon.png',
-    shortcut: '/icon.png',
-    apple: '/icon.png',
+  title: "Aqib Mustafa | Software Engineer & Web App Developer",
+  description: "Aqib Mustafa is a Software Engineer specializing in Web Applications, AppSheet, Firebase, SaaS solutions, and admin dashboards. Explore portfolio, projects, and services.",
+  keywords: "Aqib Mustafa, Software Engineer Pakistan, Web App Developer, AppSheet Developer, Firebase Developer, SaaS Developer, Portfolio",
+  authors: [{ name: "Aqib Mustafa" }],
+  alternates: {
+    canonical: "https://www.aqibmustafa.com/",
   },
-  manifest: '/manifest.json',
+  openGraph: {
+    title: "Aqib Mustafa | Software Engineer",
+    description: "Portfolio of Aqib Mustafa – Web App Developer, AppSheet Expert, SaaS Builder.",
+    url: "https://www.aqibmustafa.com/",
+    siteName: "Aqib Mustafa Portfolio",
+    images: [
+      {
+        url: "/preview.png",
+        width: 1200,
+        height: 630,
+        alt: "Aqib Mustafa | Software Engineer Portfolio",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Aqib Mustafa | Software Engineer",
+    description: "Web App Developer specializing in AppSheet, Firebase & SaaS.",
+    images: ["/preview.png"],
+  },
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
@@ -38,7 +65,7 @@ export default function RootLayout({
               "@type": "Person",
               "name": "Aqib Mustafa",
               "jobTitle": "Software Engineer & Web App Developer",
-              "url": "https://aqibmustafa.com",
+              "url": "https://www.aqibmustafa.com/",
               "sameAs": [
                 "https://github.com/AqibMustafa786",
                 "https://www.linkedin.com/in/aqib-surahio-355363294/",
