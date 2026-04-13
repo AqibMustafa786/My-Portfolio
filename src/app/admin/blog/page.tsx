@@ -32,12 +32,17 @@ export default function BlogAdminPage() {
         fetchLeads();
     });
 
-    const handleLogin = (e: React.FormEvent) => {
+    const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (password === "aqib123") {
+        try {
+            const { auth } = await import("@/lib/firebase");
+            const { signInWithEmailAndPassword } = await import("firebase/auth");
+            
+            await signInWithEmailAndPassword(auth, email, password);
             setIsAuthenticated(true);
-        } else {
-            alert("Unauthorized Access");
+        } catch (error: any) {
+            console.error("Auth Error:", error);
+            alert("SECURITY ALERT: UNAUTHORIZED ACCESS DETECTED");
         }
     };
 
@@ -45,6 +50,8 @@ export default function BlogAdminPage() {
         post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         post.category.toLowerCase().includes(searchQuery.toLowerCase())
     );
+
+    const [email, setEmail] = useState("");
 
     if (!isAuthenticated) {
         return (
@@ -59,21 +66,30 @@ export default function BlogAdminPage() {
                             <Lock className="w-8 h-8 text-rose-500" />
                         </div>
                         <h1 className="text-3xl font-black italic uppercase tracking-tighter text-center text-white">Security Check</h1>
-                        <p className="text-zinc-500 text-[10px] font-black uppercase tracking-[0.3em] mt-2 italic text-center">Blog Authority Access Terminal</p>
+                        <p className="text-zinc-500 text-[10px] font-black uppercase tracking-[0.3em] mt-2 italic text-center">Identity Verification Node</p>
                     </div>
 
-                    <form onSubmit={handleLogin} className="space-y-6">
+                    <form onSubmit={handleLogin} className="space-y-4">
+                        <div className="relative group">
+                            <input 
+                                type="email" 
+                                placeholder="ADMIN_IDENTITY (EMAIL)" 
+                                className="w-full bg-black/40 border border-white/5 px-6 py-4 rounded-full text-[10px] font-black uppercase tracking-widest placeholder:text-zinc-700 focus:border-rose-600 transition-all outline-none italic text-white"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
                         <div className="relative group">
                             <input 
                                 type="password" 
-                                placeholder="ACCESS_KEY" 
-                                className="w-full bg-black/40 border border-white/5 px-6 py-4 rounded-full text-[12px] font-black uppercase tracking-widest placeholder:text-zinc-700 focus:border-rose-600 transition-all outline-none italic text-white"
+                                placeholder="ACCESS_PHRASE" 
+                                className="w-full bg-black/40 border border-white/5 px-6 py-4 rounded-full text-[10px] font-black uppercase tracking-widest placeholder:text-zinc-700 focus:border-rose-600 transition-all outline-none italic text-white"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
-                        <button className="w-full py-4 bg-white text-black rounded-full font-black uppercase tracking-[0.3em] text-[10px] hover:bg-rose-600 hover:text-white transition-all shadow-2xl font-headline italic">
-                            Initialize Connection
+                        <button className="w-full py-4 bg-white text-black rounded-full font-black uppercase tracking-[0.3em] text-[10px] hover:bg-rose-600 hover:text-white transition-all shadow-2xl font-headline italic mt-4">
+                            Establish Authentication
                         </button>
                     </form>
                 </motion.div>
