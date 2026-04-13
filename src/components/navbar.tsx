@@ -60,7 +60,7 @@ export function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="relative px-6 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 hover:text-black transition-colors rounded-full italic font-headline"
+                className="relative px-6 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-600 hover:text-black transition-colors rounded-full italic font-headline"
               >
                 {link.name}
               </Link>
@@ -133,10 +133,10 @@ export function Navbar() {
                 </Link>
 
                 <div className="flex justify-center gap-10 mt-10">
-                  <a href="https://github.com/AqibMustafa786" className="w-16 h-16 rounded-[1.5rem] bg-zinc-50 border border-zinc-100 flex items-center justify-center text-zinc-400 hover:bg-black hover:text-white transition-all shadow-xl" aria-label="Github">
+                  <a href="https://github.com/AqibMustafa786" className="w-16 h-16 rounded-[1.5rem] bg-zinc-50 border border-zinc-100 flex items-center justify-center text-zinc-600 hover:bg-black hover:text-white transition-all shadow-xl" aria-label="Github">
                     <Github className="w-6 h-6" />
                   </a>
-                  <a href="https://www.linkedin.com/in/aqib-surahio-355363294/" className="w-16 h-16 rounded-[1.5rem] bg-zinc-50 border border-zinc-100 flex items-center justify-center text-zinc-400 hover:bg-[#0077b5] hover:text-white transition-all shadow-xl" aria-label="LinkedIn">
+                  <a href="https://www.linkedin.com/in/aqib-surahio-355363294/" className="w-16 h-16 rounded-[1.5rem] bg-zinc-50 border border-zinc-100 flex items-center justify-center text-zinc-600 hover:bg-[#0077b5] hover:text-white transition-all shadow-xl" aria-label="LinkedIn">
                     <Linkedin className="w-6 h-6" />
                   </a>
                 </div>

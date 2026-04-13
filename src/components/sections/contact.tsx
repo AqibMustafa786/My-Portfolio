@@ -90,7 +90,7 @@ export function ContactSection() {
                   <Mail className="w-6 h-6" />
                 </div>
                 <div>
-                  <p className="text-[10px] text-zinc-400 font-black uppercase tracking-[0.3em] mb-2 italic">Email Me</p>
+                  <p className="text-[10px] text-zinc-600 font-black uppercase tracking-[0.3em] mb-2 italic">Email Me</p>
                   <p className="text-2xl font-black tracking-tighter font-headline">aqib2k1@gmail.com</p>
                 </div>
               </a>
@@ -100,7 +100,7 @@ export function ContactSection() {
                   <Phone className="w-6 h-6" />
                 </div>
                 <div>
-                  <p className="text-[10px] text-zinc-400 font-black uppercase tracking-[0.3em] mb-2 italic">WhatsApp / Phone</p>
+                  <p className="text-[10px] text-zinc-600 font-black uppercase tracking-[0.3em] mb-2 italic">WhatsApp / Phone</p>
                   <p className="text-2xl font-black tracking-tighter font-headline">+92 317 3276706</p>
                 </div>
               </a>
@@ -110,7 +110,7 @@ export function ContactSection() {
                   <MessageSquare className="w-6 h-6" />
                 </div>
                 <div>
-                  <p className="text-[10px] text-zinc-400 font-black uppercase tracking-[0.3em] mb-2 italic">Hire on Fiverr</p>
+                  <p className="text-[10px] text-zinc-600 font-black uppercase tracking-[0.3em] mb-2 italic">Hire on Fiverr</p>
                   <p className="text-2xl font-black tracking-tighter font-headline">Check My Gigs</p>
                 </div>
               </a>
@@ -136,19 +136,19 @@ export function ContactSection() {
             <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-3">
-                  <label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 ml-1 italic">Full Name</label>
+                  <label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600 ml-1 italic">Full Name</label>
                   <Input name="name" type="text" placeholder="John Doe" className="bg-white border-zinc-100 focus:border-rose-600 text-black placeholder:text-zinc-200 rounded-2xl py-8 px-6 text-sm font-medium italic" required />
                 </div>
                 <div className="space-y-3">
-                  <label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 ml-1 italic">Email Address</label>
+                  <label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600 ml-1 italic">Email Address</label>
                   <Input name="email" type="email" placeholder="john@example.com" className="bg-white border-zinc-100 focus:border-rose-600 text-black placeholder:text-zinc-200 rounded-2xl py-8 px-6 text-sm font-medium italic" required />
                 </div>
               </div>
 
               <div className="space-y-3">
-                <label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 ml-1 italic">Project Category</label>
+                <label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600 ml-1 italic">Project Category</label>
                 <Select name="service" required>
-                  <SelectTrigger className="bg-white border-zinc-100 focus:border-rose-600 text-black rounded-2xl py-8 px-6 text-sm font-medium italic h-auto">
+                  <SelectTrigger aria-label="Project Category" className="bg-white border-zinc-100 focus:border-rose-600 text-black rounded-2xl py-8 px-6 text-sm font-medium italic h-auto">
                     <SelectValue placeholder="Select core service" />
                   </SelectTrigger>
                   <SelectContent className="rounded-2xl border-zinc-100">
@@ -165,9 +165,9 @@ export function ContactSection() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-3">
-                  <label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 ml-1 italic">Budget Range</label>
+                  <label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600 ml-1 italic">Budget Range</label>
                   <Select name="budget">
-                    <SelectTrigger className="bg-white border-zinc-100 focus:border-rose-600 text-black rounded-2xl py-8 px-6 text-sm font-medium italic h-auto">
+                    <SelectTrigger aria-label="Budget Range" className="bg-white border-zinc-100 focus:border-rose-600 text-black rounded-2xl py-8 px-6 text-sm font-medium italic h-auto">
                       <SelectValue placeholder="Select range" />
                     </SelectTrigger>
                     <SelectContent className="rounded-2xl border-zinc-100">
@@ -181,9 +181,9 @@ export function ContactSection() {
                 </div>
 
                 <div className="space-y-3">
-                  <label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 ml-1 italic">Timing</label>
+                  <label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600 ml-1 italic">Timing</label>
                   <Select name="timeline">
-                    <SelectTrigger className="bg-white border-zinc-100 focus:border-rose-600 text-black rounded-2xl py-8 px-6 text-sm font-medium italic h-auto">
+                    <SelectTrigger aria-label="Project Timing" className="bg-white border-zinc-100 focus:border-rose-600 text-black rounded-2xl py-8 px-6 text-sm font-medium italic h-auto">
                       <SelectValue placeholder="Select deadline" />
                     </SelectTrigger>
                     <SelectContent className="rounded-2xl border-zinc-100">
@@ -198,7 +198,7 @@ export function ContactSection() {
               </div>
 
               <div className="space-y-3">
-                <label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 ml-1 italic">Project Deep Dive</label>
+                <label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600 ml-1 italic">Project Deep Dive</label>
                 <Textarea name="message" placeholder="Describe your vision and business goals..." className="bg-white border-zinc-100 focus:border-rose-600 text-black placeholder:text-zinc-200 min-h-[160px] rounded-[1.5rem] p-6 text-sm font-medium italic" required />
               </div>
 

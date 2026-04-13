@@ -52,13 +52,13 @@ export function Footer() {
               Crafting premium digital experiences with modern web technologies. Specialized in high-performance applications.
             </p>
             <div className="flex gap-4">
-              <a href="https://github.com/AqibMustafa786" className="w-12 h-12 rounded-2xl bg-zinc-50 border border-zinc-100 hover:bg-black hover:text-white text-zinc-400 transition-all shadow-xl flex items-center justify-center" aria-label="Github">
+              <a href="https://github.com/AqibMustafa786" className="w-12 h-12 rounded-2xl bg-zinc-50 border border-zinc-100 hover:bg-black hover:text-white text-zinc-600 transition-all shadow-xl flex items-center justify-center" aria-label="Github">
                 <Github className="w-5 h-5" />
               </a>
-              <a href="https://www.linkedin.com/in/aqib-surahio-355363294/" className="w-12 h-12 rounded-2xl bg-zinc-50 border border-zinc-100 hover:bg-[#0077b5] hover:text-white text-zinc-400 transition-all shadow-xl flex items-center justify-center" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/in/aqib-surahio-355363294/" className="w-12 h-12 rounded-2xl bg-zinc-50 border border-zinc-100 hover:bg-[#0077b5] hover:text-white text-zinc-600 transition-all shadow-xl flex items-center justify-center" aria-label="LinkedIn">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="mailto:contact@aqib.dev" className="w-12 h-12 rounded-2xl bg-zinc-50 border border-zinc-100 hover:bg-rose-600 hover:text-white text-zinc-400 transition-all shadow-xl flex items-center justify-center" aria-label="Email">
+              <a href="mailto:contact@aqib.dev" className="w-12 h-12 rounded-2xl bg-zinc-50 border border-zinc-100 hover:bg-rose-600 hover:text-white text-zinc-600 transition-all shadow-xl flex items-center justify-center" aria-label="Email">
                 <Mail className="w-5 h-5" />
               </a>
             </div>
@@ -72,7 +72,7 @@ export function Footer() {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-sm font-black text-zinc-500 hover:text-rose-600 transition-colors flex items-center gap-4 group italic"
+                      className="text-sm font-black text-zinc-800 hover:text-rose-600 transition-colors flex items-center gap-4 group italic"
                     >
                       <span className="w-0 group-hover:w-4 h-[2px] bg-rose-600 transition-all rounded-full" />
                       {link.name}
@@ -85,7 +85,7 @@ export function Footer() {
         </div>
 
         <div className="pt-12 border-t border-zinc-50 flex flex-col md:flex-row justify-between items-center gap-8">
-          <p className="text-zinc-400 text-[10px] font-black uppercase tracking-[0.3em] italic leading-none">
+          <p className="text-zinc-600 text-[10px] font-black uppercase tracking-[0.3em] italic leading-none">
             © {currentYear} Aqib Mustafa. Executed with Precision.
           </p>
           <div className="flex items-center gap-8">
