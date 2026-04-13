@@ -27,3 +27,33 @@ export async function saveBlogPostAction(newPost: any) {
         return { success: false, error: error.message };
     }
 }
+
+export async function syncLocalPostsToFirestore() {
+    try {
+        const { db } = await import("@/lib/firebase");
+        const { collection, addDoc, serverTimestamp, getDocs, query, where } = await import("firebase/firestore");
+        const { posts } = await import("@/data/blog-posts");
+
+        let count = 0;
+        for (const post of posts) {
+            // Check if already exists to prevent duplicates
+            const q = query(collection(db, "blogs"), where("slug", "==", post.slug));
+            const snapshot = await getDocs(q);
+            
+            if (snapshot.empty) {
+                await addDoc(collection(db, "blogs"), {
+                    ...post,
+                    createdAt: serverTimestamp(),
+                    published: true
+                });
+                count++;
+            }
+        }
+
+        revalidatePath("/blog");
+        return { success: true, count };
+    } catch (error: any) {
+        console.error("Sync Error:", error);
+        return { success: false, error: error.message };
+    }
+}

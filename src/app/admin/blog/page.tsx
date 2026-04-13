@@ -116,12 +116,29 @@ export default function BlogAdminPage() {
                         </h1>
                     </div>
                     
-                    <button 
-                        onClick={() => setIsCreateModalOpen(true)}
-                        className="flex items-center gap-4 px-10 py-5 bg-white text-black rounded-full font-black uppercase tracking-[0.3em] text-[10px] hover:bg-rose-600 hover:text-white transition-all shadow-2xl font-headline italic"
-                    >
-                        <Plus className="w-4 h-4" /> Deploy New Article
-                    </button>
+                    <div className="flex flex-wrap gap-4">
+                        <button 
+                            onClick={async () => {
+                                const { syncLocalPostsToFirestore } = await import("./actions");
+                                const res = await syncLocalPostsToFirestore();
+                                if (res.success) {
+                                    alert(`SUCCESS: Migrated ${res.count} articles to Cloud.`);
+                                    window.location.reload();
+                                } else {
+                                    alert("SYNC FAILED: " + res.error);
+                                }
+                            }}
+                            className="flex items-center gap-4 px-10 py-5 bg-rose-600/10 text-rose-500 border border-rose-600/20 rounded-full font-black uppercase tracking-[0.3em] text-[10px] hover:bg-rose-600 hover:text-white transition-all shadow-2xl font-headline italic"
+                        >
+                            <Share2 className="w-4 h-4" /> Sync Local to Cloud
+                        </button>
+                        <button 
+                            onClick={() => setIsCreateModalOpen(true)}
+                            className="flex items-center gap-4 px-10 py-5 bg-white text-black rounded-full font-black uppercase tracking-[0.3em] text-[10px] hover:bg-rose-600 hover:text-white transition-all shadow-2xl font-headline italic"
+                        >
+                            <Plus className="w-4 h-4" /> Deploy New Article
+                        </button>
+                    </div>
                 </div>
 
                 {/* Stats Bar */}
