@@ -56,10 +56,12 @@
 
   html {
     scroll-behavior: smooth;
+    background-color: white !important;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-white text-foreground;
+    background-color: white !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
