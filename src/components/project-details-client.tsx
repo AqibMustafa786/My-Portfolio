@@ -136,21 +136,29 @@ export function ProjectDetailsClient({ project }: ProjectDetailsClientProps) {
                             initial={{ opacity: 0, scale: 0.98 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
-                            className="md:col-span-8 relative bg-zinc-50 rounded-[2.5rem] md:rounded-[4rem] border border-zinc-100 overflow-hidden group shadow-2xl p-6 md:p-18 flex items-center justify-center h-[400px] md:h-full"
+                            className="md:col-span-8 relative bg-zinc-50 rounded-[2.5rem] md:rounded-[4rem] border border-zinc-100 overflow-hidden group shadow-2xl flex items-center justify-center h-[400px] md:h-full cursor-pointer"
+                            onClick={() => { 
+                                const img = project.gallery?.find(img => img.type === "desktop") || project.gallery?.[0];
+                                setCurrentImageIndex(allGalleryImages.indexOf(img!)); 
+                                setIsGalleryOpen(true); 
+                            }}
                         >
                             <div className="relative w-full h-full">
                                 <Image
                                     src={project.gallery?.find(img => img.type === "desktop")?.src || project.images[0]}
                                     alt="Main Desktop View"
                                     fill
-                                    className="object-contain transition-transform duration-[3s] group-hover:scale-105"
+                                    className="object-cover transition-transform duration-[3s] group-hover:scale-105"
                                     priority
                                 />
                             </div>
-                            <div className="absolute inset-x-0 bottom-0 p-8 md:p-12 flex justify-between items-end bg-gradient-to-t from-white/40 via-transparent text-black pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div className="absolute inset-x-0 bottom-0 p-8 md:p-12 flex justify-between items-end bg-gradient-to-t from-black/60 via-black/20 to-transparent text-white pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
                                 <div>
                                     <span className="text-[10px] font-black tracking-widest uppercase italic block mb-2 opacity-60">System Core View</span>
                                     <span className="text-2xl font-black italic uppercase tracking-tighter font-headline">Desktop Interface</span>
+                                </div>
+                                <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center backdrop-blur-md">
+                                    <Maximize2 className="w-5 h-5" />
                                 </div>
                             </div>
                         </motion.div>
@@ -163,18 +171,32 @@ export function ProjectDetailsClient({ project }: ProjectDetailsClientProps) {
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: 0.2 }}
-                                className="relative bg-zinc-950 rounded-[2.5rem] md:rounded-[4rem] overflow-hidden group shadow-2xl p-8 flex items-center justify-center h-full"
+                                className="relative bg-zinc-950 rounded-[2.5rem] md:rounded-[4rem] overflow-hidden group shadow-2xl flex items-center justify-center h-full cursor-pointer"
+                                onClick={() => { 
+                                    const img = project.gallery?.find(img => img.type === "mobile") || project.gallery?.[0];
+                                    setCurrentImageIndex(allGalleryImages.indexOf(img!)); 
+                                    setIsGalleryOpen(true); 
+                                }}
                             >
-                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.05),transparent)] pointer-events-none" />
-                                <div className="relative w-full h-[85%]">
+                                {/* Immersive Blurred Backdrop for Mobile */}
+                                <div className="absolute inset-0 opacity-40 blur-[100px] scale-150 transition-transform duration-[5s] group-hover:scale-[1.7]">
+                                    <Image
+                                        src={project.gallery?.find(img => img.type === "mobile")?.src || project.images[0]}
+                                        alt="Backdrop"
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </div>
+                                
+                                <div className="relative w-full h-[85%] z-10">
                                     <Image
                                         src={project.gallery?.find(img => img.type === "mobile")?.src || project.images[0]}
                                         alt="Mobile View"
                                         fill
-                                        className="object-contain transition-all duration-[2s] group-hover:scale-110 group-hover:rotate-2"
+                                        className="object-contain transition-all duration-[2s] group-hover:scale-105 group-hover:rotate-1"
                                     />
                                 </div>
-                                <div className="absolute top-6 right-8 text-white/50 text-[9px] font-black uppercase tracking-[0.3em] vertical-rl italic rotate-180">Mobile Ecosystem</div>
+                                <div className="absolute top-6 right-8 text-white/50 text-[9px] font-black uppercase tracking-[0.3em] vertical-rl italic rotate-180 z-20">Mobile Ecosystem</div>
                             </motion.div>
 
                             <motion.div 
@@ -182,9 +204,14 @@ export function ProjectDetailsClient({ project }: ProjectDetailsClientProps) {
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: 0.3 }}
-                                className="relative bg-[#F9F9FB] rounded-[2.5rem] md:rounded-[4rem] border border-zinc-100 overflow-hidden group shadow-xl p-8 flex items-center justify-center h-full"
+                                className="relative bg-[#F9F9FB] rounded-[2.5rem] md:rounded-[4rem] border border-zinc-100 overflow-hidden group shadow-xl flex items-center justify-center h-full cursor-pointer"
+                                onClick={() => { 
+                                    const img = project.gallery?.filter(img => img.type === "desktop")[1] || project.gallery?.[1] || project.images[0];
+                                    setCurrentImageIndex(allGalleryImages.indexOf(img!)); 
+                                    setIsGalleryOpen(true); 
+                                }}
                             >
-                                <div className="relative w-full h-full">
+                                <div className="relative w-full h-[90%] p-4">
                                     <Image
                                         src={project.gallery?.filter(img => img.type === "desktop")[1]?.src || project.gallery?.[1]?.src || project.images[0]}
                                         alt="Auxiliary View"
