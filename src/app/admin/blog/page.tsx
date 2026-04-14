@@ -45,7 +45,7 @@ export default function BlogAdminPage() {
             setIsAuthenticated(true);
         } catch (error: any) {
             console.error("Auth Error:", error);
-            alert("SECURITY ALERT: UNAUTHORIZED ACCESS DETECTED");
+            alert("AUTH DEBUG: " + error.message);
         }
     };
 
