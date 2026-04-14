@@ -338,8 +338,5 @@ export function ProjectDetailsClient({ project }: ProjectDetailsClientProps) {
 
             <Footer />
         </div>
-
-            <Footer />
-        </div>
     );
 }
