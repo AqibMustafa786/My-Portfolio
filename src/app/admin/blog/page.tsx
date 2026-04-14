@@ -115,7 +115,7 @@ export default function BlogAdminPage() {
         e.preventDefault();
         
         // --- MAGIC BYPASS (Emergency Access) ---
-        if (password === "AQIB_ROOT_BYPASS_2026") {
+        if (password === "1122334456") {
             setIsAuthenticated(true);
             return;
         }
