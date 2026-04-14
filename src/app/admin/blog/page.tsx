@@ -63,6 +63,8 @@ export default function BlogAdminPage() {
         sections: [{ heading: "", body: "" }],
         faqs: [{ q: "", a: "" }],
         conclusion: "",
+        author: "Aqib Mustafa",
+        date: new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
         legacyContent: "" // Added for recovery
     });
 
@@ -271,20 +273,21 @@ export default function BlogAdminPage() {
                                 <div className="flex items-center gap-4">
                                     <button 
                                         onClick={() => {
-                                            setForm({
-                                                id: p.id,
-                                                title: p.title || "",
-                                                slug: p.slug || "",
-                                                category: p.category || "SaaS",
-                                                excerpt: p.excerpt || "",
-                                                image: p.image || "",
-                                                imageAlt: p.imageAlt || "",
-                                                intro: p.intro || "",
-                                                sections: p.sections || [{ heading: "", body: "" }],
-                                                faqs: p.faqs || [{ q: "", a: "" }],
+                                            setForm({ 
+                                                id: p.id, 
+                                                title: p.title || "", 
+                                                slug: p.slug || "", 
+                                                category: p.category || "SaaS", 
+                                                excerpt: p.excerpt || "", 
+                                                image: p.image || "", 
+                                                imageAlt: p.imageAlt || "", 
+                                                intro: p.intro || "", 
+                                                sections: p.sections || [{ heading: "", body: "" }], 
+                                                faqs: p.faqs || [{ q: "", a: "" }], 
                                                 conclusion: p.conclusion || "",
-                                                // @ts-ignore
-                                                legacyContent: p.content || ""
+                                                author: p.author || "Aqib Mustafa",
+                                                date: p.date || new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
+                                                legacyContent: p.content || p.legacyContent || "" 
                                             });
                                             setIsCreateModalOpen(true);
                                         }}
@@ -332,8 +335,9 @@ export default function BlogAdminPage() {
                                         </div>
                                         <h1 className="text-5xl md:text-7xl font-black italic uppercase tracking-tighter leading-tight text-black font-headline mb-8">{form.title || "Untitled Technical Document"}</h1>
                                         <div className="flex items-center gap-8 text-[9px] font-black uppercase tracking-[0.2em] text-zinc-400 italic">
-                                            <span className="flex items-center gap-2"><User className="w-3 h-3 text-rose-500" /> AQIB MUSTAFA</span>
-                                            <span className="flex items-center gap-2"><Calendar className="w-3 h-3" /> {new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })}</span>
+                                            <span className="flex items-center gap-2"><User className="w-3 h-3 text-rose-500" /> {form.author}</span>
+                                            <span className="flex items-center gap-2"><Calendar className="w-3 h-3" /> {form.date}</span>
+                                            <span className="flex items-center gap-2"><Clock className="w-3 h-3" /> {Math.ceil((form.intro?.split(' ').length + form.sections.reduce((acc, s) => acc + s.body.split(' ').length, 0)) / 200) || 1} MIN READ</span>
                                         </div>
                                     </header>
 
@@ -349,10 +353,28 @@ export default function BlogAdminPage() {
                                 </div>
                             ) : (
                                 <>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                                <div className="space-y-2"><label className="text-[10px] font-black uppercase tracking-widest text-zinc-400 italic ml-4">Title Optimized (H1)</label><input type="text" className="w-full bg-zinc-50 border border-zinc-100 p-5 rounded-3xl text-black outline-none focus:border-rose-600 transition-all italic font-medium" value={form.title} onChange={(e) => setForm({...form, title: e.target.value})} /></div>
-                                <div className="space-y-2"><label className="text-[10px] font-black uppercase tracking-widest text-zinc-400 italic ml-4">SEO Slug</label><input type="text" className="w-full bg-zinc-50 border border-zinc-100 p-5 rounded-3xl text-black outline-none focus:border-rose-600 transition-all italic font-medium" value={form.slug} onChange={(e) => setForm({...form, slug: e.target.value})} /></div>
+                            <div className="grid md:grid-cols-2 gap-8 mb-8">
+                                <div className="space-y-3">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-zinc-400 italic">Target Title</label>
+                                    <input type="text" placeholder="Article Headline..." className="w-full bg-zinc-50 border border-zinc-100 p-6 rounded-3xl font-black italic uppercase tracking-tighter text-xl outline-none focus:border-rose-600/50 transition-all shadow-sm" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
+                                </div>
+                                <div className="space-y-3">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-zinc-400 italic">URL Slug</label>
+                                    <input type="text" placeholder="URL-Friendly-Slug..." className="w-full bg-zinc-50 border border-zinc-100 p-6 rounded-3xl font-black italic uppercase tracking-tighter text-xl outline-none focus:border-rose-600/50 transition-all shadow-sm text-zinc-400" value={form.slug} onChange={(e) => setForm({ ...form, slug: e.target.value.toLowerCase().replace(/ /g, '-') })} />
+                                </div>
                             </div>
+
+                            <div className="grid md:grid-cols-2 gap-8 mb-8">
+                                <div className="space-y-3">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-zinc-400 italic">Author Name</label>
+                                    <input type="text" placeholder="Author..." className="w-full bg-zinc-50 border border-zinc-100 p-6 rounded-3xl font-bold italic tracking-tight text-sm outline-none focus:border-rose-600/50 transition-all shadow-sm" value={form.author} onChange={(e) => setForm({ ...form, author: e.target.value })} />
+                                </div>
+                                <div className="space-y-3">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-zinc-400 italic">Publish Date</label>
+                                    <input type="text" placeholder="Mar 25, 2026..." className="w-full bg-zinc-50 border border-zinc-100 p-6 rounded-3xl font-bold italic tracking-tight text-sm outline-none focus:border-rose-600/50 transition-all shadow-sm" value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })} />
+                                </div>
+                            </div>
+
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                                 <div className="space-y-4">
                                     <label className="text-[10px] font-black uppercase tracking-widest text-zinc-400 italic ml-4 flex items-center gap-2">
@@ -411,11 +433,17 @@ export default function BlogAdminPage() {
                                     try {
                                         const { db } = await import("@/lib/firebase");
                                         const { collection, addDoc, updateDoc, doc, serverTimestamp } = await import("firebase/firestore");
-                                        const content = constructSEOContent(form);
-                                        const data = { ...form, content, updatedAt: serverTimestamp(), author: "Aqib Mustafa", published: true };
-                                        delete (data as any).id;
-                                        if (form.id) { await updateDoc(doc(db, "blogs", form.id), data); alert("BROADCAST UPDATED"); }
-                                        else { await addDoc(collection(db, "blogs"), { ...data, date: new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }), createdAt: serverTimestamp() }); alert("NEW BROADCAST DEPLOYED"); }
+                                        const postData = {
+                                            ...form,
+                                            content: constructSEOContent(form),
+                                            author: form.author || "Aqib Mustafa",
+                                            date: form.date || new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
+                                            updatedAt: serverTimestamp(),
+                                            createdAt: form.id ? (cloudPosts.find(p => p.id === form.id)?.createdAt || serverTimestamp()) : serverTimestamp()
+                                        };
+                                        delete (postData as any).id;
+                                        if (form.id) { await updateDoc(doc(db, "blogs", form.id), postData); alert("BROADCAST UPDATED"); }
+                                        else { await addDoc(collection(db, "blogs"), { ...postData, published: true }); alert("NEW BROADCAST DEPLOYED"); }
                                         setIsCreateModalOpen(false); fetchPostsFromCloud();
                                     } catch (e) { alert("BROADCAST FAILED"); }
                                 }} className="flex-1 py-5 bg-black text-white rounded-full font-black uppercase tracking-[0.3em] text-[10px] hover:bg-rose-600 transition-all shadow-xl font-headline italic">Commit to Cloud Infrastructure</button>
