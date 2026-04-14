@@ -118,7 +118,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <div className="font-black text-black uppercase tracking-widest text-[9px] mb-1 italic">Direct Channel</div>
-                                        <a href="mailto:contact@aqib.dev" className="text-2xl font-black font-headline italic uppercase tracking-tighter text-zinc-500 hover:text-rose-600 transition-colors">contact@aqib.dev</a>
+                                        <a href="mailto:aqib2k1@gmail.com" className="text-2xl font-black font-headline italic uppercase tracking-tighter text-zinc-500 hover:text-rose-600 transition-colors">aqib2k1@gmail.com</a>
                                     </div>
                                 </div>
                                 <div className="group flex items-start gap-8">
@@ -127,7 +127,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <div className="font-black text-black uppercase tracking-widest text-[9px] mb-1 italic">Vocal Network</div>
-                                        <div className="text-2xl font-black font-headline italic uppercase tracking-tighter text-zinc-500">+1 (000) 000-0000</div>
+                                        <div className="text-2xl font-black font-headline italic uppercase tracking-tighter text-zinc-500">+92 317 3276706</div>
                                     </div>
                                 </div>
                                 <div className="group flex items-start gap-8">
@@ -136,7 +136,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <div className="font-black text-black uppercase tracking-widest text-[9px] mb-1 italic">Base Location</div>
-                                        <div className="text-2xl font-black font-headline italic uppercase tracking-tighter text-zinc-500">Remote / Global Architecture</div>
+                                        <div className="text-2xl font-black font-headline italic uppercase tracking-tighter text-zinc-500">Karachi, Pakistan</div>
                                     </div>
                                 </div>
                             </div>

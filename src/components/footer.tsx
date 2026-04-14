@@ -58,7 +58,7 @@ export function Footer() {
               <a href="https://www.linkedin.com/in/aqib-surahio-355363294/" className="w-12 h-12 rounded-2xl bg-zinc-50 border border-zinc-100 hover:bg-[#0077b5] hover:text-white text-zinc-600 transition-all shadow-xl flex items-center justify-center" aria-label="LinkedIn">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="mailto:contact@aqib.dev" className="w-12 h-12 rounded-2xl bg-zinc-50 border border-zinc-100 hover:bg-rose-600 hover:text-white text-zinc-600 transition-all shadow-xl flex items-center justify-center" aria-label="Email">
+              <a href="mailto:aqib2k1@gmail.com" className="w-12 h-12 rounded-2xl bg-zinc-50 border border-zinc-100 hover:bg-rose-600 hover:text-white text-zinc-600 transition-all shadow-xl flex items-center justify-center" aria-label="Email">
                 <Mail className="w-5 h-5" />
               </a>
             </div>
