@@ -98,50 +98,55 @@ export function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 200 }}
-            className="fixed inset-0 z-40 bg-white md:hidden flex flex-col justify-start items-center px-6 pt-32 overflow-y-auto scrollbar-hide [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+            className="fixed inset-0 z-40 bg-white md:hidden flex flex-col justify-start items-center px-6 pt-20 overflow-hidden"
           >
-            <div className="flex flex-col gap-6 text-center w-full">
+            <style jsx global>{`
+              .no-scrollbar::-webkit-scrollbar { display: none; }
+              .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+            `}</style>
+            
+            <div className="flex flex-col gap-4 text-center w-full no-scrollbar overflow-y-auto">
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.name}
-                  initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                  initial={{ opacity: 0, scale: 0.9, y: 10 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
+                  transition={{ delay: i * 0.05 }}
                 >
                   <Link
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
-                    className="text-2xl xs:text-3xl font-black italic uppercase tracking-[0.1em] text-black hover:text-rose-600 transition-colors block font-headline"
+                    className="text-xl xs:text-2xl font-black italic uppercase tracking-[0.1em] text-black hover:text-rose-600 transition-colors block font-headline"
                   >
                     {link.name}
                   </Link>
                 </motion.div>
               ))}
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="mt-8 flex flex-col gap-8 items-center pb-12"
-              >
-                <Link
-                  href="#contact"
-                  onClick={() => setMenuOpen(false)}
-                  className="w-full max-w-xs px-10 py-5 rounded-2xl bg-black text-white font-black italic uppercase tracking-[0.3em] text-[10px] shadow-2xl hover:bg-rose-600 transition-all font-headline"
-                >
-                  Start a Project
-                </Link>
-
-                <div className="flex justify-center gap-10 mt-4">
-                  <a href="https://github.com/AqibMustafa786" className="w-14 h-14 rounded-2xl bg-zinc-50 border border-zinc-100 flex items-center justify-center text-zinc-600 hover:bg-black hover:text-white transition-all shadow-xl" aria-label="Github">
-                    <Github className="w-6 h-6" />
-                  </a>
-                  <a href="https://www.linkedin.com/in/aqib-surahio-355363294/" className="w-14 h-14 rounded-2xl bg-zinc-50 border border-zinc-100 flex items-center justify-center text-zinc-600 hover:bg-[#0077b5] hover:text-white transition-all shadow-xl" aria-label="LinkedIn">
-                    <Linkedin className="w-6 h-6" />
-                  </a>
-                </div>
-              </motion.div>
             </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="mt-6 flex flex-col gap-6 items-center pb-8 w-full"
+            >
+              <Link
+                href="#contact"
+                onClick={() => setMenuOpen(false)}
+                className="w-full max-w-xs px-10 py-4 rounded-xl bg-black text-white font-black italic uppercase tracking-[0.3em] text-[9px] shadow-2xl hover:bg-rose-600 transition-all font-headline text-center"
+              >
+                Start a Project
+              </Link>
+
+              <div className="flex justify-center gap-6 mt-2">
+                <a href="https://github.com/AqibMustafa786" className="w-12 h-12 rounded-xl bg-zinc-50 border border-zinc-100 flex items-center justify-center text-zinc-600 hover:bg-black hover:text-white transition-all shadow-lg" aria-label="Github">
+                  <Github className="w-5 h-5" />
+                </a>
+                <a href="https://www.linkedin.com/in/aqib-surahio-355363294/" className="w-12 h-12 rounded-xl bg-zinc-50 border border-zinc-100 flex items-center justify-center text-zinc-600 hover:bg-[#0077b5] hover:text-white transition-all shadow-lg" aria-label="LinkedIn">
+                  <Linkedin className="w-5 h-5" />
+                </a>
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
