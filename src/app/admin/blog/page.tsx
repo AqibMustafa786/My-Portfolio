@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { posts } from "@/data/blog-posts";
-import { Plus, Search, Edit3, Trash2, LayoutDashboard, Share2, Eye, Shield, Lock } from "lucide-react";
+import { Plus, Search, Edit3, Trash2, LayoutDashboard, Share2, Eye, Shield, Lock, Upload, Image as ImageIcon, X, ChevronRight, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function BlogAdminPage() {
@@ -14,6 +14,8 @@ export default function BlogAdminPage() {
     const [searchQuery, setSearchQuery] = useState("");
     const [leadCount, setLeadCount] = useState<number | string>("...");
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+    const [isPreviewMode, setIsPreviewMode] = useState(false);
+    const [isUploading, setIsUploading] = useState(false);
     const [cloudPosts, setCloudPosts] = useState<any[]>([]);
     const [isLoadingPosts, setIsLoadingPosts] = useState(true);
     
@@ -84,6 +86,29 @@ export default function BlogAdminPage() {
             html += `<div class="mt-20 pt-12 border-t border-zinc-100"><p class="text-xl font-black italic uppercase tracking-tighter text-black mb-6 font-headline leading-none">The Final Brief</p><p class="text-zinc-500 italic mb-10">${f.conclusion}</p></div>`;
         }
         return html;
+    };
+
+    const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        setIsUploading(true);
+        try {
+            const { storage } = await import("@/lib/firebase");
+            const { ref, uploadBytes, getDownloadURL } = await import("firebase/storage");
+            
+            const fileRef = ref(storage, `blog-images/${Date.now()}-${file.name}`);
+            await uploadBytes(fileRef, file);
+            const url = await getDownloadURL(fileRef);
+            
+            setForm(prev => ({ ...prev, image: url }));
+            alert("IMAGE UPLOADED TO CLOUD");
+        } catch (error) {
+            console.error("Upload failed:", error);
+            alert("UPLOAD FAILED: Check console or storage rules.");
+        } finally {
+            setIsUploading(false);
+        }
     };
 
     const handleLogin = async (e: React.FormEvent) => {
@@ -236,14 +261,70 @@ export default function BlogAdminPage() {
                     <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
                         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setIsCreateModalOpen(false)} className="absolute inset-0 bg-white/80 backdrop-blur-xl" />
                         <motion.div initial={{ opacity: 0, scale: 0.95, y: 30 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 30 }} className="relative w-full max-w-5xl bg-white border border-zinc-100 rounded-[3rem] p-12 overflow-y-auto max-h-[90vh] shadow-2xl font-sans">
-                            <h2 className="text-4xl font-black italic uppercase tracking-tighter text-black mb-10 font-headline italic text-center">Cloud SEO Architect</h2>
+                            <div className="flex items-center justify-between mb-10 pb-6 border-b border-zinc-50">
+                                <div className="flex flex-col items-start">
+                                    <h2 className="text-4xl font-black italic uppercase tracking-tighter text-black font-headline leading-none">Cloud SEO Architect</h2>
+                                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 mt-2 italic leading-none">Syncing with Central Repository</p>
+                                </div>
+                                <button 
+                                    onClick={() => setIsPreviewMode(!isPreviewMode)}
+                                    className={`flex items-center gap-4 px-6 py-3 rounded-full font-black uppercase tracking-[0.2em] text-[9px] transition-all italic ${isPreviewMode ? 'bg-rose-600 text-white shadow-rose-600/20 shadow-lg' : 'bg-zinc-50 text-zinc-400 border border-zinc-100'}`}
+                                >
+                                    {isPreviewMode ? <ImageIcon className="w-3 h-3" /> : <Eye className="w-3 h-3" />}
+                                    {isPreviewMode ? "BACK TO EDITOR" : "LIVE PREVIEW"}
+                                </button>
+                            </div>
+
+                            {isPreviewMode ? (
+                                <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                                    <header className="mb-16">
+                                        <div className="flex items-center gap-4 mb-8">
+                                            <span className="px-4 py-1.5 bg-rose-600/5 text-rose-600 text-[8px] rounded-full font-black uppercase tracking-widest border border-rose-600/10 italic">{form.category}</span>
+                                        </div>
+                                        <h1 className="text-5xl md:text-7xl font-black italic uppercase tracking-tighter leading-tight text-black font-headline mb-8">{form.title || "Untitled Technical Document"}</h1>
+                                        <div className="flex items-center gap-8 text-[9px] font-black uppercase tracking-[0.2em] text-zinc-400 italic">
+                                            <span className="flex items-center gap-2"><User className="w-3 h-3 text-rose-500" /> AQIB MUSTAFA</span>
+                                            <span className="flex items-center gap-2"><Calendar className="w-3 h-3" /> {new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })}</span>
+                                        </div>
+                                    </header>
+
+                                    {form.image && (
+                                        <div className="aspect-[21/9] rounded-[2.5rem] overflow-hidden border border-zinc-100 grayscale-[0.5] shadow-xl mb-16">
+                                            <img src={form.image} className="w-full h-full object-cover" alt={form.imageAlt} />
+                                        </div>
+                                    )}
+
+                                    <div className="prose prose-zinc max-w-none text-zinc-500 italic font-medium leading-relaxed">
+                                        <div dangerouslySetInnerHTML={{ __html: constructSEOContent(form) }} />
+                                    </div>
+                                </div>
+                            ) : (
+                                <>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                                 <div className="space-y-2"><label className="text-[10px] font-black uppercase tracking-widest text-zinc-400 italic ml-4">Title Optimized (H1)</label><input type="text" className="w-full bg-zinc-50 border border-zinc-100 p-5 rounded-3xl text-black outline-none focus:border-rose-600 transition-all italic font-medium" value={form.title} onChange={(e) => setForm({...form, title: e.target.value})} /></div>
                                 <div className="space-y-2"><label className="text-[10px] font-black uppercase tracking-widest text-zinc-400 italic ml-4">SEO Slug</label><input type="text" className="w-full bg-zinc-50 border border-zinc-100 p-5 rounded-3xl text-black outline-none focus:border-rose-600 transition-all italic font-medium" value={form.slug} onChange={(e) => setForm({...form, slug: e.target.value})} /></div>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                                <div className="space-y-2"><label className="text-[10px] font-black uppercase tracking-widest text-zinc-400 italic ml-4">Featured Image URL</label><input type="text" className="w-full bg-zinc-50 border border-zinc-100 p-5 rounded-3xl text-black outline-none focus:border-rose-600 transition-all italic font-medium" value={form.image} onChange={(e) => setForm({...form, image: e.target.value})} /></div>
-                                <div className="space-y-2"><label className="text-[10px] font-black uppercase tracking-widest text-zinc-400 italic ml-4">Image ALT Text (SEO Rule)</label><input type="text" className="w-full bg-zinc-50 border border-zinc-100 p-5 rounded-3xl text-black outline-none focus:border-rose-600 transition-all italic font-medium" value={form.imageAlt} onChange={(e) => setForm({...form, imageAlt: e.target.value})} /></div>
+                                <div className="space-y-4">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-zinc-400 italic ml-4 flex items-center gap-2">
+                                        <ImageIcon className="w-3 h-3" /> Featured Image Resource
+                                    </label>
+                                    <div className="relative group/upload">
+                                        <input type="text" className="w-full bg-zinc-50 border border-zinc-100 p-5 rounded-3xl text-black outline-none focus:border-rose-600 transition-all italic font-medium pr-32" value={form.image} onChange={(e) => setForm({...form, image: e.target.value})} placeholder="https://..." />
+                                        <label className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-3 bg-black text-white rounded-[1.5rem] font-black uppercase tracking-widest text-[8px] italic flex items-center gap-2 cursor-pointer hover:bg-rose-600 transition-all shadow-lg active:scale-95">
+                                            {isUploading ? <Loader2 className="w-3 h-3 animate-spin"/> : <Upload className="w-3 h-3" />}
+                                            {isUploading ? "SYNCING..." : "UPLOAD"}
+                                            <input type="file" className="hidden" accept="image/*" onChange={handleImageUpload} disabled={isUploading} />
+                                        </label>
+                                    </div>
+                                    {form.image && <div className="ml-4 mt-2 overflow-hidden rounded-xl border border-zinc-100 w-24 h-12 grayscale hover:grayscale-0 transition-all shadow-sm"><img src={form.image} className="w-full h-full object-cover" /></div>}
+                                </div>
+                                <div className="space-y-4">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-zinc-400 italic ml-4 flex items-center gap-2">
+                                        <Shield className="w-3 h-3" /> Image ALT Text (SEO Rule)
+                                    </label>
+                                    <input type="text" className="w-full bg-zinc-50 border border-zinc-100 p-5 rounded-3xl text-black outline-none focus:border-rose-600 transition-all italic font-medium" value={form.imageAlt} onChange={(e) => setForm({...form, imageAlt: e.target.value})} placeholder="Describe asset for Google..." />
+                                </div>
                             </div>
                             <div className="space-y-2 mb-8"><label className="text-[10px] font-black uppercase tracking-widest text-zinc-400 italic ml-4">Introduction (SEO Hook)</label><textarea rows={2} className="w-full bg-zinc-50 border border-zinc-100 p-6 rounded-[2rem] text-black outline-none focus:border-rose-600 transition-all italic resize-none font-medium" value={form.intro} onChange={(e) => setForm({...form, intro: e.target.value})} /></div>
                             <div className="space-y-6 mb-12"><label className="text-[10px] font-black uppercase tracking-widest text-zinc-400 italic ml-4">Article Sections (H2 Optimization)</label>
@@ -273,7 +354,10 @@ export default function BlogAdminPage() {
                             )}
 
                             <div className="space-y-2 mb-12"><label className="text-[10px] font-black uppercase tracking-widest text-zinc-400 italic ml-4">Final Verdict (Conclusion)</label><textarea rows={2} className="w-full bg-zinc-50 border border-zinc-100 p-6 rounded-[2rem] text-black outline-none focus:border-rose-600 transition-all italic resize-none font-medium" value={form.conclusion} onChange={(e) => setForm({...form, conclusion: e.target.value})} /></div>
-                            <div className="flex flex-col md:flex-row gap-4 sticky bottom-0 bg-white/80 backdrop-blur-md pt-4">
+                             </>
+                            )}
+
+                            <div className="flex flex-col md:flex-row gap-4 sticky bottom-0 bg-white/80 backdrop-blur-md pt-8 border-t border-zinc-50 mt-12">
                                 <button onClick={async () => {
                                     try {
                                         const { db } = await import("@/lib/firebase");
