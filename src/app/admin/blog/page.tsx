@@ -257,7 +257,8 @@ export default function BlogAdminPage() {
                             <LogOut className="w-4 h-4" /> Exit Node
                         </button>
                         <button onClick={() => {
-                            setForm({ id: "", title: "", slug: "", category: "SaaS", excerpt: "", image: "", imageAlt: "", intro: "", sections: [{ heading: "", body: "" }], faqs: [{ q: "", a: "" }], conclusion: "", legacyContent: "" });
+                            const today = new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+                            setForm({ id: "", title: "", slug: "", category: "SaaS", excerpt: "", image: "", imageAlt: "", intro: "", sections: [{ heading: "", body: "", image: "" }], faqs: [{ q: "", a: "" }], conclusion: "", legacyContent: "", author: "Aqib Mustafa", date: today });
                             setIsCreateModalOpen(true);
                         }} className="flex items-center gap-4 px-10 py-5 bg-black text-white rounded-full font-black uppercase tracking-[0.3em] text-[10px] hover:bg-rose-600 transition-all shadow-xl font-headline italic"><Plus className="w-4 h-4" /> Deploy New Article</button>
                     </div>
@@ -298,7 +299,14 @@ export default function BlogAdminPage() {
                                             <span className="text-[8px] font-black uppercase tracking-widest text-zinc-400 italic">{p.date}</span>
                                         </div>
                                         <h3 className="text-xl font-black italic uppercase tracking-tighter text-black font-headline line-clamp-1">{p.title}</h3>
-                                        <p className="text-zinc-400 text-[10px] font-medium italic mt-2 line-clamp-1">{p.excerpt}</p>
+                                        <div className="flex items-center gap-3 mt-2">
+                                            <p className="text-zinc-400 text-[9px] font-medium italic line-clamp-1">{p.excerpt}</p>
+                                            {p.updatedAt && (
+                                                <span className="text-[8px] font-black uppercase tracking-widest text-rose-500/50 italic whitespace-nowrap">
+                                                    • Last Sync: {p.lastUpdatedBy || "ROOT"}
+                                                </span>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-4">
@@ -489,6 +497,7 @@ export default function BlogAdminPage() {
                                             content: constructSEOContent(form),
                                             author: form.author || "Aqib Mustafa",
                                             date: form.date || new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
+                                            lastUpdatedBy: "AQIB_ADMIN",
                                             updatedAt: serverTimestamp(),
                                             createdAt: form.id ? (cloudPosts.find(p => p.id === form.id)?.createdAt || serverTimestamp()) : serverTimestamp()
                                         };
