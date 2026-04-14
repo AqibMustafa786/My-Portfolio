@@ -31,12 +31,9 @@ export default function BlogPage() {
     }, []);
 
     const allPosts = useMemo(() => {
-        // Merge static and cloud posts, prioritizing cloud (newer)
-        const combined = [...cloudPosts, ...staticPosts];
-        // Deduplicate by slug
-        return combined.filter((post, index, self) =>
-            index === self.findIndex((p) => p.slug === post.slug)
-        );
+        // Source of Truth: ONLY Cloud Posts
+        // This ensures that when you delete from Admin, it vanishes from the site.
+        return cloudPosts;
     }, [cloudPosts]);
 
     const categories = useMemo(() => {

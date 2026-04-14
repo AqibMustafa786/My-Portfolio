@@ -17,30 +17,28 @@ interface BlogPostClientProps {
 
 export default function BlogPostClient({ params }: BlogPostClientProps) {
     const { slug } = use(params);
-    const [post, setPost] = useState<any>(staticPosts.find(p => p.slug === slug));
-    const [loading, setLoading] = useState(!post);
+    const [post, setPost] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (!post) {
-            const fetchCloudPost = async () => {
-                try {
-                    const { db } = await import("@/lib/firebase");
-                    const { collection, getDocs, query, where } = await import("firebase/firestore");
-                    const q = query(collection(db, "blogs"), where("slug", "==", slug));
-                    const snapshot = await getDocs(q);
-                    
-                    if (!snapshot.empty) {
-                        setPost({ id: snapshot.docs[0].id, ...snapshot.docs[0].data() });
-                    }
-                } catch (error) {
-                    console.error("Cloud Fetch Error:", error);
-                } finally {
-                    setLoading(false);
+        const fetchCloudPost = async () => {
+            try {
+                const { db } = await import("@/lib/firebase");
+                const { collection, getDocs, query, where } = await import("firebase/firestore");
+                const q = query(collection(db, "blogs"), where("slug", "==", slug));
+                const snapshot = await getDocs(q);
+                
+                if (!snapshot.empty) {
+                    setPost({ id: snapshot.docs[0].id, ...snapshot.docs[0].data() });
                 }
-            };
-            fetchCloudPost();
-        }
-    }, [slug, post]);
+            } catch (error) {
+                console.error("Cloud Fetch Error:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchCloudPost();
+    }, [slug]);
 
     if (loading) {
         return (
