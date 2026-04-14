@@ -120,13 +120,28 @@ export default function BlogAdminPage() {
                     <div className="flex flex-wrap gap-4">
                         <button 
                             onClick={async () => {
-                                const { syncLocalPostsToFirestore } = await import("./actions");
-                                const res = await syncLocalPostsToFirestore();
-                                if (res.success) {
-                                    alert(`SUCCESS: Migrated ${res.count} articles to Cloud.`);
+                                try {
+                                    const { db } = await import("@/lib/firebase");
+                                    const { collection, addDoc, serverTimestamp, getDocs, query, where } = await import("firebase/firestore");
+                                    
+                                    let count = 0;
+                                    for (const post of posts) {
+                                        const q = query(collection(db, "blogs"), where("slug", "==", post.slug));
+                                        const snapshot = await getDocs(q);
+                                        
+                                        if (snapshot.empty) {
+                                            await addDoc(collection(db, "blogs"), {
+                                                ...post,
+                                                createdAt: serverTimestamp(),
+                                                published: true
+                                            });
+                                            count++;
+                                        }
+                                    }
+                                    alert(`SUCCESS: Migrated ${count} articles to Cloud.`);
                                     window.location.reload();
-                                } else {
-                                    alert("SYNC FAILED: " + res.error);
+                                } catch (error: any) {
+                                    alert("SYNC ERROR: " + error.message);
                                 }
                             }}
                             className="flex items-center gap-4 px-10 py-5 bg-rose-600/10 text-rose-500 border border-rose-600/20 rounded-full font-black uppercase tracking-[0.3em] text-[10px] hover:bg-rose-600 hover:text-white transition-all shadow-2xl font-headline italic"
@@ -289,14 +304,25 @@ export default function BlogAdminPage() {
                             <div className="flex flex-col md:flex-row gap-4">
                                 <button 
                                     onClick={async () => {
-                                        const { saveBlogPostAction } = await import("./actions");
-                                        const res = await saveBlogPostAction(form);
-                                        if (res.success) {
-                                          alert("ARTICLE DEPLOYED SUCCESSFULLY");
-                                          setIsCreateModalOpen(false);
-                                          window.location.reload();
-                                        } else {
-                                          alert("DEPLOYMENT FAILED: " + res.error);
+                                        try {
+                                            const { db } = await import("@/lib/firebase");
+                                            const { collection, addDoc, serverTimestamp } = await import("firebase/firestore");
+                                            
+                                            const postData = {
+                                                ...form,
+                                                author: "Aqib Mustafa",
+                                                date: new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
+                                                image: "/assets/placeholder.png",
+                                                createdAt: serverTimestamp(),
+                                                published: true
+                                            };
+
+                                            await addDoc(collection(db, "blogs"), postData);
+                                            alert("ARTICLE DEPLOYED SUCCESSFULLY");
+                                            setIsCreateModalOpen(false);
+                                            window.location.reload();
+                                        } catch (error: any) {
+                                            alert("DEPLOYMENT FAILED: " + error.message);
                                         }
                                     }}
                                     className="flex-1 py-5 bg-rose-600 text-white rounded-full font-black uppercase tracking-[0.3em] text-[10px] hover:bg-rose-500 transition-all shadow-2xl font-headline italic"
