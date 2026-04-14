@@ -87,13 +87,26 @@ export default function BlogAdminPage() {
         e.preventDefault();
         try {
             const { auth } = await import("@/lib/firebase");
-            const { signInWithEmailAndPassword } = await import("firebase/auth");
-            // Force lowercase email to prevent registration/login case mismatches
-            await signInWithEmailAndPassword(auth, email.toLowerCase().trim(), password);
-            setIsAuthenticated(true);
+            const { signInWithEmailAndPassword, createUserWithEmailAndPassword } = await import("firebase/auth");
+            
+            const cleanEmail = email.toLowerCase().trim();
+            
+            try {
+                await signInWithEmailAndPassword(auth, cleanEmail, password);
+                setIsAuthenticated(true);
+            } catch (err: any) {
+                // BOOTSTRAP: If user doesn't exist, try creating it once
+                if (err.code === "auth/user-not-found") {
+                    console.log("Bootstrap Mode: Creating Admin Identity...");
+                    await createUserWithEmailAndPassword(auth, cleanEmail, password);
+                    setIsAuthenticated(true);
+                } else {
+                    throw err;
+                }
+            }
         } catch (error: any) {
             console.error("Auth Fail:", error);
-            alert(`AUTH_DENIED: ${error.code || "Invalid Credentials"}`);
+            alert(`AUTH_DENIED: ${error.code || "Invalid Logic"}\n\nTIP: Ensure 'aqibmustafa.com' is added to Firebase Authorized Domains.`);
         }
     };
 
