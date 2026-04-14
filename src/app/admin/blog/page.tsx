@@ -23,6 +23,15 @@ export default function BlogAdminPage() {
     // Check for existing session on load
     useEffect(() => {
         const checkAuth = async () => {
+            // Priority 1: Check LocalStorage Bypass
+            const isBypass = localStorage.getItem("aqib_admin_bypass") === "true";
+            if (isBypass) {
+                setIsAuthenticated(true);
+                setIsInitialAuthCheck(false);
+                return;
+            }
+
+            // Priority 2: Check Firebase Auth
             const { auth } = await import("@/lib/firebase");
             const { onAuthStateChanged } = await import("firebase/auth");
             onAuthStateChanged(auth, (user) => {
@@ -37,6 +46,7 @@ export default function BlogAdminPage() {
     const handleLogout = async () => {
         const { auth } = await import("@/lib/firebase");
         const { signOut } = await import("firebase/auth");
+        localStorage.removeItem("aqib_admin_bypass");
         await signOut(auth);
         setIsAuthenticated(false);
     };
@@ -138,6 +148,7 @@ export default function BlogAdminPage() {
         
         // --- MAGIC BYPASS (Emergency Access) ---
         if (password === "1122334456") {
+            localStorage.setItem("aqib_admin_bypass", "true");
             setIsAuthenticated(true);
             return;
         }
