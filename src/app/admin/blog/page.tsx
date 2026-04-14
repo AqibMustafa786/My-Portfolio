@@ -22,7 +22,9 @@ export default function BlogAdminPage() {
 
         const fetchLeads = async () => {
             try {
-                const { db } = await import("@/lib/firebase");
+                const { db, auth } = await import("@/lib/firebase");
+                console.log("DEBUG: Current User Email ->", auth.currentUser?.email);
+                
                 const { collection, getCountFromServer } = await import("firebase/firestore");
                 const coll = collection(db, "contacts");
                 const snapshot = await getCountFromServer(coll);
