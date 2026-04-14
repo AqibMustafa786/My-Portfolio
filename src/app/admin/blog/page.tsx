@@ -4,11 +4,12 @@ import { useState, useEffect } from "react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { posts } from "@/data/blog-posts";
-import { Plus, Search, Edit3, Trash2, LayoutDashboard, Share2, Eye, Shield, Lock, Upload, Image as ImageIcon, X, ChevronRight, Check } from "lucide-react";
+import { Plus, Search, Edit3, Trash2, LayoutDashboard, Share2, Eye, Shield, Lock, Upload, Image as ImageIcon, X, ChevronRight, Check, LogOut, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function BlogAdminPage() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isInitialAuthCheck, setIsInitialAuthCheck] = useState(true);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
@@ -18,6 +19,27 @@ export default function BlogAdminPage() {
     const [isUploading, setIsUploading] = useState(false);
     const [cloudPosts, setCloudPosts] = useState<any[]>([]);
     const [isLoadingPosts, setIsLoadingPosts] = useState(true);
+    
+    // Check for existing session on load
+    useEffect(() => {
+        const checkAuth = async () => {
+            const { auth } = await import("@/lib/firebase");
+            const { onAuthStateChanged } = await import("firebase/auth");
+            onAuthStateChanged(auth, (user) => {
+                if (user) setIsAuthenticated(true);
+                else setIsAuthenticated(false);
+                setIsInitialAuthCheck(false);
+            });
+        };
+        checkAuth();
+    }, []);
+
+    const handleLogout = async () => {
+        const { auth } = await import("@/lib/firebase");
+        const { signOut } = await import("firebase/auth");
+        await signOut(auth);
+        setIsAuthenticated(false);
+    };
     
     const [form, setForm] = useState({ 
         id: "", 
@@ -143,6 +165,14 @@ export default function BlogAdminPage() {
         p.category?.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
+    if (isInitialAuthCheck) {
+        return (
+            <div className="min-h-screen bg-white flex items-center justify-center">
+                <Loader2 className="w-12 h-12 text-rose-500 animate-spin" />
+            </div>
+        );
+    }
+
     if (!isAuthenticated) {
         return (
             <div className="min-h-screen bg-zinc-50 flex items-center justify-center p-6 text-black font-sans">
@@ -175,10 +205,18 @@ export default function BlogAdminPage() {
                         </div>
                         <h1 className="text-5xl md:text-8xl font-black italic uppercase tracking-tighter leading-none text-black font-headline">Blog Terminal</h1>
                     </div>
-                    <button onClick={() => {
-                        setForm({ id: "", title: "", slug: "", category: "SaaS", excerpt: "", image: "", imageAlt: "", intro: "", sections: [{ heading: "", body: "" }], faqs: [{ q: "", a: "" }], conclusion: "" });
-                        setIsCreateModalOpen(true);
-                    }} className="flex items-center gap-4 px-10 py-5 bg-black text-white rounded-full font-black uppercase tracking-[0.3em] text-[10px] hover:bg-rose-600 transition-all shadow-xl font-headline italic"><Plus className="w-4 h-4" /> Deploy New Article</button>
+                    <div className="flex flex-wrap gap-4">
+                        <button 
+                            onClick={handleLogout}
+                            className="flex items-center gap-3 px-8 py-5 bg-zinc-50 text-zinc-400 rounded-full font-black uppercase tracking-[0.3em] text-[9px] hover:bg-rose-500 hover:text-white transition-all italic border border-zinc-100 shadow-sm"
+                        >
+                            <LogOut className="w-4 h-4" /> Exit Node
+                        </button>
+                        <button onClick={() => {
+                            setForm({ id: "", title: "", slug: "", category: "SaaS", excerpt: "", image: "", imageAlt: "", intro: "", sections: [{ heading: "", body: "" }], faqs: [{ q: "", a: "" }], conclusion: "", legacyContent: "" });
+                            setIsCreateModalOpen(true);
+                        }} className="flex items-center gap-4 px-10 py-5 bg-black text-white rounded-full font-black uppercase tracking-[0.3em] text-[10px] hover:bg-rose-600 transition-all shadow-xl font-headline italic"><Plus className="w-4 h-4" /> Deploy New Article</button>
+                    </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-16">
