@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { posts } from "@/data/blog-posts";
@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function BlogAdminPage() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
     const [leadCount, setLeadCount] = useState<number | string>("...");
@@ -52,8 +53,6 @@ export default function BlogAdminPage() {
         post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         post.category.toLowerCase().includes(searchQuery.toLowerCase())
     );
-
-    const [email, setEmail] = useState("");
 
     if (!isAuthenticated) {
         return (
