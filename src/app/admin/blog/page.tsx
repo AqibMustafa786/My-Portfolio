@@ -221,12 +221,39 @@ export default function BlogAdminPage() {
 
                                 <div className="flex items-center gap-4">
                                     <button 
+                                        onClick={() => {
+                                            setForm({
+                                                title: post.title,
+                                                slug: post.slug,
+                                                category: post.category,
+                                                excerpt: post.excerpt,
+                                                content: post.content || ""
+                                            });
+                                            setIsCreateModalOpen(true);
+                                        }}
                                         className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white hover:text-black transition-all"
                                         aria-label={`Edit article: ${post.title}`}
                                     >
                                         <Edit3 className="w-4 h-4" />
                                     </button>
                                     <button 
+                                        onClick={async () => {
+                                            if (confirm("Are you sure you want to delete this article?")) {
+                                                try {
+                                                    const { db } = await import("@/lib/firebase");
+                                                    const { collection, query, where, getDocs, deleteDoc } = await import("firebase/firestore");
+                                                    const q = query(collection(db, "blogs"), where("slug", "==", post.slug));
+                                                    const snapshot = await getDocs(q);
+                                                    snapshot.forEach(async (doc) => {
+                                                        await deleteDoc(doc.ref);
+                                                    });
+                                                    alert("ARTICLE DELETED");
+                                                    window.location.reload();
+                                                } catch (error: any) {
+                                                    alert("DELETE FAILED: " + error.message);
+                                                }
+                                            }
+                                        }}
                                         className="w-10 h-10 rounded-full bg-rose-600/10 border border-rose-600/20 text-rose-500 flex items-center justify-center hover:bg-rose-600 hover:text-white transition-all shadow-xl shadow-rose-900/10"
                                         aria-label={`Delete article: ${post.title}`}
                                     >
@@ -308,28 +335,44 @@ export default function BlogAdminPage() {
                                     onClick={async () => {
                                         try {
                                             const { db } = await import("@/lib/firebase");
-                                            const { collection, addDoc, serverTimestamp } = await import("firebase/firestore");
+                                            const { collection, query, where, getDocs, addDoc, updateDoc, serverTimestamp } = await import("firebase/firestore");
                                             
                                             const postData = {
                                                 ...form,
                                                 author: "Aqib Mustafa",
-                                                date: new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
-                                                image: "/assets/placeholder.png",
-                                                createdAt: serverTimestamp(),
+                                                updatedAt: serverTimestamp(),
                                                 published: true
                                             };
 
-                                            await addDoc(collection(db, "blogs"), postData);
-                                            alert("ARTICLE DEPLOYED SUCCESSFULLY");
+                                            // Check if updating
+                                            const q = query(collection(db, "blogs"), where("slug", "==", form.slug));
+                                            const snapshot = await getDocs(q);
+
+                                            if (!snapshot.empty) {
+                                                // Update existing
+                                                const docRef = snapshot.docs[0].ref;
+                                                await updateDoc(docRef, postData);
+                                                alert("ARTICLE UPDATED SUCCESSFULLY");
+                                            } else {
+                                                // Create new
+                                                await addDoc(collection(db, "blogs"), {
+                                                    ...postData,
+                                                    date: new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
+                                                    image: "/assets/placeholder.png",
+                                                    createdAt: serverTimestamp(),
+                                                });
+                                                alert("ARTICLE DEPLOYED SUCCESSFULLY");
+                                            }
+
                                             setIsCreateModalOpen(false);
                                             window.location.reload();
                                         } catch (error: any) {
-                                            alert("DEPLOYMENT FAILED: " + error.message);
+                                            alert("OPERATION FAILED: " + error.message);
                                         }
                                     }}
                                     className="flex-1 py-5 bg-rose-600 text-white rounded-full font-black uppercase tracking-[0.3em] text-[10px] hover:bg-rose-500 transition-all shadow-2xl font-headline italic"
                                 >
-                                    Confirm Live Deployment
+                                    Confirm Action
                                 </button>
                                 <button 
                                     onClick={() => setIsCreateModalOpen(false)}
