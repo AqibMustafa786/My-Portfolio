@@ -85,15 +85,15 @@ export default function BlogPostClient({ params }: BlogPostClientProps) {
                         <div className="flex flex-wrap items-center gap-12 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 border-y border-zinc-100 py-10 italic">
                             <div className="flex items-center gap-3">
                                 <User className="w-4 h-4 text-rose-500" />
-                                {post.author}
+                                {post.author || "Aqib Mustafa"}
                             </div>
                             <div className="flex items-center gap-3">
                                 <Calendar className="w-4 h-4 text-black" />
-                                {post.date}
+                                {post.date || new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })}
                             </div>
                             <div className="flex items-center gap-3">
                                 <Clock className="w-4 h-4 text-black" />
-                                12 Min Read
+                                {Math.ceil((post.content?.split(' ').length || (post.intro?.split(' ').length + post.sections?.reduce((acc: number, s: any) => acc + s.body.split(' ').length, 0)) || 200) / 200)} Min Read
                             </div>
                         </div>
                     </header>
