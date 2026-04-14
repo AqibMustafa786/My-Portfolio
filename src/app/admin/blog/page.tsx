@@ -107,6 +107,13 @@ export default function BlogAdminPage() {
         let html = `<p class="text-xl mb-12 font-medium italic text-zinc-600 leading-relaxed">${f.intro}</p>`;
         f.sections.forEach(s => {
             if (s.heading) html += `<h2 class="text-3xl font-black italic uppercase tracking-tighter text-black mt-20 mb-8 font-headline">${s.heading}</h2>`;
+            if (s.image) {
+                html += `
+                <div class="relative aspect-video rounded-[2.5rem] overflow-hidden my-12 border border-zinc-100 shadow-2xl group">
+                    <img src="${s.image}" alt="${s.heading}" class="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-105" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
+                </div>`;
+            }
             if (s.body) html += `<p class="mb-10 text-zinc-500 leading-relaxed">${s.body.replace(/\n/g, '<br/>')}</p>`;
         });
         if (f.faqs.length > 0 && f.faqs[0].q) {
@@ -140,6 +147,30 @@ export default function BlogAdminPage() {
         } catch (error) {
             console.error("Upload failed:", error);
             alert("UPLOAD FAILED: Check console or storage rules.");
+        } finally {
+            setIsUploading(false);
+        }
+    };
+
+    const handleSectionImageUpload = async (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        setIsUploading(true);
+        try {
+            const { storage } = await import("@/lib/firebase");
+            const { ref, uploadBytes, getDownloadURL } = await import("firebase/storage");
+            
+            const fileRef = ref(storage, `blog-images/section-${Date.now()}-${file.name}`);
+            await uploadBytes(fileRef, file);
+            const url = await getDownloadURL(fileRef);
+            
+            const newSections = [...form.sections];
+            newSections[index].image = url;
+            setForm(prev => ({ ...prev, sections: newSections }));
+            alert("SECTION IMAGE SYNCED");
+        } catch (error) {
+            alert("UPLOAD FAILED");
         } finally {
             setIsUploading(false);
         }
@@ -400,12 +431,32 @@ export default function BlogAdminPage() {
                             <div className="space-y-2 mb-8"><label className="text-[10px] font-black uppercase tracking-widest text-zinc-400 italic ml-4">Introduction (SEO Hook)</label><textarea rows={2} className="w-full bg-zinc-50 border border-zinc-100 p-6 rounded-[2rem] text-black outline-none focus:border-rose-600 transition-all italic resize-none font-medium" value={form.intro} onChange={(e) => setForm({...form, intro: e.target.value})} /></div>
                             <div className="space-y-6 mb-12"><label className="text-[10px] font-black uppercase tracking-widest text-zinc-400 italic ml-4">Article Sections (H2 Optimization)</label>
                                 {form.sections.map((sec, idx) => (
-                                    <div key={idx} className="p-8 bg-zinc-50 border border-zinc-100 rounded-[2.5rem] space-y-4 shadow-sm">
-                                        <input type="text" placeholder={`H2 Header Area ${idx + 1}`} className="w-full bg-white border border-zinc-100 p-4 rounded-2xl text-black outline-none italic font-black uppercase" value={sec.heading} onChange={(e) => { const newSecs = [...form.sections]; newSecs[idx].heading = e.target.value; setForm({...form, sections: newSecs}); }} />
+                                    <div key={idx} className="p-8 bg-zinc-50 border border-zinc-100 rounded-[2.5rem] space-y-4 shadow-sm relative">
+                                        <div className="flex justify-between items-center mb-4">
+                                            <input type="text" placeholder={`H2 Header Area ${idx + 1}`} className="flex-1 bg-white border border-zinc-100 p-4 rounded-2xl text-black outline-none italic font-black uppercase" value={sec.heading} onChange={(e) => { const newSecs = [...form.sections]; newSecs[idx].heading = e.target.value; setForm({...form, sections: newSecs}); }} />
+                                            
+                                            <div className="flex items-center gap-2 ml-4">
+                                                <label className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center hover:bg-rose-600 transition-all cursor-pointer shadow-lg active:scale-95" title="Upload Section Asset">
+                                                    {isUploading ? <Loader2 className="w-4 h-4 animate-spin"/> : <ImageIcon className="w-4 h-4" />}
+                                                    <input type="file" className="hidden" accept="image/*" onChange={(e) => handleSectionImageUpload(e, idx)} disabled={isUploading} />
+                                                </label>
+                                                {sec.image && (
+                                                    <div className="w-10 h-10 rounded-full overflow-hidden border border-zinc-200 bg-white">
+                                                        <img src={sec.image} className="w-full h-full object-cover" />
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </div>
+                                        {sec.image && (
+                                            <div className="relative group overflow-hidden rounded-2xl border border-zinc-100 h-32 mb-4">
+                                                <img src={sec.image} className="w-full h-full object-cover transition-transform group-hover:scale-105" />
+                                                <button onClick={() => { const newSecs = [...form.sections]; newSecs[idx].image = ""; setForm({...form, sections: newSecs}); }} className="absolute top-2 right-2 w-8 h-8 rounded-full bg-black/50 text-white backdrop-blur-md flex items-center justify-center hover:bg-rose-600 transition-all"><X className="w-4 h-4" /></button>
+                                            </div>
+                                        )}
                                         <textarea rows={4} placeholder="Detailed Body..." className="w-full bg-white border border-zinc-100 p-6 rounded-[2rem] text-zinc-500 outline-none italic resize-none font-medium" value={sec.body} onChange={(e) => { const newSecs = [...form.sections]; newSecs[idx].body = e.target.value; setForm({...form, sections: newSecs}); }} />
                                     </div>
                                 ))}
-                                <button onClick={addSection} className="w-full py-4 border-2 border-dashed border-zinc-200 text-zinc-400 rounded-3xl font-black uppercase tracking-widest text-[9px] hover:border-rose-600 hover:text-rose-600 transition-all italic">+ Add New H2 Section</button>
+                                <button onClick={() => setForm({...form, sections: [...form.sections, { heading: "", body: "", image: "" }]})} className="w-full py-4 border-2 border-dashed border-zinc-200 text-zinc-400 rounded-3xl font-black uppercase tracking-widest text-[9px] hover:border-rose-600 hover:text-rose-600 transition-all italic">+ Add New H2 Section</button>
                             </div>
                             <div className="space-y-6 mb-12"><label className="text-[10px] font-black uppercase tracking-widest text-zinc-400 italic ml-4">FAQ Integration</label>
                                 {form.faqs.map((faq, idx) => (
