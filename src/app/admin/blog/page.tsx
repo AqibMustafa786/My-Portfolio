@@ -18,7 +18,7 @@ export default function BlogAdminPage() {
     const [isLoadingPosts, setIsLoadingPosts] = useState(true);
     
     const [form, setForm] = useState({ 
-        id: "", // Track document ID for updates
+        id: "", 
         title: "", 
         slug: "", 
         category: "SaaS", 
@@ -28,7 +28,8 @@ export default function BlogAdminPage() {
         intro: "",
         sections: [{ heading: "", body: "" }],
         faqs: [{ q: "", a: "" }],
-        conclusion: "" 
+        conclusion: "",
+        legacyContent: "" // Added for recovery
     });
 
     const addSection = () => setForm({ ...form, sections: [...form.sections, { heading: "", body: "" }] });
@@ -200,7 +201,9 @@ export default function BlogAdminPage() {
                                                 intro: p.intro || "",
                                                 sections: p.sections || [{ heading: "", body: "" }],
                                                 faqs: p.faqs || [{ q: "", a: "" }],
-                                                conclusion: p.conclusion || ""
+                                                conclusion: p.conclusion || "",
+                                                // @ts-ignore
+                                                legacyContent: p.content || ""
                                             });
                                             setIsCreateModalOpen(true);
                                         }}
@@ -254,6 +257,14 @@ export default function BlogAdminPage() {
                                 ))}
                                 <button onClick={addFAQ} className="w-full py-4 border-2 border-dashed border-zinc-200 text-zinc-400 rounded-2xl font-black uppercase tracking-widest text-[9px] hover:border-rose-600 hover:text-rose-600 transition-all italic">+ Add FAQ</button>
                             </div>
+                            {form.legacyContent && (
+                                <div className="space-y-4 mb-12 p-8 bg-amber-50 border border-amber-100 rounded-[2.5rem]">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-amber-600 italic ml-4">Recovery: Raw Legacy Content (Copy from here to SEO boxes)</label>
+                                    <textarea readOnly rows={4} className="w-full bg-white border border-amber-100 p-6 rounded-[2rem] text-zinc-500 outline-none italic resize-none font-medium" value={form.legacyContent} />
+                                    <p className="text-[9px] text-amber-500 italic ml-4">Note: This is your old article data. Please move it to the Intro/Sections above for perfect SEO.</p>
+                                </div>
+                            )}
+
                             <div className="space-y-2 mb-12"><label className="text-[10px] font-black uppercase tracking-widest text-zinc-400 italic ml-4">Final Verdict (Conclusion)</label><textarea rows={2} className="w-full bg-zinc-50 border border-zinc-100 p-6 rounded-[2rem] text-black outline-none focus:border-rose-600 transition-all italic resize-none font-medium" value={form.conclusion} onChange={(e) => setForm({...form, conclusion: e.target.value})} /></div>
                             <div className="flex flex-col md:flex-row gap-4 sticky bottom-0 bg-white/80 backdrop-blur-md pt-4">
                                 <button onClick={async () => {
