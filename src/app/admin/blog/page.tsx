@@ -27,9 +27,9 @@ export default function BlogAdminPage() {
                 const coll = collection(db, "contacts");
                 const snapshot = await getCountFromServer(coll);
                 setLeadCount(snapshot.data().count);
-            } catch (error) {
+            } catch (error: any) {
                 console.error("Fetch Error:", error);
-                setLeadCount("PROTECTED");
+                setLeadCount("ERR: " + (error.code || "DENIED"));
             }
         };
         fetchLeads();
