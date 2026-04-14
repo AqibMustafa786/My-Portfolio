@@ -57,10 +57,6 @@ export default function BlogPage() {
         <div className="min-h-screen bg-white text-black selection:bg-rose-500/10 font-sans relative overflow-x-hidden">
             <Navbar />
 
-            {/* Subtle Gradient Glows (Light Mode) */}
-            <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-rose-600/5 to-transparent pointer-events-none" />
-            <div className="absolute top-1/4 -right-1/4 w-[500px] h-[500px] bg-rose-600/[0.03] blur-[150px] rounded-full pointer-events-none" />
-
             <main className="pt-40 pb-40 container mx-auto px-6 relative z-10">
                 <div className="max-w-4xl mx-auto text-center mb-24">
                     <motion.div
