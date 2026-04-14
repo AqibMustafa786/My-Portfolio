@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { posts } from "@/data/blog-posts";
-import { Plus, Search, Edit3, Trash2, LayoutDashboard, Share2, Eye, Shield, Lock, Upload, Image as ImageIcon, X, ChevronRight, Check, LogOut, Loader2 } from "lucide-react";
+import { Plus, Search, Edit3, Trash2, LayoutDashboard, Share2, Eye, Shield, Lock, Upload, Image as ImageIcon, X, ChevronRight, Check, LogOut, Loader2, User, Calendar } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function BlogAdminPage() {
