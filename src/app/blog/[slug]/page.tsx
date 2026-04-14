@@ -48,6 +48,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
 }
 
+export async function generateStaticParams() {
+    // You can fetch from Firebase here if needed, 
+    // but for now let's use the static data + empty array for fallback
+    return staticPosts.map((post) => ({
+        slug: post.slug,
+    }));
+}
+
 export default function BlogPostPage({ params }: Props) {
     return <BlogPostClient params={params} />;
 }
