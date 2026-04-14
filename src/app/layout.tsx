@@ -76,12 +76,11 @@ export default function RootLayout({
             })
           }}
         />
-        <Script
+        <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3263209406470911"
           crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
+        ></script>
       </head>
       <body className="font-body antialiased">
         <ThemeProvider>
