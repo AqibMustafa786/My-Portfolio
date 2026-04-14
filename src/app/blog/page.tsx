@@ -154,7 +154,7 @@ export default function BlogPage() {
                                     </p>
 
                                     <div className="flex items-center text-black text-[9px] font-black uppercase tracking-[0.3em] italic group-hover:text-rose-600 transition-all pt-6 border-t border-zinc-100">
-                                        Open Protocol <ArrowRight className="w-4 h-4 ml-3 group-hover:translate-x-2 transition-transform" />
+                                        Read More <ArrowRight className="w-4 h-4 ml-3 group-hover:translate-x-2 transition-transform" />
                                     </div>
                                 </div>
                             </motion.article>
