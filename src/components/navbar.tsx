@@ -98,9 +98,9 @@ export function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 200 }}
-            className="fixed inset-0 z-40 bg-white md:hidden flex flex-col justify-start items-center px-6 pt-32 overflow-y-auto"
+            className="fixed inset-0 z-40 bg-white md:hidden flex flex-col justify-start items-center px-6 pt-32 overflow-y-auto scrollbar-hide [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
           >
-            <div className="flex flex-col gap-8 text-center w-full">
+            <div className="flex flex-col gap-6 text-center w-full">
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.name}
@@ -111,7 +111,7 @@ export function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
-                    className="text-3xl xs:text-4xl font-black italic uppercase tracking-tighter text-black hover:text-rose-600 transition-colors block font-headline leading-none"
+                    className="text-2xl xs:text-3xl font-black italic uppercase tracking-[0.1em] text-black hover:text-rose-600 transition-colors block font-headline"
                   >
                     {link.name}
                   </Link>
