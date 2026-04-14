@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { posts } from "@/data/blog-posts";
+import { posts as staticPosts } from "@/data/blog-posts";
 import BlogPostClient from "./BlogPostClient";
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
-    const post = posts.find(p => p.slug === slug);
+    const post = staticPosts.find(p => p.slug === slug);
 
     if (!post) {
         return { title: "Post Not Found | Aqib Portfolio Blog" };
