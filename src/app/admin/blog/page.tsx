@@ -204,11 +204,17 @@ export default function BlogAdminPage() {
                                 </div>
 
                                 <div className="flex items-center gap-4">
-                                    <button className="w-12 h-12 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-rose-600 transition-all group/btn">
-                                        <Edit3 className="w-4 h-4 text-white group-hover/btn:scale-110 transition-transform" />
+                                    <button 
+                                        className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white hover:text-black transition-all"
+                                        aria-label={`Edit article: ${post.title}`}
+                                    >
+                                        <Edit3 className="w-4 h-4" />
                                     </button>
-                                    <button className="w-12 h-12 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-zinc-800 transition-all group/btn">
-                                        <Trash2 className="w-4 h-4 text-zinc-500 group-hover/btn:text-white transition-all" />
+                                    <button 
+                                        className="w-10 h-10 rounded-full bg-rose-600/10 border border-rose-600/20 text-rose-500 flex items-center justify-center hover:bg-rose-600 hover:text-white transition-all shadow-xl shadow-rose-900/10"
+                                        aria-label={`Delete article: ${post.title}`}
+                                    >
+                                        <Trash2 className="w-4 h-4" />
                                     </button>
                                 </div>
                             </motion.div>
