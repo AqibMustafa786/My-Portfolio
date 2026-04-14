@@ -3,13 +3,12 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
+  apiKey: "AIzaSyA5M2YqNtVscKXdbK6gKW_MJY0JJ-L_iGc",
+  authDomain: "aquafolio-qfdsb.firebaseapp.com",
+  projectId: "aquafolio-qfdsb",
+  storageBucket: "aquafolio-qfdsb.firebasestorage.app",
+  messagingSenderId: "1043183838021",
+  appId: "1:1043183838021:web:b474039f31da15a833142c"
 };
 
 // Initialize Firebase
