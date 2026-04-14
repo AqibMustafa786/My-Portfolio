@@ -44,7 +44,7 @@ export default function BlogPostClient({ params }: BlogPostClientProps) {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-[#080808] flex items-center justify-center">
+            <div className="min-h-screen bg-white flex items-center justify-center">
                 <Loader2 className="w-12 h-12 text-rose-500 animate-spin" />
             </div>
         );
@@ -55,15 +55,12 @@ export default function BlogPostClient({ params }: BlogPostClientProps) {
     }
 
     return (
-        <div className="min-h-screen bg-[#080808] text-white selection:bg-rose-500/30 font-sans relative overflow-x-hidden">
+        <div className="min-h-screen bg-white text-black selection:bg-rose-500/10 font-sans relative overflow-x-hidden">
             <Navbar />
 
-            {/* Subtle Gradient Glows */}
-            <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-rose-600/5 to-transparent pointer-events-none" />
-            
             <main className="pt-40 pb-40 container mx-auto px-6 relative z-10 max-w-5xl">
-                <Link href="/blog" className="inline-flex items-center gap-4 text-zinc-500 hover:text-white mb-16 transition-all group">
-                    <div className="w-12 h-12 rounded-full border border-white/5 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all shadow-xl bg-white/5">
+                <Link href="/blog" className="inline-flex items-center gap-4 text-zinc-400 hover:text-black mb-16 transition-all group">
+                    <div className="w-12 h-12 rounded-full border border-zinc-100 flex items-center justify-center group-hover:bg-black group-hover:text-white transition-all shadow-sm bg-zinc-50">
                         <MoveLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
                     </div>
                     <span className="text-[10px] font-black uppercase tracking-[0.4em] italic leading-none">Global Index</span>
@@ -76,49 +73,49 @@ export default function BlogPostClient({ params }: BlogPostClientProps) {
                 >
                     <header className="mb-24">
                         <div className="flex items-center gap-4 mb-10">
-                            <span className="px-5 py-2 bg-rose-600/10 text-rose-500 text-[9px] rounded-full font-black uppercase tracking-widest border border-rose-600/20 italic">
+                            <span className="px-5 py-2 bg-rose-600/5 text-rose-600 text-[9px] rounded-full font-black uppercase tracking-widest border border-rose-600/10 italic">
                                 {post.category}
                             </span>
-                            <span className="flex items-center gap-2 px-5 py-2 bg-white/5 text-zinc-500 text-[9px] rounded-full font-black uppercase tracking-widest border border-white/5 italic">
-                                <Shield className="w-3 h-3" /> Verified Secure
+                            <span className="flex items-center gap-2 px-5 py-2 bg-zinc-50 text-zinc-400 text-[9px] rounded-full font-black uppercase tracking-widest border border-zinc-100 italic">
+                                <Shield className="w-3 h-3 text-rose-500" /> Verified Secure
                             </span>
                         </div>
-                        <h1 className="text-5xl md:text-8xl font-black italic uppercase tracking-tighter leading-none text-white mb-12 font-headline">
+                        <h1 className="text-5xl md:text-8xl font-black italic uppercase tracking-tighter leading-none text-black mb-12 font-headline">
                             {post.title}
                         </h1>
 
-                        <div className="flex flex-wrap items-center gap-12 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 border-y border-white/5 py-10 italic">
+                        <div className="flex flex-wrap items-center gap-12 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 border-y border-zinc-100 py-10 italic">
                             <div className="flex items-center gap-3">
                                 <User className="w-4 h-4 text-rose-500" />
                                 {post.author}
                             </div>
                             <div className="flex items-center gap-3">
-                                <Calendar className="w-4 h-4 text-white" />
+                                <Calendar className="w-4 h-4 text-black" />
                                 {post.date}
                             </div>
                             <div className="flex items-center gap-3">
-                                <Clock className="w-4 h-4 text-white" />
+                                <Clock className="w-4 h-4 text-black" />
                                 12 Min Read
                             </div>
                         </div>
                     </header>
 
                     {post.image && (
-                        <div className="relative aspect-[21/9] rounded-[3rem] overflow-hidden mb-24 border border-white/5 shadow-2xl">
-                            <img src={post.image} alt={post.title} className="w-full h-full object-cover grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-1000" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent" />
+                        <div className="relative aspect-[21/9] rounded-[3rem] overflow-hidden mb-24 border border-zinc-100 shadow-xl">
+                            <img src={post.image} alt={post.title} className="w-full h-full object-cover grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-1000" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-white/30 via-transparent to-transparent" />
                         </div>
                     )}
 
-                    <div className="prose prose-invert prose-lg max-w-none text-zinc-400 italic font-medium leading-relaxed prose-headings:text-white prose-headings:font-black prose-headings:italic prose-headings:uppercase prose-headings:tracking-tighter prose-headings:font-headline prose-strong:text-white prose-a:text-rose-500 hover:prose-a:text-rose-400 transition-colors">
+                    <div className="prose prose-zinc prose-lg max-w-none text-zinc-500 italic font-medium leading-relaxed prose-headings:text-black prose-headings:font-black prose-headings:italic prose-headings:uppercase prose-headings:tracking-tighter prose-headings:font-headline prose-strong:text-black prose-a:text-rose-600 hover:prose-a:text-rose-500 transition-colors">
                         <div dangerouslySetInnerHTML={{ __html: post.content || `<p>${post.excerpt}</p><p>Full content for this technical brief is being synchronized...</p>` }} />
                     </div>
 
-                    <div className="mt-32 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-10">
-                        <div className="text-zinc-500 text-[10px] font-black uppercase tracking-[0.3em] italic">
-                            Metadata: <span className="text-white">{post.category}, Global-Scale, 2026-X</span>
+                    <div className="mt-32 pt-12 border-t border-zinc-100 flex flex-col md:flex-row justify-between items-center gap-10">
+                        <div className="text-zinc-400 text-[10px] font-black uppercase tracking-[0.3em] italic">
+                            Metadata: <span className="text-black">{post.category}, Global-Scale, 2026-X</span>
                         </div>
-                        <button className="flex items-center gap-4 px-10 py-4 bg-white text-black rounded-full font-black uppercase tracking-[0.3em] text-[10px] hover:bg-rose-600 hover:text-white transition-all shadow-2xl font-headline italic">
+                        <button className="flex items-center gap-4 px-10 py-4 bg-black text-white rounded-full font-black uppercase tracking-[0.3em] text-[10px] hover:bg-rose-600 transition-all shadow-xl font-headline italic">
                             <Share2 className="w-4 h-4" /> Broadcast Information
                         </button>
                     </div>
