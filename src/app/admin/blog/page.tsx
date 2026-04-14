@@ -88,10 +88,12 @@ export default function BlogAdminPage() {
         try {
             const { auth } = await import("@/lib/firebase");
             const { signInWithEmailAndPassword } = await import("firebase/auth");
-            await signInWithEmailAndPassword(auth, email, password);
+            // Force lowercase email to prevent registration/login case mismatches
+            await signInWithEmailAndPassword(auth, email.toLowerCase().trim(), password);
             setIsAuthenticated(true);
         } catch (error: any) {
-            alert("AUTH ERROR: Check Console");
+            console.error("Auth Fail:", error);
+            alert(`AUTH_DENIED: ${error.code || "Invalid Credentials"}`);
         }
     };
 
