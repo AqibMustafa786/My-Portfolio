@@ -102,7 +102,7 @@ export default function BlogPostClient({ params }: BlogPostClientProps) {
 
                     {post.image && (
                         <div className="relative aspect-[21/9] rounded-[3rem] overflow-hidden mb-24 border border-zinc-100 shadow-xl">
-                            <img src={post.image} alt={post.title} className="w-full h-full object-cover grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-1000" />
+                            <img src={post.image} alt={post.imageAlt || post.title} className="w-full h-full object-cover grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-1000" />
                             <div className="absolute inset-0 bg-gradient-to-t from-white/30 via-transparent to-transparent" />
                         </div>
                     )}
