@@ -40,27 +40,27 @@ const experiences = [
 
 export function ExperienceSection() {
   return (
-    <section id="experience" className="relative py-32 overflow-hidden bg-white">
+    <section id="experience" className="relative py-28 overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-24"
+          className="text-center mb-16"
         >
-          <h2 className="text-5xl lg:text-6xl font-black mb-8 text-black font-headline tracking-tighter italic">
-            Professional <span className="text-rose-600 not-italic">Experience</span>
+          <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-foreground">
+            Professional <span className="text-primary">Experience</span>
           </h2>
-          <p className="text-zinc-500 text-lg max-w-2xl mx-auto italic font-medium">
+          <p className="text-muted-foreground text-base max-w-2xl mx-auto">
             A timeline of my professional journey and growth in the tech industry.
           </p>
         </motion.div>
 
         <div className="max-w-6xl mx-auto relative">
           {/* Vertical Line */}
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-zinc-100 -translate-x-1/2" />
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2" />
 
-          <div className="space-y-16">
+          <div className="space-y-12">
             {experiences.map((exp, index) => (
               <motion.div
                 key={index}
@@ -71,33 +71,31 @@ export function ExperienceSection() {
                 className={`relative flex flex-col md:flex-row gap-12 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
               >
                 {/* Timeline Dot */}
-                <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 top-10 items-center justify-center w-5 h-5 rounded-full bg-white border-4 border-rose-600 z-10 shadow-xl">
+                <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 top-8 items-center justify-center w-4 h-4 rounded-full bg-background border-2 border-primary z-10 shadow-lg shadow-primary/30">
                 </div>
 
                 {/* Content Card */}
                 <div className="flex-1">
-                  <div className="group relative p-1 rounded-[2rem] transition-all duration-500">
-                    <div className="relative h-full bg-zinc-50 rounded-[1.5rem] p-10 border border-zinc-100 group-hover:border-rose-600 group-hover:bg-white shadow-sm hover:shadow-2xl transition-all">
-                      <div className="flex flex-col gap-6">
-                        <div>
-                          <h3 className="text-2xl font-black text-black mb-2 font-headline tracking-tight group-hover:text-rose-600 transition-colors italic leading-tight">{exp.role}</h3>
-                          <div className="flex items-center gap-3 text-rose-500 text-[10px] font-black uppercase tracking-widest">
-                            <Briefcase className="w-4 h-4" />
-                            <span>{exp.company}</span>
-                          </div>
+                  <div className="group relative p-8 rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-xl">
+                    <div className="flex flex-col gap-4">
+                      <div>
+                        <h3 className="text-xl font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">{exp.role}</h3>
+                        <div className="flex items-center gap-2 text-primary text-sm font-medium">
+                          <Briefcase className="w-4 h-4" />
+                          <span>{exp.company}</span>
                         </div>
+                      </div>
 
-                        <p className="text-zinc-500 leading-relaxed text-sm italic font-medium">
-                          {exp.description}
-                        </p>
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {exp.description}
+                      </p>
 
-                        <div className="flex flex-wrap gap-2 mt-2">
-                          {exp.skills.map(skill => (
-                            <span key={skill} className="text-[9px] font-black uppercase tracking-widest px-4 py-2 rounded-full bg-white text-zinc-400 border border-zinc-100 group-hover:border-rose-200 group-hover:text-rose-600 transition-all shadow-sm">
-                              {skill}
-                            </span>
-                          ))}
-                        </div>
+                      <div className="flex flex-wrap gap-2">
+                        {exp.skills.map(skill => (
+                          <span key={skill} className="text-xs font-medium px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">
+                            {skill}
+                          </span>
+                        ))}
                       </div>
                     </div>
                   </div>
@@ -105,19 +103,19 @@ export function ExperienceSection() {
 
                 {/* Date/Location (Desktop Opposite Side) */}
                 <div className={`flex-1 hidden md:flex flex-col justify-center ${index % 2 === 0 ? 'items-end text-right' : 'items-start text-left'}`}>
-                  <div className="text-5xl font-black text-black/[0.04] group-hover:text-black/[0.08] transition-colors tracking-tighter italic font-headline uppercase">
+                  <div className="text-3xl font-bold text-foreground/10 tracking-tight">
                     {exp.duration}
                   </div>
-                  <div className="flex items-center gap-2 text-zinc-400 mt-2">
+                  <div className="flex items-center gap-2 text-muted-foreground mt-2">
                     <MapPin className="w-4 h-4" />
-                    <span className="text-[10px] font-black uppercase tracking-widest italic">{exp.location}</span>
+                    <span className="text-xs font-medium">{exp.location}</span>
                   </div>
                 </div>
 
                 {/* Mobile Date/Location Display */}
-                <div className="md:hidden flex items-center justify-between text-[10px] font-black uppercase tracking-widest text-zinc-400 px-4 italic">
+                <div className="md:hidden flex items-center justify-between text-xs font-medium text-muted-foreground px-1">
                   <div className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-rose-600" />
+                    <Calendar className="w-4 h-4 text-primary" />
                     <span>{exp.duration}</span>
                   </div>
                   <div className="flex items-center gap-2">

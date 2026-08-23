@@ -6,6 +6,7 @@ import { SkillsModern } from '@/components/sections/skills-modern';
 import { Footer } from '@/components/footer';
 import { ProjectCard } from '@/components/project-card';
 import { PortfolioSection } from '@/components/sections/portfolio';
+import { WebProjectsSection } from '@/components/sections/web-projects';
 import { ProductizedServices } from '@/components/sections/productized-services';
 import { ContactSection } from '@/components/sections/contact';
 import { ExperienceSection } from '@/components/sections/experience';
@@ -24,7 +25,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-white text-black selection:bg-rose-500/10 font-body">
+    <div className="relative min-h-screen selection:bg-primary/20">
       <Navbar />
 
       <main className="flex-1">
@@ -50,6 +51,8 @@ export default function Home() {
         <SkillsModern />
 
         <ExperienceSection />
+
+        <WebProjectsSection />
 
         <PortfolioSection />
 

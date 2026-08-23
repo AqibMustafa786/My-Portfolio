@@ -15,7 +15,6 @@ interface ProjectCardProps {
 export const ProjectCard = ({ project, index }: ProjectCardProps) => {
     const imageSource = project.gallery?.[0]?.src || project.images?.[0] || '';
 
-    // Mouse tracking for spotlight effect
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
 
@@ -32,44 +31,44 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
             transition={{ duration: 0.5, delay: index * 0.1 }}
             viewport={{ once: true }}
             onMouseMove={handleMouseMove}
-            className="group relative flex flex-col h-full rounded-[2.5rem] bg-white border border-zinc-100 overflow-hidden hover:border-rose-600 hover:shadow-2xl hover:shadow-rose-500/10 active:scale-[0.98] transition-all duration-500"
+            className="group relative flex flex-col h-full rounded-2xl bg-card border border-border overflow-hidden hover:border-primary/50 hover:shadow-xl active:scale-[0.98] transition-all duration-300"
         >
-            {/* Spotlight Effect (Rose Optimized) */}
+            {/* Subtle spotlight */}
             <motion.div
-                className="pointer-events-none absolute -inset-px rounded-[2.5rem] opacity-0 transition duration-300 group-hover:opacity-100"
+                className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition duration-300 group-hover:opacity-100"
                 style={{
                     background: useMotionTemplate`
                         radial-gradient(
-                          650px circle at ${mouseX}px ${mouseY}px,
-                          rgba(225, 29, 72, 0.05),
+                          500px circle at ${mouseX}px ${mouseY}px,
+                          rgba(244, 114, 84, 0.07),
                           transparent 80%
                         )
                     `,
                 }}
             />
 
-            {/* Image Container */}
-            <div className="relative aspect-[16/11] overflow-hidden m-3 rounded-[1.8rem] border border-zinc-50 shadow-inner">
+            {/* Image */}
+            <div className="relative aspect-[16/11] overflow-hidden m-3 rounded-xl border border-border">
                 {imageSource ? (
                     <Image
                         src={imageSource}
                         alt={project.title}
                         fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                 ) : (
-                    <div className="absolute inset-0 bg-zinc-50 flex items-center justify-center">
-                        <span className="text-4xl font-black text-black/5 font-headline">{project.title.charAt(0)}</span>
+                    <div className="absolute inset-0 bg-muted flex items-center justify-center">
+                        <span className="text-4xl font-bold text-muted-foreground/20">{project.title.charAt(0)}</span>
                     </div>
                 )}
 
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                 {/* Floating Tech Stack */}
-                <div className="absolute bottom-6 left-6 right-6 flex flex-wrap gap-2 opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 z-10">
+                <div className="absolute bottom-4 left-4 right-4 flex flex-wrap gap-2 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-10">
                     {project.techStack.slice(0, 3).map((tech) => (
-                        <span key={tech} className="px-5 py-2 text-[8px] font-black uppercase tracking-[0.2em] text-black bg-white/90 backdrop-blur-md rounded-full shadow-lg">
+                        <span key={tech} className="px-3 py-1 text-xs font-medium text-foreground bg-background/90 backdrop-blur-md rounded-full shadow-lg">
                             {tech}
                         </span>
                     ))}
@@ -77,24 +76,35 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
             </div>
 
             {/* Content */}
-            <div className="flex flex-col flex-grow p-10 relative">
-                <div className="mb-10">
-                    <h3 className="text-3xl font-black italic uppercase tracking-tighter text-black mb-4 group-hover:text-rose-600 transition-colors font-headline leading-[0.85]">
+            <div className="flex flex-col flex-grow p-6 relative">
+                <div className="mb-6">
+                    <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors leading-snug">
                         {project.title}
                     </h3>
-                    <p className="text-zinc-500 text-sm leading-relaxed line-clamp-2 italic font-medium">
+                    <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
                         {project.shortDescription}
                     </p>
                 </div>
 
-                <div className="mt-auto pt-8 border-t border-zinc-50 flex items-center justify-between">
+                <div className="mt-auto pt-5 border-t border-border flex items-center gap-3">
                     <Link
                         href={`/projects/${project.id}`}
-                        className="inline-flex items-center gap-4 px-10 py-4 rounded-full bg-black text-white font-black uppercase tracking-[0.3em] text-[9px] hover:bg-rose-600 transition-all shadow-xl shadow-zinc-200 font-headline italic"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-primary-foreground font-medium text-xs hover:opacity-90 transition-all shadow-md shadow-primary/20"
                     >
-                        Explore Details
-                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        Details
+                        <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
+                    {project.liveLink && (
+                        <a
+                            href={project.liveLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-card border border-border text-foreground font-medium text-xs hover:border-primary hover:text-primary transition-all"
+                        >
+                            Live Demo
+                            <ExternalLink className="w-3.5 h-3.5" />
+                        </a>
+                    )}
                 </div>
             </div>
         </motion.div>

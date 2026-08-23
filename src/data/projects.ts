@@ -39,6 +39,7 @@ export const projects: Project[] = [
         ],
         techStack: ["Flutter", "Dart", "Firebase", "React (Admin)"],
         category: "Mobile App",
+        liveLink: "https://fittrack-pro-admin.vercel.app",
         price: "$1000-$3000",
         duration: "14-45 days",
         industries: ["Fitness", "Healthcare", "E-commerce", "SaaS", "Lifestyle"],
@@ -125,7 +126,7 @@ export const projects: Project[] = [
         ],
         techStack: ["Next.js", "React", "Tailwind CSS", "Firebase", "Stripe"],
         category: "Web Development",
-        liveLink: "https://invoicecraft.com", // Example link
+        liveLink: "https://invoice-craft-alpha.vercel.app/",
         price: "$1200-$2500",
         duration: "14-30 days",
         industries: ["SaaS", "Fintech", "Freelancing", "Business Automation", "Finance"],
@@ -157,6 +158,7 @@ export const projects: Project[] = [
         ],
         techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Firebase"],
         category: "Web Development",
+        liveLink: "https://hardwood-hub.vercel.app/login",
         price: "$1000-$2500",
         duration: "7-30 days",
         industries: ["Electronics Stores", "Furniture Retail", "Home Decor", "Wholesale", "E-commerce", "Lifestyle"],
@@ -223,6 +225,7 @@ export const projects: Project[] = [
         ],
         techStack: ["TypeScript", "Next.js", "React", "Tailwind CSS"],
         category: "Web Development",
+        liveLink: "https://edu-genius.vercel.app",
         price: "$800-$2000",
         duration: "14-45 days",
         industries: ["EdTech", "E-learning", "Kids Education", "Gamification"],
@@ -232,6 +235,62 @@ export const projects: Project[] = [
             "Gamified Reward System",
             "Multimedia Lessons (Audio/Video)",
             "Parent/Teacher Dashboard"
+        ]
+    },
+    {
+        id: "loop-coffee",
+        title: "Loop",
+        shortDescription: "A modern, high-end, dynamic web application for a premium coffee brand.",
+        fullDescription: "Loop Coffee is a beautifully designed, single-page web application with a premium dark and neon aesthetic. It features an interactive coffee customizer, real-time dynamic menu filtering, a robust shopping cart system, and an integrated reservation flow. The admin portal provides comprehensive management capabilities backed by Firebase real-time data sync.",
+        images: ["/assets/loop1.png"],
+        gallery: [
+            { src: "/assets/loop1.png", type: "desktop" }
+        ],
+        techStack: ["Next.js", "React", "Tailwind CSS", "Firebase"],
+        category: "Web Development",
+        liveLink: "https://loop-coffee-psi.vercel.app/",
+        features: [
+            "Interactive Coffee Customizer",
+            "Real-time Menu Filtering",
+            "Robust Shopping Cart",
+            "Real-time Admin Dashboard",
+            "Premium Dark Theme UI"
+        ]
+    },
+    {
+        id: "zenvy",
+        title: "Zenvy Platform",
+        shortDescription: "A highly polished, responsive web application focused on delivering a serene, high-performance user experience.",
+        fullDescription: "Zenvy is a modern web platform built with a focus on seamless user experience, glassmorphism aesthetics, and blazingly fast performance. Designed to engage users instantly, it employs state-of-the-art frontend technologies and intelligent routing.",
+        images: ["/assets/zenvy1.png"], // Placeholder image
+        gallery: [
+            { src: "/assets/zenvy1.png", type: "desktop" }
+        ],
+        techStack: ["Next.js", "React", "Tailwind CSS"],
+        category: "Web Development",
+        liveLink: "https://zenvy-alpha.vercel.app/",
+        features: [
+            "High-Performance Routing",
+            "Glassmorphism UI Components",
+            "Responsive Modern Design"
+        ]
+    },
+    {
+        id: "echo-tune",
+        title: "EchoTune",
+        shortDescription: "An immersive music streaming platform offering seamless audio playback.",
+        fullDescription: "EchoTune brings the power of continuous music streaming to the web. It features a robust audio player, auto-play capabilities, and deep user engagement tools to ensure a fantastic listening experience without interruptions.",
+        images: ["/assets/et1.png"],
+        gallery: [
+            { src: "/assets/et1.png", type: "desktop" }
+        ],
+        techStack: ["Next.js", "React", "Tailwind CSS", "Audio API"],
+        category: "Web Development",
+        liveLink: "https://echo-tune-lyart.vercel.app/",
+        features: [
+            "Seamless Audio Playback",
+            "Auto-play Capabilities",
+            "Immersive Music UI"
         ]
     }
 ];

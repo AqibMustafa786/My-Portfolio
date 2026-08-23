@@ -17,7 +17,7 @@ export const AnimatedCard = ({ children, className, delay = 0 }: AnimatedCardPro
             transition={{ duration: 0.5, delay }}
             viewport={{ once: true }}
             className={cn(
-                "group relative overflow-hidden rounded-[2rem] bg-zinc-50 p-8 border border-zinc-100 hover:border-rose-600/50 hover:bg-white transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-rose-500/5",
+                "group relative overflow-hidden rounded-2xl bg-card p-7 border border-border hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-xl",
                 className
             )}
         >

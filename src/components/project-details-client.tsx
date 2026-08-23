@@ -22,7 +22,9 @@ export function ProjectDetailsClient({ project }: ProjectDetailsClientProps) {
     const centerImg = project.gallery?.find(img => img.type === "desktop") || project.gallery?.[0];
     
     // Lightbox Logic
-    const allGalleryImages = project.gallery || [];
+    const allGalleryImages = project.gallery && project.gallery.length > 0
+        ? project.gallery
+        : project.images.map(src => ({ src, type: "desktop" as const }));
     const nextImage = () => setCurrentImageIndex((prev) => (prev + 1) % allGalleryImages.length);
     const prevImage = () => setCurrentImageIndex((prev) => (prev - 1 + allGalleryImages.length) % allGalleryImages.length);
 
@@ -206,8 +208,8 @@ export function ProjectDetailsClient({ project }: ProjectDetailsClientProps) {
                                 transition={{ delay: 0.3 }}
                                 className="relative bg-[#F9F9FB] rounded-[2.5rem] md:rounded-[4rem] border border-zinc-100 overflow-hidden group shadow-xl flex items-center justify-center h-full cursor-pointer"
                                 onClick={() => { 
-                                    const img = project.gallery?.filter(img => img.type === "desktop")[1] || project.gallery?.[1] || project.images[0];
-                                    setCurrentImageIndex(allGalleryImages.indexOf(img!)); 
+                                    const img = allGalleryImages.filter(img => img.type === "desktop")[1] || allGalleryImages[1] || allGalleryImages[0];
+                                    setCurrentImageIndex(allGalleryImages.indexOf(img)); 
                                     setIsGalleryOpen(true); 
                                 }}
                             >

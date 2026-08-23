@@ -24,7 +24,7 @@ export function Navbar() {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Skills", href: "/#skills" },
-    { name: "Work", href: "/#projects" },
+    { name: "Projects", href: "/#projects" },
     { name: "Experience", href: "/#experience" },
     { name: "About", href: "/#about" },
   ];
@@ -38,7 +38,7 @@ export function Navbar() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           scrolled
-            ? "py-3 bg-white/90 backdrop-blur-2xl border-b border-zinc-100 shadow-2xl shadow-zinc-200/10"
+            ? "py-3 bg-background/90 backdrop-blur-2xl shadow-xl"
             : "py-4 bg-transparent"
         )}
       >
@@ -46,21 +46,18 @@ export function Navbar() {
 
           {/* Logo */}
           <Link href="/" className="relative z-50 flex items-center gap-3 group">
-            <div className="w-12 h-12 rounded-2xl bg-black flex items-center justify-center text-white font-black text-2xl shadow-2xl group-hover:bg-rose-600 transition-all font-headline">
-              A
-            </div>
-            <span className="text-2xl font-black italic uppercase tracking-tighter text-black hidden sm:block font-headline">
-              Aqib<span className="text-rose-600">.dev</span>
+            <span className="text-2xl font-bold tracking-tight text-foreground hidden sm:block">
+              Aqib<span className="text-primary"> MS</span>
             </span>
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-1 bg-zinc-50 p-1.5 rounded-full border border-zinc-100 backdrop-blur-md shadow-inner">
+          <div className="hidden md:flex items-center gap-1 bg-card p-1.5 rounded-full border border-border backdrop-blur-md shadow-inner">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="relative px-6 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-600 hover:text-black transition-colors rounded-full italic font-headline"
+                className="relative px-6 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-full"
               >
                 {link.name}
               </Link>
@@ -71,7 +68,7 @@ export function Navbar() {
           <div className="hidden md:flex items-center gap-4">
             <Link
               href="#contact"
-              className="px-8 py-3 rounded-full bg-black text-white text-[10px] font-black uppercase tracking-[0.3em] hover:bg-rose-600 shadow-2xl shadow-zinc-200 transition-all active:scale-95 font-headline italic"
+              className="px-8 py-3 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:opacity-90 shadow-lg shadow-primary/20 transition-all active:scale-95"
             >
               Hire Me
             </Link>
@@ -81,7 +78,7 @@ export function Navbar() {
           <div className="md:hidden flex items-center gap-4">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="relative z-50 p-3 text-black bg-zinc-50 rounded-2xl border border-zinc-100 shadow-xl"
+              className="relative z-50 p-3 text-foreground bg-card rounded-2xl border border-border shadow-xl"
               aria-label={menuOpen ? "Close Menu" : "Open Menu"}
             >
               {menuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -98,7 +95,7 @@ export function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 200 }}
-            className="fixed inset-0 z-40 bg-white md:hidden flex flex-col justify-start items-center px-6 pt-20 overflow-hidden"
+            className="fixed inset-0 z-40 bg-background md:hidden flex flex-col justify-start items-center px-6 pt-20 overflow-hidden"
           >
             <style jsx global>{`
               .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -116,7 +113,7 @@ export function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
-                    className="text-xl xs:text-2xl font-black italic uppercase tracking-[0.1em] text-black hover:text-rose-600 transition-colors block font-headline"
+                    className="text-xl xs:text-2xl font-semibold text-foreground hover:text-primary transition-colors block"
                   >
                     {link.name}
                   </Link>
@@ -133,16 +130,16 @@ export function Navbar() {
               <Link
                 href="#contact"
                 onClick={() => setMenuOpen(false)}
-                className="w-full max-w-xs px-10 py-4 rounded-xl bg-black text-white font-black italic uppercase tracking-[0.3em] text-[9px] shadow-2xl hover:bg-rose-600 transition-all font-headline text-center"
+                className="w-full max-w-xs px-10 py-4 rounded-xl bg-primary text-primary-foreground font-semibold text-sm shadow-xl hover:opacity-90 transition-all text-center"
               >
                 Start a Project
               </Link>
 
               <div className="flex justify-center gap-6 mt-2">
-                <a href="https://github.com/AqibMustafa786" className="w-12 h-12 rounded-xl bg-zinc-50 border border-zinc-100 flex items-center justify-center text-zinc-600 hover:bg-black hover:text-white transition-all shadow-lg" aria-label="Github">
+                <a href="https://github.com/AqibMustafa786" className="w-12 h-12 rounded-xl bg-card border border-border flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all shadow-lg" aria-label="Github">
                   <Github className="w-5 h-5" />
                 </a>
-                <a href="https://www.linkedin.com/in/aqib-surahio-355363294/" className="w-12 h-12 rounded-xl bg-zinc-50 border border-zinc-100 flex items-center justify-center text-zinc-600 hover:bg-[#0077b5] hover:text-white transition-all shadow-lg" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/aqib-surahio-355363294/" className="w-12 h-12 rounded-xl bg-card border border-border flex items-center justify-center text-muted-foreground hover:bg-[#0077b5] hover:text-white transition-all shadow-lg" aria-label="LinkedIn">
                   <Linkedin className="w-5 h-5" />
                 </a>
               </div>

@@ -1,74 +1,35 @@
 "use client";
 
-import { useState } from "react";
 import { projects } from "@/data/projects";
-import { ProjectCard } from "@/components/project-card";
-import { motion, AnimatePresence } from "framer-motion";
-import { MobileAppShowcase } from "./mobile-app-showcase";
+import { ProjectCarousel } from "@/components/project-carousel";
+import { motion } from "framer-motion";
 
 export function PortfolioSection() {
-  const webProjects = projects.filter(p => p.category === "Web Development");
   const mobileProjects = projects.filter(p => p.category === "Mobile App");
 
   return (
-    <section id="projects" className="relative py-32 overflow-hidden bg-white selection:bg-rose-500/10 border-t border-zinc-50">
+    <section id="mobile-projects" className="relative py-28 overflow-hidden border-t border-border">
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-24"
+          className="text-center mb-16"
         >
-          <span className="inline-block py-2 px-6 rounded-full bg-black text-[10px] font-black uppercase tracking-[0.3em] text-white mb-8 shadow-2xl shadow-rose-500/20 italic">
-            Selected Works
+          <span className="inline-block py-1.5 px-5 rounded-full bg-primary/10 text-primary text-xs font-medium mb-6 border border-primary/20">
+            Mobile & AppSheet Showcase
           </span>
-          <h2 className="text-3xl md:text-5xl lg:text-7xl font-black italic uppercase tracking-tighter text-black mb-8 leading-[0.9] font-headline break-words text-balance px-4">
-            Featured <span className="text-rose-600 not-italic">Masterpieces</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            Mobile <span className="text-primary">Ecosystems</span>
           </h2>
-          <p className="text-zinc-500 max-w-2xl mx-auto text-lg italic font-medium">
-            A curated selection of high-performance applications designed to solve real-world problems.
+          <p className="text-muted-foreground max-w-2xl mx-auto text-base">
+            A curated selection of high-performance mobile apps and no-code automations.
           </p>
         </motion.div>
 
-        {/* Mobile Applications Section */}
-        <div className="mb-40">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="flex items-center gap-6 mb-16"
-          >
-            <div className="h-[2px] bg-rose-600 w-16"></div>
-            <h3 className="text-3xl font-black italic uppercase tracking-tighter text-black font-headline leading-none">Mobile Applications</h3>
-            <div className="h-[1px] flex-grow bg-zinc-100"></div>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
-            {mobileProjects.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} />
-            ))}
-          </div>
-        </div>
-
-        {/* Web Applications Section */}
-        <div className="pb-20">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="flex items-center gap-6 mb-16"
-          >
-            <div className="h-[2px] bg-black w-16"></div>
-            <h3 className="text-3xl font-black italic uppercase tracking-tighter text-black font-headline leading-none">Web Development</h3>
-            <div className="h-[1px] flex-grow bg-zinc-100"></div>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
-            {webProjects.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} />
-            ))}
-          </div>
+        <div className="pb-10">
+          <ProjectCarousel projects={mobileProjects} />
         </div>
       </div>
     </section>

@@ -4,48 +4,52 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 0%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 0%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 0%;
-    --primary: 336 82% 59%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 240 10% 3.9%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 336 82% 59%;
-    --accent-foreground: 0 0% 100%;
+    /* Base Dark Navy */
+    --background: 224 34% 13%;
+    --foreground: 0 0% 98%;
+    /* Slightly lighter for cards */
+    --card: 224 34% 17%;
+    --card-foreground: 0 0% 98%;
+    --popover: 224 34% 13%;
+    --popover-foreground: 0 0% 98%;
+    /* Coral Primary/Accent */
+    --primary: 11 89% 64%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 224 34% 20%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 224 34% 20%;
+    --muted-foreground: 224 10% 65%;
+    --accent: 11 89% 64%;
+    --accent-foreground: 0 0% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 0% / 0.1;
-    --input: 0 0% 0% / 0.1;
-    --ring: 336 82% 59%;
+    --border: 0 0% 100% / 0.1;
+    --input: 0 0% 100% / 0.1;
+    --ring: 11 89% 64%;
     --radius: 0.8rem;
   }
 
   .dark {
-    --background: 240 6% 10%;
+    /* Same as root because we want this default to dark */
+    --background: 224 34% 13%;
     --foreground: 0 0% 98%;
-    --card: 240 6% 12%;
+    --card: 224 34% 17%;
     --card-foreground: 0 0% 98%;
-    --popover: 240 6% 10%;
+    --popover: 224 34% 13%;
     --popover-foreground: 0 0% 98%;
-    --primary: 270 95% 66%;
+    --primary: 11 89% 64%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 336 82% 59%;
+    --secondary: 224 34% 20%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 48 96% 59%;
-    --accent-foreground: 240 10% 3.9%;
-    --destructive: 0 62.8% 30.6%;
+    --muted: 224 34% 20%;
+    --muted-foreground: 224 10% 65%;
+    --accent: 11 89% 64%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 100% / 0.2;
+    --border: 0 0% 100% / 0.1;
     --input: 0 0% 100% / 0.1;
-    --ring: 270 95% 66%;
+    --ring: 11 89% 64%;
   }
 }
 
@@ -56,12 +60,11 @@
 
   html {
     scroll-behavior: smooth;
-    background-color: white !important;
+    background-color: hsl(var(--background));
   }
 
   body {
-    @apply bg-white text-foreground;
-    background-color: white !important;
+    @apply bg-background text-foreground;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -88,5 +91,14 @@
     .scrollbar-hide {
       scrollbar-width: none; /* Firefox */
     }
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .animate-marquee {
+    animation: marquee 20s linear infinite;
   }
 }

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { posts } from "@/data/blog-posts";
-import { Plus, Search, Edit3, Trash2, LayoutDashboard, Share2, Eye, Shield, Lock, Upload, Image as ImageIcon, X, ChevronRight, Check, LogOut, Loader2, User, Calendar } from "lucide-react";
+import { Plus, Search, Edit3, Trash2, LayoutDashboard, Share2, Eye, Shield, Lock, Upload, Image as ImageIcon, X, ChevronRight, Check, LogOut, Loader2, User, Calendar, Clock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function BlogAdminPage() {
@@ -60,7 +60,7 @@ export default function BlogAdminPage() {
         image: "",
         imageAlt: "",
         intro: "",
-        sections: [{ heading: "", body: "" }],
+        sections: [{ heading: "", body: "", image: "" }],
         faqs: [{ q: "", a: "" }],
         conclusion: "",
         author: "Aqib Mustafa",
@@ -68,7 +68,7 @@ export default function BlogAdminPage() {
         legacyContent: "" // Added for recovery
     });
 
-    const addSection = () => setForm({ ...form, sections: [...form.sections, { heading: "", body: "" }] });
+    const addSection = () => setForm({ ...form, sections: [...form.sections, { heading: "", body: "", image: "" }] });
     const addFAQ = () => setForm({ ...form, faqs: [...form.faqs, { q: "", a: "" }] });
 
     const fetchPostsFromCloud = async () => {
@@ -321,7 +321,7 @@ export default function BlogAdminPage() {
                                                 image: p.image || "", 
                                                 imageAlt: p.imageAlt || "", 
                                                 intro: p.intro || "", 
-                                                sections: p.sections || [{ heading: "", body: "" }], 
+                                                sections: p.sections || [{ heading: "", body: "", image: "" }], 
                                                 faqs: p.faqs || [{ q: "", a: "" }], 
                                                 conclusion: p.conclusion || "",
                                                 author: p.author || "Aqib Mustafa",
