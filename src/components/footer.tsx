@@ -38,8 +38,8 @@ export function Footer() {
   return (
     <footer className="relative bg-background pt-32 pb-16 overflow-hidden border-t border-border">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid md:grid-cols-4 gap-20 mb-24">
-          <div className="md:col-span-1">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 lg:gap-16 mb-16 md:mb-24">
+          <div className="col-span-2 md:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-3 group mb-8">
               <span className="text-3xl font-bold tracking-tight text-foreground">
                 Aqib<span className="text-primary"> MS</span>

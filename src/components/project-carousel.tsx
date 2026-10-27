@@ -14,7 +14,8 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
         align: 'start',
         containScroll: 'trimSnaps',
         dragFree: true,
-        loop: true
+        loop: true,
+        speed: 8,
     });
     
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -48,12 +49,12 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
 
     return (
         <div className="relative">
-            <div className="overflow-hidden px-1" ref={emblaRef}>
-                <div className="flex gap-4 md:gap-6 touch-pan-y cursor-grab active:cursor-grabbing">
+            <div className="overflow-hidden" ref={emblaRef}>
+                <div className="flex -ml-6 touch-pan-y cursor-grab active:cursor-grabbing py-2">
                     {projects.map((project) => (
                         <div 
                             key={project.id}
-                            className="min-w-0 flex-[0_0_100%] md:flex-[0_0_calc(50%-0.75rem)] lg:flex-[0_0_calc((100%/3)-0.9rem)] xl:flex-[0_0_calc((100%/3)-1rem)]"
+                            className="min-w-0 flex-[0_0_90%] sm:flex-[0_0_75%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] pl-6"
                         >
                             <MinimalProjectCard project={project} />
                         </div>

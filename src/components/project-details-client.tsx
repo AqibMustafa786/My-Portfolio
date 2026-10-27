@@ -132,13 +132,13 @@ export function ProjectDetailsClient({ project }: ProjectDetailsClientProps) {
 
                 {/* 4. PREMIUM BENTO GRID GALLERY */}
                 <section className="mb-32 md:mb-48">
-                    <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 h-auto md:h-[1000px] lg:h-[1200px]">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:min-h-[700px]">
                         {/* Main Spotlight (7 Cols) */}
                         <motion.div 
                             initial={{ opacity: 0, scale: 0.98 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
-                            className="md:col-span-8 relative bg-zinc-50 rounded-[2.5rem] md:rounded-[4rem] border border-zinc-100 overflow-hidden group shadow-2xl flex items-center justify-center h-[400px] md:h-full cursor-pointer"
+                            className="lg:col-span-8 relative aspect-[4/3] lg:aspect-auto lg:min-h-[700px] bg-zinc-50 rounded-[2.5rem] md:rounded-[4rem] border border-zinc-100 overflow-hidden group shadow-2xl flex items-center justify-center cursor-pointer"
                             onClick={() => { 
                                 const img = project.gallery?.find(img => img.type === "desktop") || project.gallery?.[0];
                                 setCurrentImageIndex(allGalleryImages.indexOf(img!)); 
@@ -150,7 +150,7 @@ export function ProjectDetailsClient({ project }: ProjectDetailsClientProps) {
                                     src={project.gallery?.find(img => img.type === "desktop")?.src || project.images[0]}
                                     alt="Main Desktop View"
                                     fill
-                                    className="object-cover transition-transform duration-[3s] group-hover:scale-105"
+                                    className="object-contain transition-transform duration-3000 group-hover:scale-105"
                                     priority
                                 />
                             </div>
@@ -166,7 +166,7 @@ export function ProjectDetailsClient({ project }: ProjectDetailsClientProps) {
                         </motion.div>
 
                         {/* Side Pillar (4 Cols) */}
-                        <div className="md:col-span-4 grid grid-rows-2 gap-6 md:gap-8 h-[600px] md:h-full">
+                        <div className="lg:col-span-4 grid grid-cols-2 lg:grid-cols-1 lg:grid-rows-2 gap-4 md:gap-8 min-h-[220px] sm:min-h-[300px] lg:min-h-[700px]">
                             {/* Mobile Double Stack or Single Large */}
                             <motion.div 
                                 initial={{ opacity: 0, x: 20 }}
@@ -181,7 +181,7 @@ export function ProjectDetailsClient({ project }: ProjectDetailsClientProps) {
                                 }}
                             >
                                 {/* Immersive Blurred Backdrop for Mobile */}
-                                <div className="absolute inset-0 opacity-40 blur-[100px] scale-150 transition-transform duration-[5s] group-hover:scale-[1.7]">
+                                <div className="absolute inset-0 opacity-40 blur-[100px] scale-150 transition-transform duration-5000 group-hover:scale-[1.7]">
                                     <Image
                                         src={project.gallery?.find(img => img.type === "mobile")?.src || project.images[0]}
                                         alt="Backdrop"
@@ -195,7 +195,7 @@ export function ProjectDetailsClient({ project }: ProjectDetailsClientProps) {
                                         src={project.gallery?.find(img => img.type === "mobile")?.src || project.images[0]}
                                         alt="Mobile View"
                                         fill
-                                        className="object-contain transition-all duration-[2s] group-hover:scale-105 group-hover:rotate-1"
+                                        className="object-contain transition-all duration-2000 group-hover:scale-105 group-hover:rotate-1"
                                     />
                                 </div>
                                 <div className="absolute top-6 right-8 text-white/50 text-[9px] font-black uppercase tracking-[0.3em] vertical-rl italic rotate-180 z-20">Mobile Ecosystem</div>

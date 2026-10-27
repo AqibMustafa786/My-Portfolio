@@ -84,24 +84,24 @@ export default function ContactPage() {
         <div className="min-h-screen bg-white text-black selection:bg-rose-500/10 font-sans relative overflow-x-hidden">
             <Navbar />
 
-            <main className="pt-40 pb-40 container mx-auto px-6 relative z-10">
-                <div className="text-center mb-32">
+            <main className="pt-32 sm:pt-40 pb-24 md:pb-40 container mx-auto px-4 sm:px-6 relative z-10">
+                <div className="text-center mb-16 md:mb-32">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                     >
                         <span className="text-rose-600 font-black tracking-[0.6em] uppercase text-[10px] mb-8 block italic">Project Initiation</span>
-                        <h1 className="text-6xl md:text-[8rem] font-black italic uppercase tracking-tighter leading-[0.8] text-black mb-12 font-headline">
+                        <h1 className="text-5xl sm:text-6xl md:text-[8rem] font-black italic uppercase tracking-tighter leading-[0.9] md:leading-[0.8] text-black mb-8 md:mb-12 font-headline">
                             Get In <span className="text-rose-600 not-italic">Touch</span>
                         </h1>
-                        <p className="text-zinc-500 text-xl max-w-3xl mx-auto italic font-medium leading-relaxed border-x border-zinc-100 px-16">
+                        <p className="text-zinc-500 text-base sm:text-xl max-w-3xl mx-auto italic font-medium leading-relaxed border-x border-zinc-100 px-4 sm:px-16">
                             Have a vision? Let&apos;s architect something exceptional together. 
                         </p>
                     </motion.div>
                 </div>
 
-                <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-24">
+                <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 lg:gap-24">
                     {/* Contact Info */}
                     <motion.div
                         initial={{ opacity: 0, x: -60 }}
@@ -109,40 +109,40 @@ export default function ContactPage() {
                         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                         className="space-y-12"
                     >
-                        <div className="bg-zinc-50 p-12 rounded-[3.5rem] border border-zinc-100">
-                            <h3 className="text-3xl font-black mb-12 font-headline italic uppercase tracking-tighter">Contact Protocol</h3>
-                            <div className="space-y-10">
-                                <div className="group flex items-start gap-8">
-                                    <div className="p-5 bg-white rounded-2xl text-black border border-zinc-100 shadow-sm group-hover:bg-rose-600 group-hover:text-white transition-all duration-500">
-                                        <Mail className="w-8 h-8" />
+                        <div className="bg-zinc-50 p-6 sm:p-8 md:p-12 rounded-[2rem] sm:rounded-[3.5rem] border border-zinc-100">
+                            <h3 className="text-2xl sm:text-3xl font-black mb-8 sm:mb-12 font-headline italic uppercase tracking-tighter">Contact Protocol</h3>
+                            <div className="space-y-8 sm:space-y-10">
+                                <div className="group flex min-w-0 items-start gap-4 sm:gap-8">
+                                    <div className="shrink-0 p-3 sm:p-5 bg-white rounded-2xl text-black border border-zinc-100 shadow-sm group-hover:bg-rose-600 group-hover:text-white transition-all duration-500">
+                                        <Mail className="w-6 h-6 sm:w-8 sm:h-8" />
                                     </div>
-                                    <div>
+                                    <div className="min-w-0">
                                         <div className="font-black text-black uppercase tracking-widest text-[9px] mb-1 italic">Direct Channel</div>
-                                        <a href="mailto:aqib2k1@gmail.com" className="text-2xl font-black font-headline italic uppercase tracking-tighter text-zinc-500 hover:text-rose-600 transition-colors">aqib2k1@gmail.com</a>
+                                        <a href="mailto:aqib2k1@gmail.com" className="break-all text-lg sm:text-2xl font-black font-headline italic uppercase tracking-tighter text-zinc-500 hover:text-rose-600 transition-colors">aqib2k1@gmail.com</a>
                                     </div>
                                 </div>
-                                <div className="group flex items-start gap-8">
-                                    <div className="p-5 bg-white rounded-2xl text-black border border-zinc-100 shadow-sm group-hover:bg-rose-600 group-hover:text-white transition-all duration-500">
-                                        <Phone className="w-8 h-8" />
+                                <div className="group flex min-w-0 items-start gap-4 sm:gap-8">
+                                    <div className="shrink-0 p-3 sm:p-5 bg-white rounded-2xl text-black border border-zinc-100 shadow-sm group-hover:bg-rose-600 group-hover:text-white transition-all duration-500">
+                                        <Phone className="w-6 h-6 sm:w-8 sm:h-8" />
                                     </div>
-                                    <div>
+                                    <div className="min-w-0">
                                         <div className="font-black text-black uppercase tracking-widest text-[9px] mb-1 italic">Vocal Network</div>
-                                        <div className="text-2xl font-black font-headline italic uppercase tracking-tighter text-zinc-500">+92 317 3276706</div>
+                                        <div className="break-words text-lg sm:text-2xl font-black font-headline italic uppercase tracking-tighter text-zinc-500">+92 317 3276706</div>
                                     </div>
                                 </div>
-                                <div className="group flex items-start gap-8">
-                                    <div className="p-5 bg-white rounded-2xl text-black border border-zinc-100 shadow-sm group-hover:bg-rose-600 group-hover:text-white transition-all duration-500">
-                                        <MapPin className="w-8 h-8" />
+                                <div className="group flex min-w-0 items-start gap-4 sm:gap-8">
+                                    <div className="shrink-0 p-3 sm:p-5 bg-white rounded-2xl text-black border border-zinc-100 shadow-sm group-hover:bg-rose-600 group-hover:text-white transition-all duration-500">
+                                        <MapPin className="w-6 h-6 sm:w-8 sm:h-8" />
                                     </div>
-                                    <div>
+                                    <div className="min-w-0">
                                         <div className="font-black text-black uppercase tracking-widest text-[9px] mb-1 italic">Base Location</div>
-                                        <div className="text-2xl font-black font-headline italic uppercase tracking-tighter text-zinc-500">Karachi, Pakistan</div>
+                                        <div className="break-words text-lg sm:text-2xl font-black font-headline italic uppercase tracking-tighter text-zinc-500">Karachi, Pakistan</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="p-12 rounded-[3.5rem] bg-black text-white shadow-2xl">
+                        <div className="p-6 sm:p-8 md:p-12 rounded-[2rem] sm:rounded-[3.5rem] bg-black text-white shadow-2xl">
                             <h3 className="text-2xl font-black mb-4 font-headline italic uppercase tracking-tighter">Current Deployment</h3>
                             <p className="text-rose-600 font-black flex items-center gap-3 mb-8 uppercase tracking-widest text-[10px] italic">
                                 <span className="w-3 h-3 rounded-full bg-rose-600 animate-pulse" />
@@ -162,7 +162,7 @@ export default function ContactPage() {
                         initial={{ opacity: 0, x: 60 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-                        className="bg-zinc-50 p-12 md:p-16 rounded-[3.5rem] border border-zinc-100 h-full"
+                        className="bg-zinc-50 p-6 sm:p-8 md:p-16 rounded-[2rem] sm:rounded-[3.5rem] border border-zinc-100 h-full"
                     >
                         <form onSubmit={handleSubmit} className="space-y-10">
                             <div className="grid gap-10">

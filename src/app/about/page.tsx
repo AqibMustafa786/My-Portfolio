@@ -10,7 +10,7 @@ export default function AboutPage() {
     const stats = [
         { label: "Years Experience", value: "3+", icon: Globe },
         { label: "Projects Completed", value: "50+", icon: Code },
-        { label: "Happy Clients", value: "40+", icon: User },
+        { label: "Happy Clients", value: "5", icon: User },
     ];
 
     const expertise = [
@@ -98,7 +98,7 @@ export default function AboutPage() {
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-3 gap-8 pt-10 border-t border-zinc-50">
+                        <div className="grid grid-cols-1 min-[480px]:grid-cols-3 gap-4 sm:gap-8 pt-10 border-t border-zinc-50">
                             {stats.map((stat, i) => (
                                 <div key={i} className="text-left group">
                                     <div className="text-4xl md:text-5xl font-black text-black font-headline group-hover:text-rose-600 transition-colors italic tracking-tighter">{stat.value}</div>

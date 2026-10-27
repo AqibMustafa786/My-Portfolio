@@ -95,7 +95,7 @@ export function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 200 }}
-            className="fixed inset-0 z-40 bg-background md:hidden flex flex-col justify-start items-center px-6 pt-20 overflow-hidden"
+            className="fixed inset-0 z-40 bg-background md:hidden flex flex-col justify-start items-center px-6 pt-20 overflow-y-auto overscroll-contain"
           >
             <style jsx global>{`
               .no-scrollbar::-webkit-scrollbar { display: none; }

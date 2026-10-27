@@ -8,7 +8,7 @@ export function AboutSection() {
     const stats = [
         { label: "Years Experience", value: "3+", icon: Globe },
         { label: "Projects Completed", value: "50+", icon: Code },
-        { label: "Happy Clients", value: "40+", icon: User },
+        { label: "Happy Clients", value: "5", icon: User },
     ];
 
     return (

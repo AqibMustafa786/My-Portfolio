@@ -110,7 +110,7 @@ export default function BlogAdminPage() {
             if (s.image) {
                 html += `
                 <div class="relative aspect-video rounded-[2.5rem] overflow-hidden my-12 border border-zinc-100 shadow-2xl group">
-                    <img src="${s.image}" alt="${s.heading}" class="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-105" />
+                    <img src="${s.image}" alt="${s.heading}" class="w-full h-full object-cover transition-transform duration-3000 group-hover:scale-105" />
                     <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
                 </div>`;
             }
@@ -288,28 +288,28 @@ export default function BlogAdminPage() {
                     {isLoadingPosts ? <div className="text-center py-20 text-zinc-400 italic">Accessing Cloud Repository...</div> : 
                     <AnimatePresence mode="popLayout">
                         {filteredPosts.map((p, index) => (
-                            <motion.div key={p.id} layout initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: index * 0.05 }} className="group bg-white hover:bg-zinc-50 border border-zinc-100 p-8 rounded-[2rem] flex flex-col md:flex-row items-center justify-between gap-10 transition-all shadow-sm hover:shadow-xl">
-                                <div className="flex items-center gap-10">
+                            <motion.div key={p.id} layout initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: index * 0.05 }} className="group bg-white hover:bg-zinc-50 border border-zinc-100 p-5 sm:p-8 rounded-[2rem] flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-10 transition-all shadow-sm hover:shadow-xl">
+                                <div className="flex min-w-0 w-full items-start sm:items-center gap-5 sm:gap-8">
                                     <div className="w-20 h-20 rounded-2xl overflow-hidden bg-zinc-100 border border-zinc-100 flex-shrink-0 grayscale group-hover:grayscale-0 transition-all duration-500">
                                         <img src={p.image} alt="" className="w-full h-full object-cover opacity-80 group-hover:opacity-100" />
                                     </div>
-                                    <div>
-                                        <div className="flex items-center gap-3 mb-2">
+                                    <div className="min-w-0 flex-1">
+                                        <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2">
                                             <span className="px-3 py-1 bg-rose-600/5 text-rose-600 text-[8px] rounded-full font-black uppercase tracking-widest border border-rose-600/10 italic">{p.category}</span>
                                             <span className="text-[8px] font-black uppercase tracking-widest text-zinc-400 italic">{p.date}</span>
                                         </div>
                                         <h3 className="text-xl font-black italic uppercase tracking-tighter text-black font-headline line-clamp-1">{p.title}</h3>
-                                        <div className="flex items-center gap-3 mt-2">
-                                            <p className="text-zinc-400 text-[9px] font-medium italic line-clamp-1">{p.excerpt}</p>
+                                        <div className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-1 mt-2">
+                                            <p className="min-w-0 text-zinc-400 text-[9px] font-medium italic line-clamp-1">{p.excerpt}</p>
                                             {p.updatedAt && (
-                                                <span className="text-[8px] font-black uppercase tracking-widest text-rose-500/50 italic whitespace-nowrap">
+                                                <span className="text-[8px] font-black uppercase tracking-widest text-rose-500/50 italic break-words">
                                                     • Last Sync: {p.lastUpdatedBy || "ROOT"}
                                                 </span>
                                             )}
                                         </div>
                                     </div>
                                 </div>
-                                <div className="flex items-center gap-4">
+                                <div className="flex items-center gap-4 self-end md:self-auto">
                                     <button 
                                         onClick={() => {
                                             setForm({ 
@@ -349,12 +349,12 @@ export default function BlogAdminPage() {
 
             <AnimatePresence>
                 {isCreateModalOpen && (
-                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
+                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6">
                         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setIsCreateModalOpen(false)} className="absolute inset-0 bg-white/80 backdrop-blur-xl" />
-                        <motion.div initial={{ opacity: 0, scale: 0.95, y: 30 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 30 }} className="relative w-full max-w-5xl bg-white border border-zinc-100 rounded-[3rem] p-12 overflow-y-auto max-h-[90vh] shadow-2xl font-sans">
-                            <div className="flex items-center justify-between mb-10 pb-6 border-b border-zinc-50">
+                        <motion.div initial={{ opacity: 0, scale: 0.95, y: 30 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 30 }} className="relative w-full max-w-5xl bg-white border border-zinc-100 rounded-[2rem] sm:rounded-[3rem] p-5 sm:p-8 lg:p-12 overflow-y-auto max-h-[94vh] sm:max-h-[90vh] shadow-2xl font-sans">
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 mb-8 sm:mb-10 pb-6 border-b border-zinc-50">
                                 <div className="flex flex-col items-start">
-                                    <h2 className="text-4xl font-black italic uppercase tracking-tighter text-black font-headline leading-none">Cloud SEO Architect</h2>
+                                    <h2 className="text-2xl sm:text-4xl font-black italic uppercase tracking-tighter text-black font-headline leading-none">Cloud SEO Architect</h2>
                                     <p className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 mt-2 italic leading-none">Syncing with Central Repository</p>
                                 </div>
                                 <button 
@@ -419,9 +419,9 @@ export default function BlogAdminPage() {
                                     <label className="text-[10px] font-black uppercase tracking-widest text-zinc-400 italic ml-4 flex items-center gap-2">
                                         <ImageIcon className="w-3 h-3" /> Featured Image Resource
                                     </label>
-                                    <div className="relative group/upload">
-                                        <input type="text" className="w-full bg-zinc-50 border border-zinc-100 p-5 rounded-3xl text-black outline-none focus:border-rose-600 transition-all italic font-medium pr-32" value={form.image} onChange={(e) => setForm({...form, image: e.target.value})} placeholder="https://..." />
-                                        <label className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-3 bg-black text-white rounded-[1.5rem] font-black uppercase tracking-widest text-[8px] italic flex items-center gap-2 cursor-pointer hover:bg-rose-600 transition-all shadow-lg active:scale-95">
+                                    <div className="relative group/upload flex flex-col gap-3 sm:block">
+                                        <input type="text" className="w-full bg-zinc-50 border border-zinc-100 p-5 rounded-3xl text-black outline-none focus:border-rose-600 transition-all italic font-medium sm:pr-32" value={form.image} onChange={(e) => setForm({...form, image: e.target.value})} placeholder="https://..." />
+                                        <label className="sm:absolute sm:right-2 sm:top-1/2 sm:-translate-y-1/2 px-4 py-3 bg-black text-white rounded-[1.5rem] font-black uppercase tracking-widest text-[8px] italic flex items-center justify-center gap-2 cursor-pointer hover:bg-rose-600 transition-all shadow-lg active:scale-95">
                                             {isUploading ? <Loader2 className="w-3 h-3 animate-spin"/> : <Upload className="w-3 h-3" />}
                                             {isUploading ? "SYNCING..." : "UPLOAD"}
                                             <input type="file" className="hidden" accept="image/*" onChange={handleImageUpload} disabled={isUploading} />

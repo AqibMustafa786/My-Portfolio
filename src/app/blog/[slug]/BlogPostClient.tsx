@@ -100,7 +100,7 @@ export default function BlogPostClient({ params }: BlogPostClientProps) {
 
                     {post.image && (
                         <div className="relative aspect-[21/9] rounded-[3rem] overflow-hidden mb-24 border border-zinc-100 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] group">
-                            <img src={post.image} alt={post.imageAlt || post.title} className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-105" />
+                            <img src={post.image} alt={post.imageAlt || post.title} className="w-full h-full object-cover transition-transform duration-3000 group-hover:scale-105" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
                         </div>
                     )}
